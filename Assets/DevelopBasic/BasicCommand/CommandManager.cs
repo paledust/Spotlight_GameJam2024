@@ -6,44 +6,47 @@ public class CommandManager<T> : MonoBehaviour where T:MonoBehaviour
 {
     [SerializeField] protected T context;
     protected List<Command<T>> commandList;
-    void Awake(){commandList = new List<Command<T>>();}
-    void Update()
+    void Awake(){
+        commandList = new List<Command<T>>();
+        if(commandList==null || commandList.Count == 0) this.enabled = false;
+    }
+    protected void Update()
     {
-        for(int i=commandList.Count - 1; i>=0; i--){
+        for(int i=commandList.Count-1; i>=0; i--){
+        //Note: The Command in the list might be swapped during Adding Command or Aborting Command.
+        //Becareful not to Add Command while complete a command
             var command = commandList[i];
-
             if(command.IsPending) command.SetStatus(CommandStatus.Working);
-            if(command.IsDone) HandleCompletion(command, i);
+            if(command.IsDone)
+                HandleCompletion(command);
             else {
                 command.CommandUpdate(context);
-                if(command.IsDone) HandleCompletion(command, i);
+                if(command.IsDone) HandleCompletion(command);
             }
         }
     }
-    public void ActivateAutoPilot(){
-        this.enabled = true;
-    }
-    public void DeactivateAutoPilot(){
-        this.enabled = false;
-        AbortCommands();
-    }
     public void AbortCommands(){
         for(int i=commandList.Count-1; i>=0; i--){
-            commandList[i].SetStatus(CommandStatus.Aborted);
-            HandleCompletion(commandList[i], i);
+            var command = commandList[i];
+            command.SetStatus(CommandStatus.Aborted);
+            HandleCompletion(command);
         }
         commandList.Clear();
     }
-    void HandleCompletion(Command<T> command, int commandIndex){
-        commandList.RemoveAt(commandIndex);
+    protected void HandleCompletion(Command<T> command){
+        commandList.Remove(command);
         var nextCommand = command.GetNextCommand();
         if(nextCommand != null && command.IsSuccess){
             AddCommand(nextCommand);
         }
         command.SetStatus(CommandStatus.Detached);
+
+        if(commandList.Count==0 || commandList == null) this.enabled = false;
     }
     public void AddCommand(Command<T> command){
         commandList.Add(command);
         command.SetStatus(CommandStatus.Pending);
+
+        if(!this.enabled) this.enabled = true;
     }
 }

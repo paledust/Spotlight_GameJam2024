@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -10,7 +11,6 @@ namespace SimpleAudioSystem{
     [Header("Audio source")]
         [SerializeField] private AudioSource ambience_loop;
         [SerializeField] private AudioSource music_loop;
-        [SerializeField] private AudioSource sfx_ethreal_default;
     [Header("Audio mixer")]
         [SerializeField] private AudioMixer mainMixer;
         [SerializeField] private AudioMixerSnapshot[] mixerSnapShots;
@@ -19,16 +19,21 @@ namespace SimpleAudioSystem{
         private string current_music_name = string.Empty;
         public string current_ambience_name{get; private set;} = string.Empty;
 
+        private const string masterVolumeName = "MasterVolume";
+        private CoroutineExcuter ambFader;
+
     #region Sound Play
-        public void PlayMusic(string audio_name){
+        public void PlayMusic(string audio_name, float volume = 1){
             current_music_name = audio_name;
             if(audio_name == string.Empty) music_loop.Stop();
 
             music_loop.clip = audioInfo.GetBGMClipByName(audio_name);
-            if(music_loop.clip!=null)
+            if(music_loop.clip!=null){
+                music_loop.volume = volume;
                 music_loop.Play();
+            }
         }
-        public void PlayAmbience(string audio_name, bool startOver, float transitionTime, float volume = 1){
+        public void PlayAmbience(string audio_name, bool startOver, float transitionTime, float volume = 1, bool overWriteIfCrossfade = false){
         //If no audio name, fade out the ambience
             if(audio_name == string.Empty){
                 FadeAudio(ambience_loop, 0, transitionTime, true);
@@ -53,12 +58,12 @@ namespace SimpleAudioSystem{
                         Debug.LogWarning("No clip found, nothing will be done for ambient");
                         return;
                     }
-                    CrossFadeAmbience(audio_name, volume, startOver, transitionTime);
+                    CrossFadeAmbience(audio_name, volume, startOver, transitionTime, overWriteIfCrossfade);
                 }
                 current_ambience_name = audio_name;
             }            
         }
-        public void PlayAmbience(string audio_name, bool startOver, float volume=1){
+        public void PlayAmbience(string audio_name, bool startOver, float volume=1, bool overWriteIfCrossfade = false){
         //If no audio name, fade out the ambience
             if(audio_name == string.Empty){
                 FadeAudio(ambience_loop, 0, 0.5f, true);
@@ -83,7 +88,7 @@ namespace SimpleAudioSystem{
                         Debug.LogWarning("No clip found, nothing will be done for ambient");
                         return;
                     }
-                    CrossFadeAmbience(audio_name, volume, startOver, 0.5f);
+                    CrossFadeAmbience(audio_name, volume, startOver, 0.5f, overWriteIfCrossfade);
                 }
                 current_ambience_name = audio_name;
             }
@@ -96,11 +101,14 @@ namespace SimpleAudioSystem{
                 Debug.LogAssertion($"No Clip found:{clip_name}");
             return clip;
         }
-        public void PlaySoundEffect(AudioSource targetSource, AudioClip clip, float volumeScale){
-            if(clip!=null) targetSource.PlayOneShot(clip, volumeScale);
-        }
-        public AudioClip PlaySoundEffectDefault(string clip_name, float volumeScale){
-            return PlaySoundEffect(sfx_ethreal_default, clip_name, volumeScale);
+        public AudioClip PlaySoundEffectLoop(AudioSource targetSource, string clip_name, float volumeScale, float transition = 1f){
+            AudioClip clip = GetSFXClip(clip_name);
+            targetSource.clip = clip;
+            targetSource.loop = true;
+            targetSource.Play();
+            FadeAudio(targetSource, volumeScale, transition);
+
+            return clip;
         }
         public void PlaySoundEffect(AudioSource targetSource, string clip, float volumeScale, float delay, Action completeCallback=null)=>
             StartCoroutine(coroutineDelaySFX(targetSource, clip, volumeScale, delay, completeCallback));
@@ -108,7 +116,21 @@ namespace SimpleAudioSystem{
             StartCoroutine(coroutineSFX_WithFinishAction(targetSource, clip, volumScale, finishCallback));
         public void FadeInAndOutSoundEffect(AudioSource targetSource, string clip, float maxVolume, float duration, float fadeIn, float fadeOut)=>
             StartCoroutine(coroutineFadeInAndOutSFX(targetSource, clip, maxVolume, duration, fadeIn, fadeOut));
-
+        public void FadeRoomTone(AudioSource roomtoneAudio, string clip, float volume, float transition){
+            if(clip == string.Empty){
+                StartCoroutine(coroutineFadeAudio(roomtoneAudio, 0, transition));
+            }
+            else{
+                AudioClip roomTone = audioInfo.GetAMBClipByName(clip);
+                if(roomtoneAudio.clip!=roomTone) roomtoneAudio.clip = roomTone;
+                if(!roomtoneAudio.isPlaying){
+                    roomtoneAudio.volume = 0;
+                    if(volume>0) roomtoneAudio.Play();
+                } 
+                
+                StartCoroutine(coroutineFadeAudio(roomtoneAudio, volume, transition, true));
+            }
+        }
         AudioClip GetSFXClip(string clipName){
             AudioClip clip;
             if(clipName.Contains("group"))
@@ -131,17 +153,13 @@ namespace SimpleAudioSystem{
         public void FadeAudio(AudioSource m_audio, float targetVolume, float transitionTime, bool StopOnFadeOut = false){
             StartCoroutine(coroutineFadeAudio(m_audio, targetVolume, transitionTime, StopOnFadeOut));
         }
-        public void TransitionToWhisperModeSetting(float transitionTime){
-            var weights = new float[2]{0,1};
-            mainMixer.TransitionToSnapshots(mixerSnapShots, weights, transitionTime);
+        public void ChangeMasterVolume(float targetVolume){
+            mainMixer.SetFloat(masterVolumeName, targetVolume);
         }
-        public void TransitionToRealityModeSetting(float transitionTime){
-            var weights = new float[2]{1,0};
-            mainMixer.TransitionToSnapshots(mixerSnapShots, weights, transitionTime);
-        }
-        void CrossFadeAmbience(string audio_name, float targetVolume, bool startOver, float transitionTime){
-            if(ambience_crossfading) return;
-            StartCoroutine(coroutineCrossFadeAmbience(current_ambience_name, audio_name, targetVolume, startOver, transitionTime));
+        void CrossFadeAmbience(string audio_name, float targetVolume, bool startOver, float transitionTime, bool overwriteAmbience = false){
+            if(!overwriteAmbience && ambience_crossfading) return;
+            if(ambFader==null) ambFader = new CoroutineExcuter(this);
+            ambFader.Excute(coroutineCrossFadeAmbience(current_ambience_name, audio_name, targetVolume, startOver, transitionTime));
         }
     #endregion
         IEnumerator coroutineFadeInAndOutSFX(AudioSource m_audio, string clip, float maxVolume, float duration, float fadeIn, float fadeOut){

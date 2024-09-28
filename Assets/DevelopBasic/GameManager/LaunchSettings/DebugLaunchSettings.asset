@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da7ef804e50b694abf4bd5bd0a081d2, type: 3}
-  m_Name: AudioInfo_SO
+  m_Script: {fileID: 11500000, guid: c08bdc90a71b1984a84818cdefcd911d, type: 3}
+  m_Name: DebugLaunchSettings
   m_EditorClassIdentifier: 
-  bgm_info_list: []
-  amb_info_list: []
-  sfx_info_list: []
-  sfx_group_info_list: []

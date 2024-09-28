@@ -18,3 +18,7 @@ public class PlayerSaveData{
     public Quaternion playerRot;
     public Quaternion camRot;
 }
+[Serializable]
+public class SaveData{
+    public PlayerSaveData playerSaveData;
+}

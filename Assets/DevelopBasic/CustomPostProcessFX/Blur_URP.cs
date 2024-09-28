@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-[System.Serializable, VolumeComponentMenuForRenderPipeline("Custom/Blur", typeof(UniversalRenderPipeline))]
+[System.Serializable, VolumeComponentMenuForRenderPipeline("Custom/Blur_URP", typeof(UniversalRenderPipeline))]
 public class Blur_URP : VolumeComponent, IPostProcessComponent
 {
     [Range(0, 0.1f)] public FloatParameter blurAmount = new FloatParameter(value : 0f);
@@ -28,7 +28,7 @@ public class Blur_URP_Pass : ScriptableRenderPass
     }
 
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData){
-        material = CoreUtils.CreateEngineMaterial(Shader.Find("Hidden/Custom/Blur"));
+        material = CoreUtils.CreateEngineMaterial(Shader.Find("Hidden/Custom/Blur_URP"));
 
         src = renderingData.cameraData.renderer.cameraColorTarget;
         

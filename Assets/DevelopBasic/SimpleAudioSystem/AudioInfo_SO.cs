@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,16 +26,16 @@ namespace SimpleAudioSystem{
             else return null;
         }
     }
-    [System.Serializable]
+    [Serializable]
     public class AudioInfo{
         public string audio_name;
         public AudioClip audio_clip;
     }
-    [System.Serializable]
+    [Serializable]
     public class AudioGroupInfo{
         public string audio_group_name;
         public AudioClip[] audioClips;
-        private int audioIndex = 0;
+        [NonSerialized] private int audioIndex = 0;
         public AudioClip GetAudioClip(){
             var clip = audioClips[audioIndex];
             audioIndex ++;

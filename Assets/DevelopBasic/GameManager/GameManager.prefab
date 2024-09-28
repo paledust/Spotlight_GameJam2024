@@ -128,11 +128,13 @@ MonoBehaviour:
   targetFrameRate: 60
   BlackScreenCanvasGroup: {fileID: 4562222128510109114}
   transitionDuration: 0.5
-  loadInitSceneFromGameManager: 0
   InitScene: Village
   isDemo: 1
   isTesting: 1
   demoText: {fileID: 6073298263620526879}
+  loadInitSceneFromGameManager: 0
+  launchSettings: {fileID: 11400000, guid: df611141ed597a341a14d67be49bf1fb, type: 2}
+  debugSettings: {fileID: 11400000, guid: a29fe9365c3ee6449be4fa007a8104a4, type: 2}
   debugActions:
     m_Name: Debug Actions
     m_Id: ba3d51f1-048f-4d77-8a8d-e1782e6bd764

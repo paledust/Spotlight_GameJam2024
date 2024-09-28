@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class CustomRenderFeature : ScriptableRendererFeature
+public class URP_CustomRenderFeature : ScriptableRendererFeature
 {
     private Blur_URP_Pass blur_pass;
 

@@ -15,7 +15,16 @@ public abstract class Command<T>{
     public bool IsAborted{get{return Status == CommandStatus.Aborted;}}    
     public bool IsDone{get{return (Status == CommandStatus.Fail || Status == CommandStatus.Success || Status == CommandStatus.Aborted);}}
     protected Command<T> nextCommand = null;
-	public Command<T> AddNextCommand(Command<T> command){nextCommand = command; return command;}
+	//Make sure the command always added to the last
+	public Command<T> QueueCommand(Command<T> command){
+		if(nextCommand==null){
+			nextCommand = command;
+		}
+		else{
+			nextCommand.QueueCommand(command);
+		}
+		return command;
+	}
 	public Command<T> GetNextCommand(){return nextCommand;}
 	public Command<T> OnCommandComplete(Action callback){
 		onCompleteCallBack = callback;

@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace SimpleSaveSystem{
     public enum Serializer{Json, Binary}
@@ -14,38 +14,40 @@ namespace SimpleSaveSystem{
         public const string GLOBALFILE_NAME = "Global.sav";
         public const string SAVEFILE_NAME = "Data.sav";
         public static GlobalSaveData globalSaveData;
-        public static void CleanGameState(){
-            string folderPath = Application.persistentDataPath + SAVEFILE_DIRECTOR;
-            string filePath = folderPath + SAVEFILE_NAME;
-
-            if(File.Exists(filePath)){
-                File.Delete(filePath);
-            }
+        public static void CleanGameState(int slotIndex){
+            string filePath = Application.persistentDataPath + SAVEFILE_DIRECTOR + $"/{slotIndex}/" + SAVEFILE_NAME;
+            if(File.Exists(filePath)) File.Delete(filePath);
         }
-        public static void SaveGameState(){
-            string folderPath = Application.persistentDataPath + SAVEFILE_DIRECTOR;
+        public static async void SaveGameState(int slotIndex){
+            string globalFolderPath = Application.persistentDataPath + SAVEFILE_DIRECTOR;
+            string folderPath = Application.persistentDataPath + SAVEFILE_DIRECTOR + $"/{slotIndex}/";
 
         //To save, we first Load
-            var saveData = Load<Dictionary<System.Guid, object>>(folderPath, SAVEFILE_NAME, Serializer.Binary);
-            if(saveData == null) saveData = new Dictionary<System.Guid, object>();
+            var saveData = Load<SaveData>(folderPath, SAVEFILE_NAME, Serializer.Json);
+            if(saveData == null) saveData = new SaveData();
 
+            EventHandler.Call_OnBeginSave();
         //Capture State
             ISaveable[] saveables = Service.FindComponentsOfTypeIncludingDisable<ISaveable>();
-            foreach(var saveable in saveables){
-                saveData[saveable.guid] = saveable.CaptureState();
-            }
-            Debug.Log($"{saveables.Length} saveables in scene are saved.");
+            await Task.Run(()=>{
+                foreach(var saveable in saveables){
+                    saveable.CaptureState(ref saveData);
+                }
+            //Save to file
+                Save(folderPath, SAVEFILE_NAME, saveData, Serializer.Json);
 
-        //Save to file
-            Save(folderPath, SAVEFILE_NAME, saveData, Serializer.Binary);
-
-        //Save Global
-            Save(folderPath, GLOBALFILE_NAME, globalSaveData, Serializer.Json);
+            //Save Global
+                Save(globalFolderPath, GLOBALFILE_NAME, globalSaveData, Serializer.Json);
+            });
+            Debug.Log($"{saveables.Length} saveables in scene are saved into Save Slot {slotIndex}.");
+            await Task.Delay(500);
+            
+            EventHandler.Call_OnCompleteSave();
         }
 
-        public static void LoadGameState(){
-            string path = Application.persistentDataPath + SAVEFILE_DIRECTOR;
-            var saveData = Load<Dictionary<System.Guid, object>>(path, SAVEFILE_NAME, Serializer.Binary);
+        public static void LoadGameState(int slotIndex){
+            string path = Application.persistentDataPath + SAVEFILE_DIRECTOR + $"/{slotIndex}/";
+            var saveData = Load<SaveData>(path, SAVEFILE_NAME, Serializer.Json);
             if(saveData == null){
                 Debug.LogWarning("No Valid Save Data");
                 return;
@@ -53,11 +55,9 @@ namespace SimpleSaveSystem{
 
             ISaveable[] saveables = Service.FindComponentsOfTypeIncludingDisable<ISaveable>();
             foreach(ISaveable saveable in saveables){
-                if(saveData.TryGetValue(saveable.guid, out var value)){
-                    saveable.RestoreState(value);
-                }
+                saveable.RestoreState(saveData);
             }
-            Debug.Log($"{saveables.Length} saveables in scene are loaded.");
+            Debug.Log($"{saveables.Length} saveables in scene are loaded from Save Slot {slotIndex}.");
         }
         
         public static void Initialize(){

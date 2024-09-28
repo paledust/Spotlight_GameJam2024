@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Singleton <T> : MonoBehaviour where T:Singleton<T>
 {
-    public static T Instance{get{return instance;}}
+    public static T Instance{get{
+    //Lazy Initialize
+        if(!IsInitialized){
+            instance = FindObjectOfType<T>();
+        }
+        return instance;
+    }}
     public static bool IsInitialized{get {return instance != null;}}
     private static T instance;
     protected virtual void Awake(){
-        if(instance != null) {
-            Destroy(gameObject);
+        if(IsInitialized) {
+            if(instance!=((T) this)) Destroy(gameObject);
         }
         else {
             instance = (T) this;

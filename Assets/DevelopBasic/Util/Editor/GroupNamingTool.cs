@@ -3,7 +3,9 @@ using UnityEditor;
 
 public class GroupNamingTool : EditorWindow
 {
-    protected string Naming = "Message";
+    protected const string NAME_TAG = "<name>";
+    protected const string NUM_TAG = "<num>";
+    protected string Naming = "<name>";
     protected int StartIndex = 0;
     [MenuItem("Tools/Others/Group Naming Tool")]
     public static void ShowWindow(){
@@ -30,8 +32,15 @@ public class GroupNamingTool : EditorWindow
                     minIndex = objects[i].transform.GetSiblingIndex();
                 }
             }
+            
+            Undo.RecordObjects(objects, "Change Name");
             for(int i=0; i<objects.Length; i++){
-                objects[i].name = Naming + "_" + (objects[i].transform.GetSiblingIndex()-minIndex+StartIndex).ToString();
+                string _objName = Naming;
+                _objName = _objName.Replace(NAME_TAG, objects[i].name);
+                _objName = _objName.Replace(NUM_TAG, (objects[i].transform.GetSiblingIndex()-minIndex+StartIndex).ToString());
+                objects[i].name = _objName;
+
+                EditorUtility.SetDirty(objects[i]);
             }
         }
     }
