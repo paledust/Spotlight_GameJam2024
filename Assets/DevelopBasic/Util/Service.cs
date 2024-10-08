@@ -36,5 +36,15 @@ public static class Service{
             elements[index] = tmp;
         }
     }
+    public static float LerpValue(float input, float target, float step, float tolerence = 0.001f){
+        float value = Mathf.Lerp(input, target, step);
+        if(Mathf.Abs(input-target)<=tolerence) return target;
+        return value;
+    }
+    public static Vector3 LerpVector(Vector3 input, Vector3 target, float step, float tolerence = 0.001f){
+        Vector3 value = Vector3.Lerp(input, target, step);
+        if(Vector3.SqrMagnitude(input-target)<=tolerence) return target;
+        return value;
+    }
 #endregion
 }
