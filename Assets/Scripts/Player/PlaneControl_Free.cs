@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-public class PlaneControl : MonoBehaviour
+public class PlaneControl_Free : MonoBehaviour
 {
     [SerializeField] private float maxPitchSpeed;
     [SerializeField] private float maxRollSpeed;

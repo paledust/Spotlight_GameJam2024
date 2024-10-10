@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 6167536754744221917}
   - component: {fileID: 8649833483153783361}
   m_Layer: 6
-  m_Name: PlaneControl
+  m_Name: 3D PlaneController
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
