@@ -27,7 +27,7 @@ public class PlaneControl_Platform : MonoBehaviour
         if(currentRotateSpeed!=targetRotateSpeed)
             currentRotateSpeed = Service.LerpValue(currentRotateSpeed, targetRotateSpeed, Time.deltaTime*agility);
 
-        planeRenderTrans.localRotation = Quaternion.Euler(0,0,3*Vector2.SignedAngle(transform.forward, Vector2.right));
+        planeRenderTrans.localRotation = Quaternion.Euler(0,0,Vector2.SignedAngle(transform.forward, Vector2.right));
     }
     void FixedUpdate(){
         m_rigid.rotation *= Quaternion.Euler(currentRotateSpeed*Time.fixedDeltaTime,0,0);
