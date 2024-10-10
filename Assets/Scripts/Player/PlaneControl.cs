@@ -39,8 +39,8 @@ public class PlaneControl : MonoBehaviour
         
     }
     void FixedUpdate(){
-        m_rigid.MoveRotation(m_rigid.rotation*Quaternion.Euler(currentPitchSpeed*Time.fixedDeltaTime, 0, currentRollSpeed*Time.fixedDeltaTime));
-        m_rigid.velocity = m_rigid.transform.forward*flyingSpeed;
+        m_rigid.rotation *= Quaternion.Euler(currentPitchSpeed*Time.fixedDeltaTime, 0, currentRollSpeed*Time.fixedDeltaTime);
+        m_rigid.velocity = m_rigid.rotation*Vector3.forward*flyingSpeed;
     }
 #region Input
     void OnMove(InputValue inputValue){
