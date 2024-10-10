@@ -28,6 +28,8 @@ Shader "AmplifyShaders/SpriteRiver"
 		_ShimerTileX("ShimerTileX", Float) = 0
 		_ShimerTileY("ShimerTileY", Float) = 0
 		_ShimerVector("ShimerVector", Vector) = (0.2,-2,-0.3,-1.2)
+		_Metallic("Metallic", Range( 0 , 1)) = 1
+		_Smoothness("Smoothness", Range( 0 , 1)) = 1
 
 
 		//_TransmissionShadow( "Transmission Shadow", Range( 0, 1 ) ) = 0.5
@@ -299,10 +301,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -315,8 +319,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -628,8 +632,8 @@ Shader "AmplifyShaders/SpriteRiver"
 				float3 Normal = float3(0, 0, 1);
 				float3 Emission = shimer117.rgb;
 				float3 Specular = 0.5;
-				float Metallic = 0;
-				float Smoothness = 0.5;
+				float Metallic = _Metallic;
+				float Smoothness = _Smoothness;
 				float Occlusion = 1;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
@@ -908,10 +912,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -924,8 +930,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -1231,10 +1237,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -1247,8 +1255,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -1526,10 +1534,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -1542,8 +1552,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -1898,10 +1908,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -1914,8 +1926,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -2215,10 +2227,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -2231,8 +2245,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -2578,10 +2592,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -2594,8 +2610,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -2905,8 +2921,8 @@ Shader "AmplifyShaders/SpriteRiver"
 				float3 Normal = float3(0, 0, 1);
 				float3 Emission = shimer117.rgb;
 				float3 Specular = 0.5;
-				float Metallic = 0;
-				float Smoothness = 0.5;
+				float Metallic = _Metallic;
+				float Smoothness = _Smoothness;
 				float Occlusion = 1;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
@@ -3071,10 +3087,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -3087,8 +3105,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -3333,10 +3351,12 @@ Shader "AmplifyShaders/SpriteRiver"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _GradientColor;
-			float4 _ShimerVector;
 			float4 _FoamColor;
 			float4 _FlowVector;
+			float4 _ShimerVector;
 			float4 _ShimerColor;
+			float _ShimerScale;
+			float _ShimerTileY;
 			float _ShimerTileX;
 			float _ShimerMax;
 			float _ShimerMin;
@@ -3349,8 +3369,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _SpeedScale;
 			float _GradientSmoothness;
 			float _GradientThickness;
-			float _ShimerTileY;
-			float _ShimerScale;
+			float _Metallic;
+			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -3625,6 +3645,8 @@ Node;AmplifyShaderEditor.RegisterLocalVarNode;34;-2189.167,1520.834;Inherit;Fals
 Node;AmplifyShaderEditor.TexCoordVertexDataNode;145;-3840,-416;Inherit;False;0;2;0;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.GetLocalVarNode;123;960,0;Inherit;False;117;shimer;1;0;OBJECT;;False;1;COLOR;0
 Node;AmplifyShaderEditor.GetLocalVarNode;36;960,-80;Inherit;False;34;waterColor;1;0;OBJECT;;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;288;864,80;Inherit;False;Property;_Metallic;Metallic;22;0;Create;True;0;0;0;False;0;False;1;1;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;287;864,160;Inherit;False;Property;_Smoothness;Smoothness;23;0;Create;True;0;0;0;False;0;False;1;1;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;277;1193.773,-81.10641;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;279;1193.773,-81.10641;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;280;1193.773,-81.10641;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
@@ -3720,5 +3742,7 @@ WireConnection;117;0;119;0
 WireConnection;34;0;37;0
 WireConnection;278;0;36;0
 WireConnection;278;2;123;0
+WireConnection;278;3;288;0
+WireConnection;278;4;287;0
 ASEEND*/
-//CHKSM=CE80CC8705058708399C0361B051EC5FDFA6DEC9
+//CHKSM=A0B1EB8E266D2E5BBB14578E7153B8D8EDDFB2E4

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
 public class PlaneControl_Free : MonoBehaviour
 {
     [SerializeField] private float maxPitchSpeed;
     [SerializeField] private float maxRollSpeed;
-    [SerializeField] private float agility = 5;
+    [SerializeField, Tooltip("控制输入反应速度")] private float agility = 5;
     [SerializeField] private float flyingSpeed;
 
     private Rigidbody m_rigid;
