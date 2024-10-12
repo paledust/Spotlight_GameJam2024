@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollowPlane : MonoBehaviour
 {
-    [SerializeField] private float rotationAgility = 5f;
     [SerializeField] private float positionAgility = 5f;
     [SerializeField] private Transform trackingTarget;
     private Vector3 initOffset;
