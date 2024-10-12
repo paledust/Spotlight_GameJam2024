@@ -14,6 +14,7 @@ public class IK_Control:MonoBehaviour
 
     private Quaternion initJointA_Rot;
     private Quaternion initJointB_Rot;
+    private Quaternion initJointC_Rot;
     private float length0;
     private float length1;
     private float length0_pow;
@@ -22,6 +23,7 @@ public class IK_Control:MonoBehaviour
     void Start(){
         initJointA_Rot = joint_A.localRotation;
         initJointB_Rot = joint_B.localRotation;
+        initJointC_Rot = joint_C.localRotation;
 
         length0 = Vector3.Distance(joint_A.position, joint_B.position);
         length1 = Vector3.Distance(joint_B.position, joint_C.position);
@@ -53,6 +55,7 @@ public class IK_Control:MonoBehaviour
 
         joint_A.transform.rotation = Quaternion.Euler(Vector3.forward*(isLeft?1:-1)*jointAngle_a) * joint_A.parent.rotation * initJointA_Rot;
         joint_B.transform.rotation = Quaternion.Euler(Vector3.forward*(isLeft?1:-1)*jointAngle_b) * joint_B.parent.rotation * initJointB_Rot;
+        joint_C.transform.localRotation = IK_target.localRotation*initJointC_Rot;
     }
     void OnDrawGizmos(){
         Gizmos.color = Color.blue;

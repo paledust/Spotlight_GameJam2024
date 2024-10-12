@@ -749,5 +749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Working Richard
       objectReference: {fileID: 0}
+    - target: {fileID: 7768213111308795937, guid: 18f3a3b8d8a20654fb02354bbd1c0ca4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f3a3b8d8a20654fb02354bbd1c0ca4, type: 3}
