@@ -31,7 +31,7 @@ public class ConductingGameControl : MonoBehaviour
     private int requireDir = 0;
     private int receivedDirection = 0;
     private int totalBeats = 0;
-    private int stateCounter = 0;
+    [SerializeField] private int stateCounter = 0;
     private CoroutineExcuter spriteBeater;
 
     void OnEnable(){
@@ -52,6 +52,7 @@ public class ConductingGameControl : MonoBehaviour
             timer = 0;
             totalBeats ++;
             stateCounter ++;
+
             switch(conductingState){
                 case ConductingState.Pending:
                     if(stateCounter >= pendingWindow){
@@ -62,6 +63,7 @@ public class ConductingGameControl : MonoBehaviour
                         signRenderer.color = Color.gray;
                         signRenderer.sprite = directionSign;
                         signRenderer.flipX = requireDir<0;
+                        spriteBeater.Excute(coroutineBeatSprite(0.05f));
                     }
                     else{
                         spriteBeater.Excute(coroutineBeatSprite(0.4f));
@@ -78,14 +80,13 @@ public class ConductingGameControl : MonoBehaviour
                         signRenderer.color = Color.white;
                         conductingState = ConductingState.Result;
                         signRenderer.flipX = false;
+                        spriteBeater.Excute(coroutineBeatSprite(0.1f));
                     }
                     else{
                         if(receivedDirection==requireDir){
-                            signRenderer.color = Color.green;
                             spriteBeater.Excute(coroutineBeatSprite(0.2f));
                         }
                         else{
-                            signRenderer.color = Color.gray;
                             spriteBeater.Excute(coroutineBeatSprite(0.05f));
                         }
                     }
@@ -99,6 +100,15 @@ public class ConductingGameControl : MonoBehaviour
                         spriteBeater.Excute(coroutineBeatSprite(0.4f));
                     }
                     break;
+            }
+        }
+
+        if(conductingState==ConductingState.Detecting){
+            if(receivedDirection==requireDir){
+                signRenderer.color = Color.green;
+            }
+            else{
+                signRenderer.color = Color.gray;
             }
         }
     }

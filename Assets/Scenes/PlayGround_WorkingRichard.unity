@@ -1858,8 +1858,9 @@ MonoBehaviour:
   beatRate: 100
   detectionWindow: 4
   pendingWindow: 4
-  resultWindow: 1
+  resultWindow: 0
   conductingState: 0
+  stateCounter: 0
 --- !u!1 &1291922041
 GameObject:
   m_ObjectHideFlags: 0
