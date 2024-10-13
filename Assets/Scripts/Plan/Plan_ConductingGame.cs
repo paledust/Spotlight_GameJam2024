@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Plan_ConductingGame : MonoBehaviour
 {
+    
     void Start()
     {
         

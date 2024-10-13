@@ -531,7 +531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465509434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.6, y: -0.31, z: 69.98}
+  m_LocalPosition: {x: 16.3, y: -0.31, z: 69.98}
   m_LocalScale: {x: 1.9719983, y: 1.9719983, z: 1.9719983}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -616,7 +616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518753100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.6, y: -0.31, z: 69.98}
+  m_LocalPosition: {x: 16.3, y: -0.31, z: 69.98}
   m_LocalScale: {x: 1.9719983, y: 1.9719983, z: 1.9719983}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1511,7 +1511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048036717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.394, y: 4.696, z: -0.21700074}
+  m_LocalPosition: {x: 1.9460002, y: 4.976, z: -0.21700074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1850,6 +1850,16 @@ MonoBehaviour:
   stopPos: {fileID: 1518086157}
   leftExit: {fileID: 1069428655}
   rightExit: {fileID: 1144280184}
+  signRenderer: {fileID: 1048036719}
+  stopSign: {fileID: 21300000, guid: eea6a80f1d381114abd48e65a7b4fcd7, type: 3}
+  directionSign: {fileID: 21300000, guid: d61264730c1723647951b463af668c81, type: 3}
+  FailSign: {fileID: 21300000, guid: ef64cdeb9f819c54ea0462820a173264, type: 3}
+  goodSign: {fileID: 21300000, guid: c9eb5921f6b363846acd254948ff7fd3, type: 3}
+  beatRate: 100
+  detectionWindow: 4
+  pendingWindow: 4
+  resultWindow: 1
+  conductingState: 0
 --- !u!1 &1291922041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,7 +3104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794092862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0600002, y: 3.5, z: 0}
+  m_LocalPosition: {x: 0.7, y: 3.78, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3144,7 +3154,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e11d36d8e27d6d84089954ab305d3eb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 5.12, y: 5.12}
@@ -3605,7 +3615,7 @@ PrefabInstance:
     - target: {fileID: 8378573432506411627, guid: be6b88fcd9bfa8741b249c437203c9dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000014901159
+      value: 0.000000014901163
       objectReference: {fileID: 0}
     - target: {fileID: 8378573432506411627, guid: be6b88fcd9bfa8741b249c437203c9dc,
         type: 3}
