@@ -14,7 +14,6 @@ public class ConductingGameControl : MonoBehaviour
     [SerializeField] private Transform center;
     [SerializeField] private Transform stopPos;
 [Header("Offset")]
-    [SerializeField] private float stopOffset = 15; 
     [SerializeField] private float alertOffset = 10;
     [SerializeField] private float maxYawOffset = 10;
 [Header("Driver")]
