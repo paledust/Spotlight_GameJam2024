@@ -1107,7 +1107,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 
+    path: WheelRoot
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves: []
@@ -2239,7 +2239,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.x
-    path: 
+    path: WheelRoot
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3338,7 +3338,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.y
-    path: 
+    path: WheelRoot
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4437,7 +4437,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.z
-    path: 
+    path: WheelRoot
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -5536,7 +5536,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.w
-    path: 
+    path: WheelRoot
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -5610,7 +5610,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesBaked.x
-    path: 
+    path: WheelRoot
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -5638,7 +5638,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesBaked.y
-    path: 
+    path: WheelRoot
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -5666,7 +5666,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesBaked.z
-    path: 
+    path: WheelRoot
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

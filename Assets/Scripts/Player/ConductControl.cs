@@ -10,11 +10,16 @@ public class ConductControl : MonoBehaviour
     private const string bool_leftHand = "leftHand";
     private const string bool_rightHand = "rightHand";
     private const string bool_upHand = "upHand";
+    private const string trigger_hold = "Hold";
 
-    void Finish(){
+    public void Finish(){
         GetComponent<PlayerInput>().enabled = false;
-        conductorAnime.SetTrigger("Finished");
+        conductorAnime.SetBool(bool_rightHand, false);
+        conductorAnime.SetBool(bool_leftHand, false);
+
+        conductorAnime.SetTrigger(trigger_hold);
     }
+#region Input Event
     void OnLeft(InputValue inputValue){
         bool leftHand = inputValue.isPressed;
         conductorAnime.SetBool(bool_leftHand, leftHand);
@@ -33,4 +38,5 @@ public class ConductControl : MonoBehaviour
 
         EventHandler.Call_OnConductForward(upHand);
     }
+#endregion
 }
