@@ -18,8 +18,10 @@ public static class EventHandler
 #endregion
 
 #region  Interaction Event
-    public static event Action<int> E_OnRiseHand;
-    public static void Call_OnRiseHand(int direction)=>E_OnRiseHand?.Invoke(direction);
+    public static event Action<int> E_OnConductDirection;
+    public static void Call_OnConductDirection(int direction)=>E_OnConductDirection?.Invoke(direction);
+    public static event Action<bool> E_OnConductForward;
+    public static void Call_OnConductForward(bool isForward)=>E_OnConductForward?.Invoke(isForward);
     public static event Action E_OnPlaneCrashed;
     public static void Call_OnPlaneCrashed()=>E_OnPlaneCrashed?.Invoke();
 #endregion

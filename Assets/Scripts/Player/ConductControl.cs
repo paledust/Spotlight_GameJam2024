@@ -11,6 +11,9 @@ public class ConductControl : MonoBehaviour
     private const string bool_rightHand = "rightHand";
     private const string bool_upHand = "upHand";
 
+    void Finish(){
+        GetComponent<PlayerInput>().enabled = false;
+    }
     void OnLeft(InputValue inputValue){
         bool leftHand = inputValue.isPressed;
         conductorAnime.SetBool(bool_leftHand, leftHand);
