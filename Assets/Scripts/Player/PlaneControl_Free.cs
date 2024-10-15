@@ -17,6 +17,7 @@ public class PlaneControl_Free : MonoBehaviour
     private float targetRollSpeed;
     private float currentPitchSpeed;
     private float currentRollSpeed;
+    private bool crashed = false;
 
     void Awake(){
         playerInput = GetComponent<PlayerInput>();
@@ -41,6 +42,14 @@ public class PlaneControl_Free : MonoBehaviour
     void FixedUpdate(){
         m_rigid.rotation *= Quaternion.Euler(currentPitchSpeed*Time.fixedDeltaTime, 0, currentRollSpeed*Time.fixedDeltaTime);
         m_rigid.velocity = m_rigid.rotation*Vector3.forward*flyingSpeed;
+    }
+//处理飞机坠毁的方式
+    public void OnCollide(Collision collision){
+        if(!crashed){
+            m_rigid.angularVelocity = new Vector3(currentPitchSpeed, 0, currentRollSpeed);
+            m_rigid.useGravity = true;
+            this.enabled = false;
+        }
     }
 #region Input
     void OnMove(InputValue inputValue){
