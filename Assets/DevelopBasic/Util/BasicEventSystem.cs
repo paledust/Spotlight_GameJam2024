@@ -20,5 +20,7 @@ public static class EventHandler
 #region  Interaction Event
     public static event Action<int> E_OnRiseHand;
     public static void Call_OnRiseHand(int direction)=>E_OnRiseHand?.Invoke(direction);
+    public static event Action E_OnPlaneCrashed;
+    public static void Call_OnPlaneCrashed()=>E_OnPlaneCrashed?.Invoke();
 #endregion
 }

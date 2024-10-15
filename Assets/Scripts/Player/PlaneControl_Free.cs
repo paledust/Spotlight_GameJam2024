@@ -46,8 +46,14 @@ public class PlaneControl_Free : MonoBehaviour
 //处理飞机坠毁的方式
     public void OnCollide(Collision collision){
         if(!crashed){
-            m_rigid.angularVelocity = new Vector3(currentPitchSpeed, 0, currentRollSpeed);
-            m_rigid.useGravity = true;
+            crashed = true;
+            Vector3 forward = m_rigid.velocity;
+            forward.y = 0;
+            m_rigid.angularVelocity = new Vector3(currentPitchSpeed*Time.fixedDeltaTime*2, 0, currentRollSpeed*Time.fixedDeltaTime*2);
+            m_rigid.AddForce(collision.impulse*0.5f+forward*2, ForceMode.Impulse);
+            m_rigid.AddRelativeTorque(Vector3.right*10, ForceMode.VelocityChange);
+
+            EventHandler.Call_OnPlaneCrashed();
             this.enabled = false;
         }
     }
