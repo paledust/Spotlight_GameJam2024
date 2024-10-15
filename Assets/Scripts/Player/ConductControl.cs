@@ -9,17 +9,24 @@ public class ConductControl : MonoBehaviour
     
     private const string bool_leftHand = "leftHand";
     private const string bool_rightHand = "rightHand";
+    private const string bool_upHand = "upHand";
 
     void OnLeft(InputValue inputValue){
         bool leftHand = inputValue.isPressed;
         conductorAnime.SetBool(bool_leftHand, leftHand);
 
-        EventHandler.Call_OnRiseHand(leftHand?1:-1);
+        EventHandler.Call_OnConductDirection(leftHand?1:-1);
     }
     void OnRight(InputValue inputValue){
         bool rightHand = inputValue.isPressed;
         conductorAnime.SetBool(bool_rightHand, rightHand);
 
-        EventHandler.Call_OnRiseHand(rightHand?-1:1);
+        EventHandler.Call_OnConductDirection(rightHand?-1:1);
+    }
+    void OnUp(InputValue inputValue){
+        bool upHand = inputValue.isPressed;
+        conductorAnime.SetBool(bool_upHand,upHand);
+
+        EventHandler.Call_OnConductForward(upHand);
     }
 }
