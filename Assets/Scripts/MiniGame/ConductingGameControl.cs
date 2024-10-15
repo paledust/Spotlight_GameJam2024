@@ -68,6 +68,8 @@ public class ConductingGameControl : MonoBehaviour
             isMoving = false;
             isDone = true;
             targetSpeed = 0;
+
+            GameManager.Instance.SwitchingScene("Story_Working_Game");
         }
     }
     void FixedUpdate()
