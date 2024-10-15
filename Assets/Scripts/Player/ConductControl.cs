@@ -13,6 +13,7 @@ public class ConductControl : MonoBehaviour
 
     void Finish(){
         GetComponent<PlayerInput>().enabled = false;
+        conductorAnime.SetTrigger("Finished");
     }
     void OnLeft(InputValue inputValue){
         bool leftHand = inputValue.isPressed;
