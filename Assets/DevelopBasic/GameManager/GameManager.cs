@@ -105,8 +105,15 @@ public class GameManager : Singleton<GameManager>
         string from = SceneManager.GetActiveScene().name;
         SwitchingScene(from, to, autosaveAfterTransition);
     }
+    public void SwitchingScene(string to, float duration, bool autosaveAfterTransition = true){
+        string from = SceneManager.GetActiveScene().name;
+        SwitchingScene(from, to, duration, autosaveAfterTransition);
+    }
+    void SwitchingScene(string from, string to, float duration, bool autosaveAfterTransition = true){
+        if(!IsSwitchingScene) StartCoroutine(SwitchSceneCoroutine(from, to, duration, autosaveAfterTransition));
+    }
     void SwitchingScene(string from, string to, bool autosaveAfterTransition = true){
-        if(!IsSwitchingScene) StartCoroutine(SwitchSceneCoroutine(from, to, autosaveAfterTransition));
+        if(!IsSwitchingScene) StartCoroutine(SwitchSceneCoroutine(from, to, transitionDuration, autosaveAfterTransition));
     }
     IEnumerator EndGameCoroutine(string level){
         StartCoroutine(FadeInBlackScreen(1f));
@@ -157,14 +164,14 @@ public class GameManager : Singleton<GameManager>
         
         IsSwitchingScene = false;
     }
-    IEnumerator SwitchSceneCoroutine(string from, string to, bool autosaveAfterTransition){
+    IEnumerator SwitchSceneCoroutine(string from, string to, float duration, bool autosaveAfterTransition){
         IsSwitchingScene = true;
         if(from != string.Empty){
         //TO DO: do something before the last scene is unloaded. e.g: call event of saving 
             lastScene = from;
             
             EventHandler.Call_BeforeUnloadScene();
-            yield return FadeInBlackScreen(transitionDuration);
+            yield return FadeInBlackScreen(duration);
             yield return SceneManager.UnloadSceneAsync(from);
         }
     //TO DO: do something after the last scene is unloaded.
@@ -178,7 +185,7 @@ public class GameManager : Singleton<GameManager>
         if(autosaveAfterTransition) SaveGame(0);
 
         yield return null;
-        yield return FadeOutBlackScreen(transitionDuration);
+        yield return FadeOutBlackScreen(duration);
 
         IsSwitchingScene = false;
     }
