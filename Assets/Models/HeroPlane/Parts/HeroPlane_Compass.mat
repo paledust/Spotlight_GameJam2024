@@ -140,7 +140,7 @@ Material:
     - _Color: {r: 0.5943396, g: 0.25509593, b: 0.20970088, a: 1}
     - _DissolveCenter: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveTile: {r: 1, g: 1, b: 0, a: 0}
-    - _EdgeColor: {r: 0.020942446, g: 3.9999995, b: 3.2075205, a: 1}
+    - _EdgeColor: {r: 3.5648694, g: 2.0797932, b: 1.0560083, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
