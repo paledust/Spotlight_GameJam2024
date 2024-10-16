@@ -13,7 +13,7 @@ public class ConductControl : MonoBehaviour
     private const string trigger_hold = "Hold";
 
     public void Finish(){
-        GetComponent<PlayerInput>().enabled = false;
+        GetComponent<PlayerInput>().DeactivateInput();
         conductorAnime.SetBool(bool_rightHand, false);
         conductorAnime.SetBool(bool_leftHand, false);
 

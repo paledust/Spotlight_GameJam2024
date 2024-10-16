@@ -71,12 +71,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 
 			
 
-			sampler2D _GameTex;
 			sampler2D _MainTex;
+			sampler2D _GameTex;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _GameTex_ST;
 			float4 _Color;
 			float4 _MainTex_ST;
+			float4 _GameTex_ST;
 			CBUFFER_END
 
 
@@ -147,10 +147,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 				UNITY_SETUP_INSTANCE_ID( IN );
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );
 
-				float2 uv_GameTex = IN.texCoord0.xy * _GameTex_ST.xy + _GameTex_ST.zw;
 				float2 uv_MainTex = IN.texCoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float4 temp_output_2_0_g1 = ( _Color * tex2D( _MainTex, uv_MainTex ) );
-				float4 appendResult12 = (float4(( tex2D( _GameTex, uv_GameTex ).rgb * (temp_output_2_0_g1).rgb ) , (temp_output_2_0_g1).a));
+				float2 uv_GameTex = IN.texCoord0.xy * _GameTex_ST.xy + _GameTex_ST.zw;
+				float3 blendOpSrc13 = (temp_output_2_0_g1).rgb;
+				float3 blendOpDest13 = tex2D( _GameTex, uv_GameTex ).rgb;
+				float4 appendResult12 = (float4(( saturate( (( blendOpDest13 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest13 ) * ( 1.0 - blendOpSrc13 ) ) : ( 2.0 * blendOpDest13 * blendOpSrc13 ) ) )) , (temp_output_2_0_g1).a));
 				
 				float4 Color = appendResult12;
 
@@ -218,12 +220,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 
 			
 
-			sampler2D _GameTex;
 			sampler2D _MainTex;
+			sampler2D _GameTex;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _GameTex_ST;
 			float4 _Color;
 			float4 _MainTex_ST;
+			float4 _GameTex_ST;
 			CBUFFER_END
 
 
@@ -294,10 +296,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 				UNITY_SETUP_INSTANCE_ID( IN );
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );
 
-				float2 uv_GameTex = IN.texCoord0.xy * _GameTex_ST.xy + _GameTex_ST.zw;
 				float2 uv_MainTex = IN.texCoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float4 temp_output_2_0_g1 = ( _Color * tex2D( _MainTex, uv_MainTex ) );
-				float4 appendResult12 = (float4(( tex2D( _GameTex, uv_GameTex ).rgb * (temp_output_2_0_g1).rgb ) , (temp_output_2_0_g1).a));
+				float2 uv_GameTex = IN.texCoord0.xy * _GameTex_ST.xy + _GameTex_ST.zw;
+				float3 blendOpSrc13 = (temp_output_2_0_g1).rgb;
+				float3 blendOpDest13 = tex2D( _GameTex, uv_GameTex ).rgb;
+				float4 appendResult12 = (float4(( saturate( (( blendOpDest13 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest13 ) * ( 1.0 - blendOpSrc13 ) ) : ( 2.0 * blendOpDest13 * blendOpSrc13 ) ) )) , (temp_output_2_0_g1).a));
 				
 				float4 Color = appendResult12;
 
@@ -363,12 +367,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 
 			
 
-			sampler2D _GameTex;
 			sampler2D _MainTex;
+			sampler2D _GameTex;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _GameTex_ST;
 			float4 _Color;
 			float4 _MainTex_ST;
+			float4 _GameTex_ST;
 			CBUFFER_END
 
 
@@ -425,10 +429,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 
 			half4 frag(VertexOutput IN ) : SV_TARGET
 			{
-				float2 uv_GameTex = IN.ase_texcoord.xy * _GameTex_ST.xy + _GameTex_ST.zw;
 				float2 uv_MainTex = IN.ase_texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float4 temp_output_2_0_g1 = ( _Color * tex2D( _MainTex, uv_MainTex ) );
-				float4 appendResult12 = (float4(( tex2D( _GameTex, uv_GameTex ).rgb * (temp_output_2_0_g1).rgb ) , (temp_output_2_0_g1).a));
+				float2 uv_GameTex = IN.ase_texcoord.xy * _GameTex_ST.xy + _GameTex_ST.zw;
+				float3 blendOpSrc13 = (temp_output_2_0_g1).rgb;
+				float3 blendOpDest13 = tex2D( _GameTex, uv_GameTex ).rgb;
+				float4 appendResult12 = (float4(( saturate( (( blendOpDest13 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest13 ) * ( 1.0 - blendOpSrc13 ) ) : ( 2.0 * blendOpDest13 * blendOpSrc13 ) ) )) , (temp_output_2_0_g1).a));
 				
 				float4 Color = appendResult12;
 
@@ -474,12 +480,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 
         	
 
-			sampler2D _GameTex;
 			sampler2D _MainTex;
+			sampler2D _GameTex;
 			CBUFFER_START( UnityPerMaterial )
-			float4 _GameTex_ST;
 			float4 _Color;
 			float4 _MainTex_ST;
+			float4 _GameTex_ST;
 			CBUFFER_END
 
 
@@ -534,10 +540,12 @@ Shader "AmplifyShaders/Sprite TVScreen"
 
 			half4 frag(VertexOutput IN ) : SV_TARGET
 			{
-				float2 uv_GameTex = IN.ase_texcoord.xy * _GameTex_ST.xy + _GameTex_ST.zw;
 				float2 uv_MainTex = IN.ase_texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				float4 temp_output_2_0_g1 = ( _Color * tex2D( _MainTex, uv_MainTex ) );
-				float4 appendResult12 = (float4(( tex2D( _GameTex, uv_GameTex ).rgb * (temp_output_2_0_g1).rgb ) , (temp_output_2_0_g1).a));
+				float2 uv_GameTex = IN.ase_texcoord.xy * _GameTex_ST.xy + _GameTex_ST.zw;
+				float3 blendOpSrc13 = (temp_output_2_0_g1).rgb;
+				float3 blendOpDest13 = tex2D( _GameTex, uv_GameTex ).rgb;
+				float4 appendResult12 = (float4(( saturate( (( blendOpDest13 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest13 ) * ( 1.0 - blendOpSrc13 ) ) : ( 2.0 * blendOpDest13 * blendOpSrc13 ) ) )) , (temp_output_2_0_g1).a));
 				
 				float4 Color = appendResult12;
 				half4 outColor = _SelectionID;
@@ -557,21 +565,21 @@ Version=19603
 Node;AmplifyShaderEditor.SamplerNode;6;-1152,-304;Inherit;True;Property;_MainTex;MainTex;1;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.ColorNode;7;-1088,-496;Inherit;False;Property;_Color;Color;2;0;Create;True;0;0;0;False;0;False;1,1,1,1;0,0,0,0;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;8;-832,-400;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SamplerNode;5;-768,-688;Inherit;True;Property;_GameTex;GameTex;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.FunctionNode;10;-656,-400;Inherit;False;Alpha Split;-1;;1;07dab7960105b86429ac8eebd729ed6d;0;1;2;COLOR;0,0,0,0;False;2;FLOAT3;0;FLOAT;6
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;11;-400,-544;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.DynamicAppendNode;12;-192,-544;Inherit;False;FLOAT4;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT4;0
+Node;AmplifyShaderEditor.SamplerNode;5;-752,-288;Inherit;True;Property;_GameTex;GameTex;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.BlendOpsNode;13;-432,-400;Inherit;False;Overlay;True;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;1;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.DynamicAppendNode;12;-192,-400;Inherit;False;FLOAT4;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT4;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;ASEMaterialInspector;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit Forward;0;1;Sprite Unlit Forward;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;ASEMaterialInspector;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;SceneSelectionPass;0;2;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=SceneSelectionPass;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;ASEMaterialInspector;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;ScenePickingPass;0;3;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;-16,-544;Float;False;True;-1;2;ASEMaterialInspector;0;15;AmplifyShaders/Sprite TVScreen;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit;0;0;Sprite Unlit;4;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;Hidden/InternalErrorShader;0;0;Standard;3;Vertex Position;1;0;Debug Display;0;0;External Alpha;0;0;0;4;True;True;True;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;-32,-400;Float;False;True;-1;2;ASEMaterialInspector;0;15;AmplifyShaders/Sprite TVScreen;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit;0;0;Sprite Unlit;4;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;Hidden/InternalErrorShader;0;0;Standard;3;Vertex Position;1;0;Debug Display;0;0;External Alpha;0;0;0;4;True;True;True;True;False;;False;0
 WireConnection;8;0;7;0
 WireConnection;8;1;6;0
 WireConnection;10;2;8;0
-WireConnection;11;0;5;5
-WireConnection;11;1;10;0
-WireConnection;12;0;11;0
+WireConnection;13;0;10;0
+WireConnection;13;1;5;5
+WireConnection;12;0;13;0
 WireConnection;12;3;10;6
 WireConnection;1;1;12;0
 ASEEND*/
-//CHKSM=3DE40B7D16D0A6B30BD7DBAA492C292878A8F51B
+//CHKSM=F4FBB5C70BF989B15D3CC664357262BF205B92C9

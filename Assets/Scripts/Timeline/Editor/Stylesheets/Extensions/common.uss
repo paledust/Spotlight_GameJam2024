@@ -1,0 +1,34 @@
+NoteMarker
+{
+    width:18px;
+    height:18px;
+    background-image:resource("Assets/Scripts/Timeline/Marker/Editor/Icon/notepad_collapse.png");
+}
+NoteMarker:checked
+{
+    background-image:resource("Assets/Scripts/Timeline/Marker/Editor/Icon/notepad_normal.png");
+}
+NoteMarker:hover:focus:checked
+{
+    background-image:resource("Assets/Scripts/Timeline/Marker/Editor/Icon/notepad_highlight.png");
+}
+
+ConversationMarker{
+    width:18px;
+    height:18px;
+    background-image:resource("Assets/Scripts/Timeline/Marker/Editor/Icon/speak.png");       
+}
+ConversationMarker:hover:focus:checked
+{
+    background-image:resource("Assets/Scripts/Timeline/Marker/Editor/Icon/speak_highlight.png");
+}
+
+SubtitleMarker{
+    width:18px;
+    height:18px;
+    background-image:resource("Assets/Scripts/Timeline/Marker/Editor/Icon/subtitle.png");   
+}
+SubtitleMarker:hover:focus:checked
+{
+    background-image:resource("Assets/Scripts/Timeline/Marker/Editor/Icon/subtitle_highlight.png");
+}
