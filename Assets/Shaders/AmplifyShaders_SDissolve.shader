@@ -8,7 +8,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("MainTex", 2D) = "white" {}
-		_DissolveValue("DissolveValue", Float) = 0.94
+		_DissolveValue("DissolveValue", Float) = 0.99
 		[Toggle]_InverseDissolveDirection("InverseDissolveDirection", Float) = 1
 		_DissolveTex("DissolveTex", 2D) = "white" {}
 		_DissolveRadius("DissolveRadius", Float) = 0
@@ -16,6 +16,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 		_EdgeOffset("EdgeOffset", Float) = 0.5
 		_EdgeSmoothness("EdgeSmoothness", Float) = -0.01
 		[HDR]_EdgeColor("EdgeColor", Color) = (1,1,1,1)
+		[KeywordEnum(Flat,V)] _DissolveDirection("DissolveDirection", Float) = 0
 
 		[HideInInspector][NoScaleOffset] unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
         [HideInInspector][NoScaleOffset] unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
@@ -76,6 +77,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging2D.hlsl"
 
 			#pragma multi_compile_instancing
+			#pragma shader_feature_local _DISSOLVEDIRECTION_FLAT _DISSOLVEDIRECTION_V
 
 
 			sampler2D _MainTex;
@@ -168,8 +170,16 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float4 _DissolveTex_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveTex_ST);
 				float2 uv_DissolveTex = IN.texCoord0.xy * _DissolveTex_ST_Instance.xy + _DissolveTex_ST_Instance.zw;
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
+				float2 texCoord111 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
+				#if defined( _DISSOLVEDIRECTION_FLAT )
+				float staticSwitch113 = _DissolveValue_Instance;
+				#elif defined( _DISSOLVEDIRECTION_V )
+				float staticSwitch113 = ( _DissolveValue_Instance - texCoord111.y );
+				#else
+				float staticSwitch113 = _DissolveValue_Instance;
+				#endif
 				float _DissolveLength_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveLength);
-				float temp_output_66_0 = ( ( _DissolveValue_Instance - _DissolveRadius ) / _DissolveLength_Instance );
+				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
 				float clip74 = saturate( ( tex2D( _DissolveTex, uv_DissolveTex ).r + dissolve69 ) );
@@ -243,6 +253,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging2D.hlsl"
 
 			#pragma multi_compile_instancing
+			#pragma shader_feature_local _DISSOLVEDIRECTION_FLAT _DISSOLVEDIRECTION_V
 
 
 			sampler2D _MainTex;
@@ -335,8 +346,16 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float4 _DissolveTex_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveTex_ST);
 				float2 uv_DissolveTex = IN.texCoord0.xy * _DissolveTex_ST_Instance.xy + _DissolveTex_ST_Instance.zw;
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
+				float2 texCoord111 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
+				#if defined( _DISSOLVEDIRECTION_FLAT )
+				float staticSwitch113 = _DissolveValue_Instance;
+				#elif defined( _DISSOLVEDIRECTION_V )
+				float staticSwitch113 = ( _DissolveValue_Instance - texCoord111.y );
+				#else
+				float staticSwitch113 = _DissolveValue_Instance;
+				#endif
 				float _DissolveLength_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveLength);
-				float temp_output_66_0 = ( ( _DissolveValue_Instance - _DissolveRadius ) / _DissolveLength_Instance );
+				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
 				float clip74 = saturate( ( tex2D( _DissolveTex, uv_DissolveTex ).r + dissolve69 ) );
@@ -408,6 +427,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
 			#pragma multi_compile_instancing
+			#pragma shader_feature_local _DISSOLVEDIRECTION_FLAT _DISSOLVEDIRECTION_V
 
 
 			sampler2D _MainTex;
@@ -486,8 +506,16 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float4 _DissolveTex_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveTex_ST);
 				float2 uv_DissolveTex = IN.ase_texcoord.xy * _DissolveTex_ST_Instance.xy + _DissolveTex_ST_Instance.zw;
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
+				float2 texCoord111 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				#if defined( _DISSOLVEDIRECTION_FLAT )
+				float staticSwitch113 = _DissolveValue_Instance;
+				#elif defined( _DISSOLVEDIRECTION_V )
+				float staticSwitch113 = ( _DissolveValue_Instance - texCoord111.y );
+				#else
+				float staticSwitch113 = _DissolveValue_Instance;
+				#endif
 				float _DissolveLength_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveLength);
-				float temp_output_66_0 = ( ( _DissolveValue_Instance - _DissolveRadius ) / _DissolveLength_Instance );
+				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
 				float clip74 = saturate( ( tex2D( _DissolveTex, uv_DissolveTex ).r + dissolve69 ) );
@@ -539,6 +567,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
         	#pragma multi_compile_instancing
+        	#pragma shader_feature_local _DISSOLVEDIRECTION_FLAT _DISSOLVEDIRECTION_V
 
 
 			sampler2D _MainTex;
@@ -615,8 +644,16 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float4 _DissolveTex_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveTex_ST);
 				float2 uv_DissolveTex = IN.ase_texcoord.xy * _DissolveTex_ST_Instance.xy + _DissolveTex_ST_Instance.zw;
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
+				float2 texCoord111 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				#if defined( _DISSOLVEDIRECTION_FLAT )
+				float staticSwitch113 = _DissolveValue_Instance;
+				#elif defined( _DISSOLVEDIRECTION_V )
+				float staticSwitch113 = ( _DissolveValue_Instance - texCoord111.y );
+				#else
+				float staticSwitch113 = _DissolveValue_Instance;
+				#endif
 				float _DissolveLength_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveLength);
-				float temp_output_66_0 = ( ( _DissolveValue_Instance - _DissolveRadius ) / _DissolveLength_Instance );
+				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
 				float clip74 = saturate( ( tex2D( _DissolveTex, uv_DissolveTex ).r + dissolve69 ) );
@@ -640,11 +677,14 @@ Shader "AmplifyShaders/Sprite Dissolve"
 }
 /*ASEBEGIN
 Version=19603
-Node;AmplifyShaderEditor.RangedFloatNode;60;-3568,1392;Inherit;False;Property;_DissolveRadius;DissolveRadius;5;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;109;-3568,1312;Inherit;False;InstancedProperty;_DissolveValue;DissolveValue;2;0;Create;True;0;0;0;False;0;False;0.94;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleSubtractOpNode;87;-3360,1312;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;61;-3104,1488;Inherit;False;InstancedProperty;_DissolveLength;DissolveLength;6;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleDivideOpNode;66;-2864,1312;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;109;-4192,1200;Inherit;False;InstancedProperty;_DissolveValue;DissolveValue;2;0;Create;True;0;0;0;False;0;False;0.99;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;111;-4224,1312;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleSubtractOpNode;112;-3952,1280;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;60;-3632,1392;Inherit;False;Property;_DissolveRadius;DissolveRadius;5;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.StaticSwitch;113;-3744,1200;Inherit;False;Property;_DissolveDirection;DissolveDirection;10;0;Create;True;0;0;0;False;0;False;0;0;0;True;;KeywordEnum;2;Flat;V;Create;True;True;All;9;1;FLOAT;0;False;0;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleSubtractOpNode;87;-3424,1312;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;61;-3168,1488;Inherit;False;InstancedProperty;_DissolveLength;DissolveLength;6;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleDivideOpNode;66;-2928,1312;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode;68;-2656,1408;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;64;-2752,1488;Inherit;False;Property;_InverseDissolveDirection;InverseDissolveDirection;3;1;[Toggle];Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;67;-2432,1312;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
@@ -679,7 +719,11 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;101;1600,-208;Float;False;F
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;102;1600,-208;Float;False;False;-1;2;ASEMaterialInspector;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;SceneSelectionPass;0;2;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=SceneSelectionPass;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;103;1600,-208;Float;False;False;-1;2;ASEMaterialInspector;0;1;New Amplify Shader;cf964e524c8e69742b1d21fbe2ebcc4a;True;ScenePickingPass;0;3;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;100;1648,-416;Float;False;True;-1;2;ASEMaterialInspector;0;15;AmplifyShaders/Sprite Dissolve;cf964e524c8e69742b1d21fbe2ebcc4a;True;Sprite Unlit;0;0;Sprite Unlit;4;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;True;12;all;0;False;True;2;5;False;;10;False;;3;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=Universal2D;False;False;0;Hidden/InternalErrorShader;0;0;Standard;3;Vertex Position;1;0;Debug Display;0;0;External Alpha;0;0;0;4;True;True;True;True;False;;False;0
-WireConnection;87;0;109;0
+WireConnection;112;0;109;0
+WireConnection;112;1;111;2
+WireConnection;113;1;109;0
+WireConnection;113;0;112;0
+WireConnection;87;0;113;0
 WireConnection;87;1;60;0
 WireConnection;66;0;87;0
 WireConnection;66;1;61;0
@@ -715,4 +759,4 @@ WireConnection;104;0;105;0
 WireConnection;104;3;110;0
 WireConnection;100;1;104;0
 ASEEND*/
-//CHKSM=9A05CC095594C263C1C2318FC52AFDD5C442E274
+//CHKSM=7B888C82799889CF66C27ADEFCA3B1414669B3D5

@@ -24,6 +24,6 @@ public class FloatingMotion : MonoBehaviour
         float noise = Mathf.PerlinNoise(noiseFreq*(Time.time+seed),noiseFreq*(Time.time+seed));
         noise = (noise*2 - 1)*noiseScale;
 
-        transform.localPosition = Vector3.up * floatHeight * (Mathf.Sin(timer + seed*Mathf.PI)+noise) + Vector3.right * floatOffset * (2*Mathf.PerlinNoise(seed, timer)-1) + initPos;
+        transform.localPosition = Vector3.up * floatHeight * (Mathf.Sin(timer + seed*Mathf.PI)+noise) + Vector3.right * floatOffset * Mathf.Cos(timer*0.7f + seed*Mathf.PI) + initPos;
     }
 }

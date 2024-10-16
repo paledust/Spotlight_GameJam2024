@@ -20,9 +20,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: S Dissolve
+  m_Name: S Dissolve Flat
   m_Shader: {fileID: 4800000, guid: f6dcec1e2bc7af14f8510e5277582cef, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _DISSOLVEDIRECTION_FLAT
   m_InvalidKeywords:
   - _INVERSEDISSOLVEDIRECTION_ON
   m_LightmapFlags: 4
@@ -106,6 +107,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DissolveDirection: 0
     - _DissolveLength: 0.5
     - _DissolveRadius: 0
     - _DissolveValue: 0

@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeed = 90;
-    void Start()
-    {
-        
-    }
-
+    public float rotateSpeed = 90;
     // Update is called once per frame
     void Update()
     {

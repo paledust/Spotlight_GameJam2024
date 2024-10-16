@@ -5,6 +5,8 @@ using UnityEngine;
 public class FloatingMotionGroup : MonoBehaviour
 {
     [SerializeField] private FloatingMotion[] floatMotions;
+    [SerializeField] private float strongFreq = 7;
+    [SerializeField] private float weakFreq = 0.5f;
     [SerializeField] private float floatFreq;
     [SerializeField] private float floatOffset;
     CoroutineExcuter freqChanger;
@@ -16,8 +18,8 @@ public class FloatingMotionGroup : MonoBehaviour
             floatMotion.floatOffset = floatOffset;
         }
     }
-    public void StrongMotion()=>freqChanger.Excute(coroutineChangeFreq(7, 0.002f));
-    public void weakMotion()=>freqChanger.Excute(coroutineChangeFreq(0.5f, 0.001f));
+    public void StrongMotion()=>freqChanger.Excute(coroutineChangeFreq(strongFreq, 0.002f));
+    public void weakMotion()=>freqChanger.Excute(coroutineChangeFreq(weakFreq, 0.001f));
     IEnumerator coroutineChangeFreq(float targetFreq, float targetOffset, float duration = 0.5f){
         float initFreq = floatFreq;
         float initOffset = floatOffset;

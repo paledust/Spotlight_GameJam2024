@@ -17,6 +17,8 @@ public class RichardTakeOffGameControl : MonoBehaviour
     [SerializeField] private float powerUpSpeed = 0.5f;
 [Header("Finish Animation")]
     [SerializeField] private Animation dissolveControlAnimation;
+    [SerializeField] private PerRendererSpriteDissolve forwardDissolve;
+    [SerializeField] private Rotator rotator;
     [SerializeField] private Transform powerTransform;
     [SerializeField] private float pushDistance;
 
@@ -25,22 +27,25 @@ public class RichardTakeOffGameControl : MonoBehaviour
 
     private CoroutineExcuter leftProgresser;
     private CoroutineExcuter rightProgresser;
+    private CoroutineExcuter arrowDissolver;
     private Vector3 initPowerPos;
+    private bool powerUp = false;
+
     private const string DissolveMapName = "DissolveInMap";
     private const string DissolveControlName = "DissolveInControl";
 
-    private bool canTakeOff{get{return leftIsDone && rightIsDone;}}
+    private bool canTakeOff = false;
     void Awake(){
         leftProgresser = new CoroutineExcuter(this);
         rightProgresser = new CoroutineExcuter(this);
+        arrowDissolver = new CoroutineExcuter(this);
         initPowerPos = powerTransform.localPosition;
     }
     void Update(){
         if(canTakeOff){
-            powerValue += Time.deltaTime*powerUpSpeed;
-
+            powerValue += Time.deltaTime*(powerUp?powerUpSpeed:0);
             powerTransform.localPosition = Vector3.Lerp(initPowerPos, initPowerPos + powerTransform.forward*pushDistance, powerValue);
-
+            rotator.rotateSpeed = Mathf.Lerp(0, 1500, powerValue);
         }
     }
     void OnLeft(InputValue inputValue){
@@ -51,6 +56,10 @@ public class RichardTakeOffGameControl : MonoBehaviour
                 leftProgresser.Excute(coroutineDissolveText(leftAnime, 0.2f, 1, null));
                 dissolveControlAnimation.Play(DissolveMapName);
                 p_leftBurst.Play(true);
+
+                if(leftIsDone && rightIsDone){
+                    arrowDissolver.Excute(coroutineDissolveForward(1, 1f, 1f, ()=>canTakeOff=true));
+                }
             }));
             leftMotionGroup.StrongMotion();
         }
@@ -67,6 +76,10 @@ public class RichardTakeOffGameControl : MonoBehaviour
                 rightProgresser.Excute(coroutineDissolveText(rightAnime, 0.2f, 1, null));
                 dissolveControlAnimation.Play(DissolveControlName);
                 p_rightBurst.Play(true);
+
+                if(leftIsDone && rightIsDone){
+                    arrowDissolver.Excute(coroutineDissolveForward(1, 1f, 1f, ()=>canTakeOff=true));
+                }
             }));
             rightMotionGroup.StrongMotion();
         }
@@ -77,12 +90,11 @@ public class RichardTakeOffGameControl : MonoBehaviour
     }
     void OnUp(InputValue inputValue){
         if(canTakeOff){
-            if(inputValue.isPressed){
-                powerUpSpeed = 1;
-            }
-            else{
-                powerUpSpeed = 0;
-            }
+            powerUp = inputValue.isPressed;
+            if(powerUp)
+                arrowDissolver.Excute(coroutineDissolveForward(0, 0.25f, 0, null));
+            else
+                arrowDissolver.Excute(coroutineDissolveForward(0, 1f, 1, null));
         }
     }
     IEnumerator coroutineDissolveText(Animation textAnime, float duration, float target, System.Action OnComplete){
@@ -94,6 +106,15 @@ public class RichardTakeOffGameControl : MonoBehaviour
         yield return new WaitForLoop(duration, (t)=>{
             textAnime[clipName].normalizedTime = Mathf.Lerp(initTime, target, EasingFunc.Easing.QuadEaseIn(t));
         });
+        OnComplete?.Invoke();
+    }
+    IEnumerator coroutineDissolveForward(float delay, float duration, float target, System.Action OnComplete){
+        yield return new WaitForSeconds(delay);
+        float initValue = forwardDissolve.dissolveValue;
+        yield return new WaitForLoop(duration, (t)=>{
+            forwardDissolve.dissolveValue = Mathf.Lerp(initValue, target, EasingFunc.Easing.SmoothInOut(t));
+        });
+
         OnComplete?.Invoke();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PerRendererSpriteDissolve : PerRendererBehavior
 {
-    [SerializeField] private float dissolveValue;
+    public float dissolveValue;
     private readonly int DissolveValueID = Shader.PropertyToID("_DissolveValue");
     protected override void UpdateProperties()
     {
