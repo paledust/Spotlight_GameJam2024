@@ -2169,7 +2169,7 @@ GameObject:
   - component: {fileID: 2041101390}
   - component: {fileID: 2041101389}
   m_Layer: 0
-  m_Name: '#Richard Play GameControl'
+  m_Name: '#Interaction Video Game'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
