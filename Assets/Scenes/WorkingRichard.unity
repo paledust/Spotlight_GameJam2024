@@ -2722,60 +2722,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 937014380}
     m_Modifications:
-    - target: {fileID: 311513939133709513, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 311513939133709513, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 311513939133709513, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852363591054878771, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852363591054878771, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.846
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852363591054878771, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99330777
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852363591054878771, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.11549797
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852363591054878771, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852363591054878771, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852363591054878771, guid: be6b88fcd9bfa8741b249c437203c9dc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -13.265
-      objectReference: {fileID: 0}
     - target: {fileID: 8378573432506411626, guid: be6b88fcd9bfa8741b249c437203c9dc,
         type: 3}
       propertyPath: m_Name
-      value: PlaneOnGround
+      value: ParkingPlane
       objectReference: {fileID: 0}
     - target: {fileID: 8378573432506411627, guid: be6b88fcd9bfa8741b249c437203c9dc,
         type: 3}

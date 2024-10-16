@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8378573432506411627}
   - component: {fileID: 148942897545128970}
   m_Layer: 0
-  m_Name: PlaneOnGround
+  m_Name: Parking Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,37 +111,37 @@ PrefabInstance:
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.73
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.48
+      value: -2.846
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99330777
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.11549797
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -13.265
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
