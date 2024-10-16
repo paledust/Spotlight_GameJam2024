@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3338385546433560253}
   - component: {fileID: 8649833483153783361}
   - component: {fileID: 859160597967483708}
-  - component: {fileID: 1473331053888591348}
+  - component: {fileID: 5362590686792113598}
+  - component: {fileID: 5626676832517565377}
   m_Layer: 6
   m_Name: 3D PlaneController
   m_TagString: Player
@@ -125,9 +126,22 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.91, y: 0.28, z: 1}
-  m_Center: {x: 0, y: 0, z: 1.4}
---- !u!136 &1473331053888591348
+  m_Size: {x: 11.43, y: 2, z: 2.5}
+  m_Center: {x: 0, y: 0.4, z: 1.98}
+--- !u!65 &5362590686792113598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6167536754744221918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.19, y: 1.81, z: 8.21}
+  m_Center: {x: 0, y: -0.12, z: -0.15}
+--- !u!136 &5626676832517565377
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,10 +151,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.24
-  m_Height: 5.33
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.21, z: 0.64}
+  m_Radius: 0.5
+  m_Height: 3.4
+  m_Direction: 0
+  m_Center: {x: 0, y: -1.73, z: 2.41}
 --- !u!1001 &1627931508671314465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,17 +170,17 @@ PrefabInstance:
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.732744
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.732744
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.732744
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
@@ -176,12 +190,12 @@ PrefabInstance:
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13000011
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.66999817
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}
