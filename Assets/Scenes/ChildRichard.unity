@@ -925,6 +925,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7275168899286160346, guid: bfca539145ade14428955039cd6cdf74,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335840, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_Name
@@ -997,6 +1002,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfca539145ade14428955039cd6cdf74, type: 3}
+--- !u!95 &1103603240 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7275168900708351508, guid: bfca539145ade14428955039cd6cdf74,
+    type: 3}
+  m_PrefabInstance: {fileID: 1103603239}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1179921620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1063,8 @@ PlayableDirector:
     value: {fileID: 189324897}
   - key: {fileID: 8484140984373995793, guid: a60f5f5f94f59304984956f2663ce2e8, type: 2}
     value: {fileID: 2041101387}
+  - key: {fileID: -1664579004264847632, guid: a60f5f5f94f59304984956f2663ce2e8, type: 2}
+    value: {fileID: 1103603240}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1187314692
