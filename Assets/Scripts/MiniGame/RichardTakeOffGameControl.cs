@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class RichardTakeOffGameControl : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
     [SerializeField, Range(0, 1)] private float powerValue;
     [SerializeField] private float powerUpSpeed = 0.5f;
 [Header("Finish Animation")]
+    [SerializeField] private PlayableDirector TL_TakeOff;
     [SerializeField] private Animation dissolveControlAnimation;
     [SerializeField] private PerRendererSpriteDissolve forwardDissolve;
     [SerializeField] private Rotator rotator;
@@ -35,6 +37,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
     private const string DissolveControlName = "DissolveInControl";
 
     private bool canTakeOff = false;
+    private bool isDone = false;
     void Awake(){
         leftProgresser = new CoroutineExcuter(this);
         rightProgresser = new CoroutineExcuter(this);
@@ -46,6 +49,13 @@ public class RichardTakeOffGameControl : MonoBehaviour
             powerValue += Time.deltaTime*(powerUp?powerUpSpeed:0);
             powerTransform.localPosition = Vector3.Lerp(initPowerPos, initPowerPos + powerTransform.forward*pushDistance, powerValue);
             rotator.rotateSpeed = Mathf.Lerp(0, 1500, powerValue);
+
+            if(powerValue>=1 && !isDone){
+                isDone = true;
+                this.enabled = false;
+                GetComponent<PlayerInput>().DeactivateInput();
+                TL_TakeOff.Play();
+            }
         }
     }
     void OnLeft(InputValue inputValue){
@@ -89,7 +99,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
         }
     }
     void OnUp(InputValue inputValue){
-        if(canTakeOff){
+        if(canTakeOff && !isDone){
             powerUp = inputValue.isPressed;
             if(powerUp)
                 arrowDissolver.Excute(coroutineDissolveForward(0, 0.25f, 0, null));
