@@ -13,7 +13,7 @@ public class Timeline_PreviewTrack : MonoBehaviour
         director = GetComponent<PlayableDirector>();
         var timelineAsset = (TimelineAsset)director.playableAsset;
 
-        string trackName = string.Empty;
+        string trackName;
         for( var i = 0; i < timelineAsset.rootTrackCount; i ++)
         {
             var track = timelineAsset.GetRootTrack(i);

@@ -107,6 +107,9 @@ public class RichardTakeOffGameControl : MonoBehaviour
                 arrowDissolver.Excute(coroutineDissolveForward(0, 1f, 1, null));
         }
     }
+    public void GoToFlightScene(){
+        GameManager.Instance.SwitchingScene("Test");
+    }
     IEnumerator coroutineDissolveText(Animation textAnime, float duration, float target, System.Action OnComplete){
         if(!textAnime.isPlaying) textAnime.Play();
         string clipName = textAnime.clip.name;
