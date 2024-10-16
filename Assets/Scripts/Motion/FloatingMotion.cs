@@ -5,8 +5,8 @@ using UnityEngine;
 public class FloatingMotion : MonoBehaviour
 {
     public float floatFreq = 1;
-    [SerializeField] private float floatHeight = 2;
-    [SerializeField] private float floatOffset = 1;
+    public float floatHeight = 2;
+    public float floatOffset = 1;
 [Header("Noise")]
     [SerializeField] private float noiseScale = 0.5f;
     [SerializeField] private float noiseFreq = 1;

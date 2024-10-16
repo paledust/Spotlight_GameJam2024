@@ -6,21 +6,24 @@ public class FloatingMotionGroup : MonoBehaviour
 {
     [SerializeField] private FloatingMotion[] floatMotions;
     [SerializeField] private float floatFreq;
-    [SerializeField] private float floatHeight;
+    [SerializeField] private float floatOffset;
     CoroutineExcuter freqChanger;
     void Start()=>freqChanger = new CoroutineExcuter(this);
     void Update()
     {
         foreach(var floatMotion in floatMotions){
             floatMotion.floatFreq = floatFreq;
+            floatMotion.floatOffset = floatOffset;
         }
     }
-    public void StrongMotion()=>freqChanger.Excute(coroutineChangeFreq(7));
-    public void weakMotion()=>freqChanger.Excute(coroutineChangeFreq(0.5f));
-    IEnumerator coroutineChangeFreq(float targetFreq, float duration = 0.2f){
+    public void StrongMotion()=>freqChanger.Excute(coroutineChangeFreq(7, 0.002f));
+    public void weakMotion()=>freqChanger.Excute(coroutineChangeFreq(0.5f, 0.001f));
+    IEnumerator coroutineChangeFreq(float targetFreq, float targetOffset, float duration = 0.5f){
         float initFreq = floatFreq;
+        float initOffset = floatOffset;
         yield return new WaitForLoop(duration, (t)=>{
             floatFreq = Mathf.Lerp(initFreq, targetFreq, EasingFunc.Easing.SmoothInOut(t));
+            floatOffset = Mathf.Lerp(initOffset, targetOffset, EasingFunc.Easing.SmoothInOut(t));
         });
     }
 }
