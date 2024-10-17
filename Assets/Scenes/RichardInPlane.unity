@@ -1141,7 +1141,7 @@ MonoBehaviour:
   p_rightBurst: {fileID: 1572956144}
   powerValue: 0
   powerUpSpeed: 0.25
-  TL_TakeOff: {fileID: 0}
+  TL_TakeOff: {fileID: 2139839091}
   dissolveControlAnimation: {fileID: 1510139331}
   forwardDissolve: {fileID: 1290037781}
   rotator: {fileID: 2073533654}
@@ -3166,7 +3166,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 9
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
