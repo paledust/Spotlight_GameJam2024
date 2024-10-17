@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,9 @@ public class PlaneControl_Free : MonoBehaviour
 [Header("propeller Control")]
     [SerializeField] private Rotator rotator;
     [SerializeField] private Vector2 spinningSpeedRange;
+[Header("Cam Control")]
+    [SerializeField] private CinemachineVirtualCamera m_cam;
+    [SerializeField] private Vector2 fovRange;
 
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
@@ -41,6 +45,7 @@ public class PlaneControl_Free : MonoBehaviour
     private float currentWingAngle;
     private float targetFlyingSpeed;
     private float currentFlyingSpeed;
+    private float targetFOV;
 
     private bool crashed = false;
 
@@ -77,11 +82,12 @@ public class PlaneControl_Free : MonoBehaviour
             LWingTrans.localRotation = Quaternion.Euler(currentWingAngle*Vector3.right) * initLWingRot;
             RWingTrans.localRotation = Quaternion.Euler(-currentWingAngle*Vector3.right) * initRWingRot;
         }
-    //改变螺旋桨转速与航速
+    //改变螺旋桨转速，航速，摄像机FOV
         {
             float _s = Time.deltaTime*5;
             currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, targetFlyingSpeed, _s);
             rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, (targetFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x));
+            m_cam.m_Lens.FieldOfView = Mathf.Lerp(fovRange.x, fovRange.y,(currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x));
         }
     }
     void FixedUpdate(){
