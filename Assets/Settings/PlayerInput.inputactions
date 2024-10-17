@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "FreePlane",
             "id": "11ebba68-1043-45f4-baf6-799a667d1aa6",
             "actions": [
                 {
@@ -10,6 +10,24 @@
                     "type": "Value",
                     "id": "55db586a-b577-4fb6-86e4-b2832c894791",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Side",
+                    "type": "Value",
+                    "id": "b5ed858b-ce0f-41b3-b179-9e55606eaa38",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Acc",
+                    "type": "Value",
+                    "id": "106ba892-2c7d-4b79-b354-8184603375f0",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -147,6 +165,72 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "eff4ed18-c8e4-4d7a-99e1-95fa460961f7",
+                    "path": "1DAxis(whichSideWins=1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Side",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3b1ccc78-3fc2-47c7-b88b-910cc4b9deea",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Side",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a16df417-9151-479b-aeb0-558ef82ef990",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Side",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "0a998b93-ca66-460e-8fba-79e739f4cfcc",
+                    "path": "1DAxis(whichSideWins=1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acc",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "c604ee8b-dc69-47ff-869c-75500ed87cd9",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acc",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "4420cf29-934f-42a2-abc9-864e5135d406",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acc",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
