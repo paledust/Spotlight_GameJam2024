@@ -63,7 +63,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 11ebba68-1043-45f4-baf6-799a667d1aa6
+  m_DefaultActionMap: ce6064b9-0c21-4657-9c3f-72bbc654e4a1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &3013435273926244112
@@ -80,8 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRotateSpeed: 180
   agility: 2
-  flyingSpeed: 25
   planeRenderTrans: {fileID: 4759770054359640961}
+  flyingSpeed: 25
 --- !u!54 &309834488129105291
 Rigidbody:
   m_ObjectHideFlags: 0
