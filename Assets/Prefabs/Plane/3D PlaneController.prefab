@@ -179,8 +179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxYawSpeed: 20
-  maxPitchSpeed: 120
-  maxRollSpeed: 120
+  maxPitchSpeed: 60
+  maxRollSpeed: 60
   agility: 2
   flyingSpeed: {x: 10, y: 30}
   LWingTrans: {fileID: 6394294044887674494}
