@@ -21,16 +21,12 @@ public class RichardPlayGameControl : MonoBehaviour
     private float targetRoll;
     private float pitch = 0;
     private float roll = 0;
-    private float gameTimer = 0;
 
     void Update(){
     //控制理查的身体晃动
         pitch = Service.LerpValue(pitch, targetPitch, Time.deltaTime*5);
         roll = Service.LerpValue(roll, targetRoll, Time.deltaTime*5);
         richardBody.localRotation = Quaternion.AngleAxis(roll, richardFaceDir.forward)*Quaternion.AngleAxis(pitch, richardFaceDir.right);
-
-    //检查结束条件
-    //To Do:等正式pixel game出现再替换
     }
     void EndGame(){
         StartCoroutine(coroutineReturnPos(1.5f, 1f));
@@ -47,7 +43,6 @@ public class RichardPlayGameControl : MonoBehaviour
 #region Timeline Event
     public void StartGame(){
         this.enabled = true;
-        gameTimer = Time.time;
         playerInput.ActivateInput();
     }
     public void GoToNextLevel(string level){
