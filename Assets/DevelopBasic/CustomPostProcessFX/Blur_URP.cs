@@ -57,7 +57,6 @@ public class Blur_URP_Pass : ScriptableRenderPass
         else{
             return;
         }
-
         Blit(cmd, src, tempID_V, material, 0);
         Blit(cmd, tempID_V, tempID_H, material, 1);
         Blit(cmd, tempID_H, src);

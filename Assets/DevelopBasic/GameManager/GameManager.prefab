@@ -130,7 +130,7 @@ MonoBehaviour:
   transitionDuration: 0.5
   sceneSettings:
   - sceneName: RichardFlying
-    overrideShadowDistance: 1000
+    overrideShadowDistance: 1500
   InitScene: WorkingRichard
   isDemo: 1
   isTesting: 1
