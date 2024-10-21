@@ -7,7 +7,12 @@ public class PixelPlaneControl : MonoBehaviour
 {
     public float speed;
     public float acceleration;
-    
+
+    public Transform leftBoundary;
+    public Transform rightBoundary;
+    public Transform topBoundary;
+    public Transform bottomBoundary;
+
     private Animator animator;
     private Vector3 targetDirection;
     private Vector3 curDirection;
@@ -22,7 +27,10 @@ public class PixelPlaneControl : MonoBehaviour
     void FixedUpdate()
     {
         curDirection = Vector3.Lerp(curDirection, targetDirection, acceleration * Time.fixedDeltaTime);
-        transform.position += curDirection * speed * Time.fixedDeltaTime;
+        Vector3 newPos = transform.position + curDirection * speed * Time.fixedDeltaTime;
+        newPos.x = Mathf.Clamp(newPos.x, leftBoundary.position.x, rightBoundary.position.x);
+        newPos.y = Mathf.Clamp(newPos.y, bottomBoundary.position.y, topBoundary.position.y);
+        transform.position = newPos;
     }
 
     public void TriggerDamageAnim()
