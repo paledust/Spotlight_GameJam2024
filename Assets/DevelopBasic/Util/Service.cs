@@ -46,5 +46,10 @@ public static class Service{
         if(Vector3.SqrMagnitude(input-target)<=tolerence) return target;
         return value;
     }
+    public static Vector3 SlerpVector(Vector3 input, Vector3 target, float step, float tolerence = 0.001f){
+        Vector3 value = Vector3.Slerp(input, target, step);
+        if(Vector3.SqrMagnitude(input-target)<=tolerence) return target;
+        return value;
+    }
 #endregion
 }

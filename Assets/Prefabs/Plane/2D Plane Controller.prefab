@@ -78,13 +78,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f685af8cf915fa140ba4e62bc1848ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotateSpeed: 180
   agility: 2
-  maxCorrectionAngle: 45
   planeRenderTrans: {fileID: 4759770054359640961}
-  flyingSpeed: 50
+  maxCorrectionAngle: 30
+  flyingSpeed: 30
   angularSpeed: 2
-  rotateToForwardRatio: 2
+  maxAngularStep: 10
+  rotateToForwardRatio: 3
 --- !u!54 &309834488129105291
 Rigidbody:
   m_ObjectHideFlags: 0
