@@ -128,6 +128,9 @@ MonoBehaviour:
   targetFrameRate: 60
   BlackScreenCanvasGroup: {fileID: 4562222128510109114}
   transitionDuration: 0.5
+  sceneSettings:
+  - sceneName: RichardFlying
+    overrideShadowDistance: 1000
   InitScene: WorkingRichard
   isDemo: 1
   isTesting: 1

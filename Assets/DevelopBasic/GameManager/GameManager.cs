@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UniversalRenderPipelineAsset = UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset;
 
 using SimpleAudioSystem;
 using SimpleSaveSystem;
@@ -11,10 +12,28 @@ using SimpleSaveSystem;
 //Please make sure "GameManager" is excuted before every custom script
 public class GameManager : Singleton<GameManager>
 {
+    [System.Serializable]
+    public struct SceneSettings{
+        public string sceneName;
+        public float overrideShadowDistance;
+        public const float DEFAULT_SHADOW_DISTANCE = 150f;
+        public void ApplySettings(){
+            QualitySettings.shadowDistance = overrideShadowDistance;
+            UniversalRenderPipelineAsset urp = (UniversalRenderPipelineAsset)UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline;
+            urp.shadowDistance = overrideShadowDistance;
+        }
+        public static void ApplyDefaultSettings(){
+            QualitySettings.shadowDistance = DEFAULT_SHADOW_DISTANCE;
+            UniversalRenderPipelineAsset urp = (UniversalRenderPipelineAsset)UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline;
+            urp.shadowDistance = DEFAULT_SHADOW_DISTANCE;            
+        }
+    };
     [SerializeField] private int targetFrameRate = 60;
 [Header("Scene Transition")]
     [SerializeField] private CanvasGroup BlackScreenCanvasGroup;
     [SerializeField] private float transitionDuration = 1;
+[Header("Scene Settings")]
+    [SerializeField] private SceneSettings[] sceneSettings;
 [Header("Init")]
     [SerializeField] private string InitScene;
 [Header("Demo")]
@@ -55,6 +74,7 @@ public class GameManager : Singleton<GameManager>
         else {
             LaunchSetting(debugSettings);
             currentScene = SceneManager.GetActiveScene().name;
+            ApplySceneSettings(currentScene);
         }
 
     #else
@@ -158,9 +178,11 @@ public class GameManager : Singleton<GameManager>
         yield return SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(level));
         //TO DO: do something after the next scene is loaded. e.g: call event of loading
+        EventHandler.Call_AfterLoadScene();
+        ApplySceneSettings(level);
+
         yield return null;
         yield return FadeOutBlackScreen(transitionDuration);
-        EventHandler.Call_AfterLoadScene();
         
         IsSwitchingScene = false;
     }
@@ -178,6 +200,7 @@ public class GameManager : Singleton<GameManager>
         yield return SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(to));
         currentScene = to;
+        ApplySceneSettings(to);
 
     //TO DO: do something after the next scene is loaded. e.g: call event of loading
         EventHandler.Call_AfterLoadScene();
@@ -200,6 +223,14 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForLoop(fadeDuration, (t)=>{
             BlackScreenCanvasGroup.alpha = Mathf.Lerp(initAlpha, 0, EasingFunc.Easing.QuadEaseIn(t));
         });
+    }
+    void ApplySceneSettings(string sceneName){
+        SceneSettings.ApplyDefaultSettings();
+        for(int i=0; i<sceneSettings.Length; i++){
+            if(sceneSettings[i].sceneName == sceneName){
+                sceneSettings[i].ApplySettings();
+            }
+        }
     }
 #endregion
 
