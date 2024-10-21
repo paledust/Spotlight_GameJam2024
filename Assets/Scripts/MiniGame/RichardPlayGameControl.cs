@@ -12,8 +12,7 @@ public class RichardPlayGameControl : MonoBehaviour
     [SerializeField] private Transform richardBody;
     [SerializeField] private float maxRoll;
     [SerializeField] private float maxPitch;
-[Header("End Condition")]
-    [SerializeField] private float GameDuration = 10;
+[Header("Ending")]
     [SerializeField] private PlayableDirector endTimeline;
     
     private Vector3 shuttleVel;
