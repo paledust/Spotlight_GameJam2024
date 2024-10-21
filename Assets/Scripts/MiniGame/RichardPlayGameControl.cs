@@ -7,10 +7,6 @@ using UnityEngine.Playables;
 public class RichardPlayGameControl : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
-[Header("Space Shuttle")]
-    [SerializeField] private Transform spaceShuttleTrans;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float maxMoveDist;
 [Header("Richard")]
     [SerializeField] private Transform richardFaceDir;
     [SerializeField] private Transform richardBody;
@@ -33,24 +29,16 @@ public class RichardPlayGameControl : MonoBehaviour
         roll = Service.LerpValue(roll, targetRoll, Time.deltaTime*5);
         richardBody.localRotation = Quaternion.AngleAxis(roll, richardFaceDir.forward)*Quaternion.AngleAxis(pitch, richardFaceDir.right);
 
-    //控制飞机的飞行
-        Vector3 position = spaceShuttleTrans.localPosition;
-        position += shuttleVel*Time.deltaTime;
-        position.x = Mathf.Clamp(position.x, -maxMoveDist, maxMoveDist);
-        position.y = Mathf.Clamp(position.y, -maxMoveDist, maxMoveDist);
-        spaceShuttleTrans.localPosition = position;
-
     //检查结束条件
     //To Do:等正式pixel game出现再替换
-        if(Time.time - gameTimer>GameDuration){
-            StartCoroutine(coroutineReturnPos(1.5f, 1f));
-            playerInput.DeactivateInput();
-            endTimeline.Play();
-        }
+    }
+    void EndGame(){
+        StartCoroutine(coroutineReturnPos(1.5f, 1f));
+        playerInput.DeactivateInput();
+        endTimeline.Play();
     }
     void OnMove(InputValue inputValue){
         Vector2 value = inputValue.Get<Vector2>();
-        shuttleVel = value*moveSpeed;
 
         targetPitch = value.y * maxPitch;
         targetRoll = -value.x * maxRoll;
