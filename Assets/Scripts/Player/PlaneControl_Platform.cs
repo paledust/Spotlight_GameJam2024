@@ -6,20 +6,24 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
 public class PlaneControl_Platform : MonoBehaviour
 {
-[Header("Rotation")]
-    [SerializeField] private float maxRotateSpeed = 120;
     [SerializeField, Tooltip("控制输入反应速度")] private float agility = 5;
 [Header("Correction Help")]
-    [SerializeField] private float maxCorrectionAngle = 30;
     [SerializeField] private Transform planeRenderTrans;
+    [SerializeField] private float maxCorrectionAngle = 30;
     [SerializeField] private float flyingSpeed = 5;
+    [SerializeField] private float angularSpeed = 2;
+    [SerializeField] private float rotateToForwardRatio = 1.5f;
 
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
-    private float corretionAngle;
+    private Vector3 forwardVel;
+    private Vector3 targetRotateVel;
+    private Vector3 currentRotateVel;
     private float targetCorrectionAngle;
-    private float targetRotateSpeed;
-    private float currentRotateSpeed;
+    private float currentCorretionAngle;
+    private float currentAngularSpeed;
+    private float rotationTimer = 0;
+    private bool isRotating = false;
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -29,19 +33,37 @@ public class PlaneControl_Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentRotateSpeed = Service.LerpValue(currentRotateSpeed, targetRotateSpeed, Time.deltaTime*agility);
-        corretionAngle = Service.LerpValue(corretionAngle, targetCorrectionAngle, Time.deltaTime*agility);
+        currentCorretionAngle = Service.LerpValue(currentCorretionAngle, targetCorrectionAngle, Time.deltaTime*agility, 0.1f);
         
         planeRenderTrans.localRotation = Quaternion.Euler(0,0,Vector2.SignedAngle(transform.forward, Vector2.right));
+        forwardVel = Quaternion.Euler(0, 0, currentCorretionAngle)*Vector3.right;
+
+        if(isRotating){
+            rotationTimer += Time.deltaTime;
+            targetRotateVel = Mathf.Cos(rotationTimer*currentAngularSpeed)*(Quaternion.Euler(0,0,targetCorrectionAngle)*Vector3.right) + Mathf.Sin(rotationTimer*currentAngularSpeed)*(Quaternion.Euler(0,0,targetCorrectionAngle)*Vector3.up);
+        }
+        else{
+            targetRotateVel = Vector3.zero;
+        }
+
+        currentRotateVel = Service.LerpVector(currentRotateVel, targetRotateVel, Time.deltaTime*agility);
     }
     void FixedUpdate(){
-        m_rigid.rotation *= Quaternion.Euler(currentRotateSpeed*Time.fixedDeltaTime,0,0);
-        m_rigid.velocity = m_rigid.rotation*Vector3.forward*flyingSpeed;
+        Vector3 totalVel = (currentRotateVel*rotateToForwardRatio + forwardVel).normalized * flyingSpeed;
+        m_rigid.rotation = Quaternion.LookRotation(totalVel, Vector3.up);
+        m_rigid.velocity = totalVel;
     }
 #region Input
     void OnRotation(InputValue inputValue){
         float input = inputValue.Get<float>();
-        targetRotateSpeed = input * maxRotateSpeed;
+        currentAngularSpeed = -input * angularSpeed;
+
+        if(input == 0) {
+            isRotating = false;
+            rotationTimer = 0;
+        }
+        else
+            isRotating = true;
     }
     void OnLevel(InputValue inputValue){
         float input = inputValue.Get<float>();

@@ -1,3 +1,5 @@
+#define Demo
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -108,7 +110,11 @@ public class RichardTakeOffGameControl : MonoBehaviour
         }
     }
     public void GoToFlightScene(){
+    #if Demo
+        GameManager.Instance.EndGame();
+    #else
         GameManager.Instance.SwitchingScene("Test");
+    #endif
     }
     IEnumerator coroutineDissolveText(Animation textAnime, float duration, float target, System.Action OnComplete){
         if(!textAnime.isPlaying) textAnime.Play();

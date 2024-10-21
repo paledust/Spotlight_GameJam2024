@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3013435273926244116}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 24.2, z: -383.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 4759770054359640961}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &3013435273926244118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: ce6064b9-0c21-4657-9c3f-72bbc654e4a1
+  m_DefaultActionMap: 2DPlane
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &3013435273926244112
@@ -80,8 +80,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRotateSpeed: 180
   agility: 2
+  maxCorrectionAngle: 45
   planeRenderTrans: {fileID: 4759770054359640961}
-  flyingSpeed: 25
+  flyingSpeed: 50
+  angularSpeed: 2
+  rotateToForwardRatio: 2
 --- !u!54 &309834488129105291
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96,7 +99,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 104
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1001 &2680187703507575774
 PrefabInstance:

@@ -68,7 +68,7 @@ public class ConductingGameControl : MonoBehaviour
             isDone = true;
             targetSpeed = 0;
 
-            StartCoroutine(CommonCoroutine.delayAction(()=>GameManager.Instance.SwitchingScene("WorkingRichard", 2f), 3));
+            StartCoroutine(CommonCoroutine.delayAction(()=>GameManager.Instance.SwitchingScene("ChildRichard", 0.5f), 3));
         }
     }
     void FixedUpdate()
