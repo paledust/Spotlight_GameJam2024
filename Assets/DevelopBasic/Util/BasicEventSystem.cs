@@ -18,6 +18,8 @@ public static class EventHandler
 #endregion
 
 #region  Interaction Event
+    public static event Action E_OnPixelGameFinished;
+    public static void Call_OnPixelGameFinished()=>E_OnPixelGameFinished?.Invoke();
     public static event Action<int> E_OnConductDirection;
     public static void Call_OnConductDirection(int direction)=>E_OnConductDirection?.Invoke(direction);
     public static event Action<bool> E_OnConductForward;
