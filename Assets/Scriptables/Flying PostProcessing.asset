@@ -35,10 +35,10 @@ MonoBehaviour:
     m_Value: 1
   startDistance:
     m_OverrideState: 1
-    m_Value: 500
+    m_Value: 1500
   fadeLength:
     m_OverrideState: 1
-    m_Value: 1500
+    m_Value: 500
   controlOffset:
     m_OverrideState: 1
     m_Value: 0.5

@@ -10,7 +10,9 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
     [SerializeField] private GameObject FlyingPrefab;
     [SerializeField] private GameObject SafeZoneProbePrefab;
     [SerializeField] private Transform defaultSpawn;
+[Header("VFX")]
     [SerializeField] private Volume stopZonePP;
+    [SerializeField] private ParticleSystem p_explode;
 [Header("Safe Condition")]
     [SerializeField] private float minimumDist = 5;
     [SerializeField] private float minimumWidthDist = 20;
@@ -58,6 +60,9 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
         ppFader.Excute(coroutineFadePP(isInZone?1:0, 1f));
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
+            p_explode.transform.position = crashPos;
+            p_explode.Play(true);
+            
         StartCoroutine(CommonCoroutine.delayAction(()=>{
             Vector3 lastSafePos;
             Quaternion lastSafeRot;
