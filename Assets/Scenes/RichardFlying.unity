@@ -172,6 +172,10 @@ MonoBehaviour:
   SafeZoneProbePrefab: {fileID: 3373080136989039154, guid: b17fb8a6ced11ac498ed5f0f3c577384,
     type: 3}
   defaultSpawn: {fileID: 208337570}
+  minimumDist: 8
+  minimumWidthDist: 10
+  minimumHeightDist: 20
+  minimumForwardDist: 25
 --- !u!1 &208337569
 GameObject:
   m_ObjectHideFlags: 0

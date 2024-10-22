@@ -111,7 +111,7 @@ public class PlaneControl_Free : MonoBehaviour
             m_rigid.AddForceAtPosition(collision.impulse*0.5f, collision.contacts[0].point, ForceMode.Impulse);
             m_rigid.AddRelativeTorque(Vector3.right*10, ForceMode.VelocityChange);
 
-            EventHandler.Call_OnPlaneCrashed();
+            EventHandler.Call_OnPlaneCrashed(transform.position);
             playerInput.DeactivateInput();
             this.enabled = false;
         }

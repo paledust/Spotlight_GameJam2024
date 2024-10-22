@@ -29,7 +29,7 @@ public static class EventHandler
     public static void Call_OnConductDirection(int direction)=>E_OnConductDirection?.Invoke(direction);
     public static event Action<bool> E_OnConductForward;
     public static void Call_OnConductForward(bool isForward)=>E_OnConductForward?.Invoke(isForward);
-    public static event Action E_OnPlaneCrashed;
-    public static void Call_OnPlaneCrashed()=>E_OnPlaneCrashed?.Invoke();
+    public static event Action<Vector3> E_OnPlaneCrashed;
+    public static void Call_OnPlaneCrashed(Vector3 crashPos)=>E_OnPlaneCrashed?.Invoke(crashPos);
 #endregion
 }
