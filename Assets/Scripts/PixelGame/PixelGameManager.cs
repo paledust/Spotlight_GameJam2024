@@ -8,6 +8,7 @@ public class PixelGameManager : MonoBehaviour
     public List<GameObject> hearts;
     public GameObject world;
     public float worldMoveSpeed;
+    public GameObject endPoint;
 
     private PixelPlaneControl pixelPlaneControl;
     private int curHp;
@@ -20,7 +21,15 @@ public class PixelGameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        world.transform.position += Vector3.left * worldMoveSpeed * Time.fixedDeltaTime;
+        if (world.transform.position.x > endPoint.transform.position.x)
+        {
+            world.transform.position += Vector3.left * worldMoveSpeed * Time.fixedDeltaTime;
+        }
+        else
+        {
+            Debug.Log("GameEnd");
+            EventHandler.Call_OnPixelGameFinished();
+        }
     }
 
     public void ReduceHp()
