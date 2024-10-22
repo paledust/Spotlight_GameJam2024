@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Cinemachine;
 using Cinemachine.Utility;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class RichardFlyingManager : Singleton<RichardFlyingManager>
 {
     [SerializeField] private GameObject FlyingPrefab;
     [SerializeField] private GameObject SafeZoneProbePrefab;
     [SerializeField] private Transform defaultSpawn;
+    [SerializeField] private Volume stopZonePP;
 [Header("Safe Condition")]
     [SerializeField] private float minimumDist = 5;
     [SerializeField] private float minimumWidthDist = 20;

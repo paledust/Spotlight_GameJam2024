@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Service{
+    public const string PLAYER_TAG = "Player";
     public static LayerMask TerrainLayer = 1<<LayerMask.NameToLayer("Terrain");
 #region HelperFunction
     public static T[] FindComponentsOfTypeIncludingDisable<T>(){
