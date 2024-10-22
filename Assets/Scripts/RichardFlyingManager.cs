@@ -5,7 +5,7 @@ using Cinemachine.Utility;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class RichardFlyingManager : Singleton<RichardFlyingManager>
+public class RichardFlyingManager : MonoBehaviour
 {
     [SerializeField] private GameObject FlyingPrefab;
     [SerializeField] private GameObject SafeZoneProbePrefab;
@@ -24,19 +24,21 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
     private Vector3[] safePoses = new Vector3[MAX_SAFE_POINTS];
     private Quaternion[] safeRots = new Quaternion[MAX_SAFE_POINTS];
     private int safePointIndex = 0;
-    private bool isInStopZone = false;
+    private int stopZoneCounter = 0;
     private CoroutineExcuter ppFader;
 
     private const int MAX_SAFE_POINTS = 3;
 
-    protected override void Awake(){
+    public bool isInStopZone{get{return stopZoneCounter>0;}}
+
+    protected void Awake(){
         ppFader = new CoroutineExcuter(this);
 
         EventHandler.E_OnPlaneCrashed += OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos += OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone += OnInteractStopZoneHandler;
     }
-    protected override void OnDestroy(){
+    protected void OnDestroy(){
         EventHandler.E_OnPlaneCrashed -= OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos -= OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone -= OnInteractStopZoneHandler;
@@ -54,10 +56,13 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
         safeZoneProbe.transform.localPosition = Vector3.zero;
         safeZoneProbe.transform.localRotation = Quaternion.identity;
     }
+    void Update(){
+
+    }
 #region Event Handlers
     void OnInteractStopZoneHandler(bool isInZone){
-        isInStopZone = isInZone;
-        ppFader.Excute(coroutineFadePP(isInZone?1:0, 1f));
+        stopZoneCounter += isInZone?1:-1;
+        ppFader.Excute(coroutineFadePP(isInStopZone?1:0, 1f));
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
             p_explode.transform.position = crashPos;
