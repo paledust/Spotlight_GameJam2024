@@ -12,7 +12,6 @@ public class PlaneControl_Platform : MonoBehaviour
     [SerializeField] private float maxCorrectionAngle = 30;
     [SerializeField] private float flyingSpeed = 5;
     [SerializeField] private float angularSpeed = 2;
-    [SerializeField] private float maxAngularStep = 10;
     [SerializeField] private float rotateToForwardRatio = 1.5f;
 
     private Rigidbody m_rigid;
