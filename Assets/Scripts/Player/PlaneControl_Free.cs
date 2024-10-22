@@ -98,18 +98,21 @@ public class PlaneControl_Free : MonoBehaviour
     public void OnCollide(Collision collision){
         if(!crashed){
             crashed = true;
-            Vector3 forward = m_rigid.velocity;
-            forward.y = 0;
-            m_rigid.angularVelocity = new Vector3(currentPitchSpeed*Time.fixedDeltaTime*2, 0, currentRollSpeed*Time.fixedDeltaTime*2);
-            m_rigid.AddForce(collision.impulse*0.5f+forward*2, ForceMode.Impulse);
-            m_rigid.AddRelativeTorque(Vector3.right*10, ForceMode.VelocityChange);
-
         //取消摄像机的跟随，降低优先级，为下一架飞机让路
+            m_cam.transform.parent = null;
             m_cam.m_Follow = null;
             m_cam.m_LookAt = null;
             m_cam.Priority--;
+        
+        //使飞机继续旋转
+            Vector3 forward = m_rigid.velocity;
+            forward.y = 0;
+            m_rigid.angularVelocity = new Vector3(currentPitchSpeed*Time.fixedDeltaTime*2, 0, currentRollSpeed*Time.fixedDeltaTime*2);
+            m_rigid.AddForceAtPosition(collision.impulse*0.5f, collision.contacts[0].point, ForceMode.Impulse);
+            m_rigid.AddRelativeTorque(Vector3.right*10, ForceMode.VelocityChange);
 
             EventHandler.Call_OnPlaneCrashed();
+            playerInput.DeactivateInput();
             this.enabled = false;
         }
     }

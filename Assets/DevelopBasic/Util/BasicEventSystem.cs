@@ -17,6 +17,11 @@ public static class EventHandler
     public static void Call_OnCompleteSave()=>E_OnCompleteSave?.Invoke();
 #endregion
 
+#region Fly Event
+    public static event Action<Vector3, Quaternion, Vector3[]> E_OnReportPos;
+    public static void Call_OnReportPos(Vector3 lastPos, Quaternion lastRotation, Vector3[] threatDirection)=>E_OnReportPos?.Invoke(lastPos, lastRotation, threatDirection);
+#endregion
+
 #region  Interaction Event
     public static event Action E_OnPixelGameFinished;
     public static void Call_OnPixelGameFinished()=>E_OnPixelGameFinished?.Invoke();

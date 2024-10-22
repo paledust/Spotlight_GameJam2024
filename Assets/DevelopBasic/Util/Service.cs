@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Service{
-    public const int MAIN_VC_PRIORITY = 10;
+    public static LayerMask TerrainLayer = 1<<LayerMask.NameToLayer("Terrain");
 #region HelperFunction
     public static T[] FindComponentsOfTypeIncludingDisable<T>(){
         int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCount;
