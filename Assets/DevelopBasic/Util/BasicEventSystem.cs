@@ -17,6 +17,11 @@ public static class EventHandler
     public static void Call_OnCompleteSave()=>E_OnCompleteSave?.Invoke();
 #endregion
 
+#region Fly Event
+    public static event Action<Vector3, Quaternion, Vector3[]> E_OnReportPos;
+    public static void Call_OnReportPos(Vector3 lastPos, Quaternion lastRotation, Vector3[] threatDirection)=>E_OnReportPos?.Invoke(lastPos, lastRotation, threatDirection);
+#endregion
+
 #region  Interaction Event
     public static event Action E_OnPixelGameFinished;
     public static void Call_OnPixelGameFinished()=>E_OnPixelGameFinished?.Invoke();
@@ -24,7 +29,7 @@ public static class EventHandler
     public static void Call_OnConductDirection(int direction)=>E_OnConductDirection?.Invoke(direction);
     public static event Action<bool> E_OnConductForward;
     public static void Call_OnConductForward(bool isForward)=>E_OnConductForward?.Invoke(isForward);
-    public static event Action E_OnPlaneCrashed;
-    public static void Call_OnPlaneCrashed()=>E_OnPlaneCrashed?.Invoke();
+    public static event Action<Vector3> E_OnPlaneCrashed;
+    public static void Call_OnPlaneCrashed(Vector3 crashPos)=>E_OnPlaneCrashed?.Invoke(crashPos);
 #endregion
 }

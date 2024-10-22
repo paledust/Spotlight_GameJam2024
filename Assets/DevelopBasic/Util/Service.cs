@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Service{
+    public const string PLAYER_TAG = "Player";
+    public static LayerMask TerrainLayer = 1<<LayerMask.NameToLayer("Terrain");
 #region HelperFunction
-    /// <summary>
-    /// Return a list of all active and inactive objects of T type in loaded scenes.
-    /// </summary>
-    /// <typeparam name="T">Object Type</typeparam>
-    /// <returns></returns>
     public static T[] FindComponentsOfTypeIncludingDisable<T>(){
         int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCount;
         var MatchObjects = new List<T> ();
