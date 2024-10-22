@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Target : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
