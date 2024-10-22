@@ -169,8 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlyingPrefab: {fileID: 6167536754744221918, guid: 750ae00713301f844a08a42eb0e1cc32,
     type: 3}
+  SafeZoneProbePrefab: {fileID: 3373080136989039154, guid: b17fb8a6ced11ac498ed5f0f3c577384,
+    type: 3}
   defaultSpawn: {fileID: 208337570}
-  safeZoneProbe: {fileID: 0}
 --- !u!1 &208337569
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +563,7 @@ PrefabInstance:
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -1307,7 +1308,7 @@ Transform:
   - {fileID: 1161716900}
   - {fileID: 311491060}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1462274527 stripped
 GameObject:
@@ -1329,52 +1330,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3522100890399179392, guid: b9ce6f22c75e86d4a8176b40c2de6787, type: 3}
---- !u!1 &1524212735
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1524212737}
-  - component: {fileID: 1524212739}
-  m_Layer: 0
-  m_Name: SafeZoneProbe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1524212737
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524212735}
-  m_LocalRotation: {x: -0.0000000023283064, y: 0.2397677, z: 0.000000029802322, w: -0.9708303}
-  m_LocalPosition: {x: 849.1, y: 276.03564, z: -2999.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1524212739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524212735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e6d41604f8eab4398404061d3afffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reportCycle: 10
-  detectRadius: 50
 --- !u!1 &1717071601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8902621419283746607, guid: 0159e6dab605712429785d29191d3fe4,

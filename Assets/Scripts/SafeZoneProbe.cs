@@ -23,9 +23,10 @@ public class SafeZoneProbe : MonoBehaviour
         if(reportTimer >= reportCycle){
             reportTimer = 0;
 
-            var colliders = Physics.OverlapSphere(transform.position, detectRadius);
-            if(colliders.Length == 0)
+            var colliders = Physics.OverlapSphere(transform.position, detectRadius, Service.TerrainLayer);
+            if(colliders==null || colliders.Length == 0){
                 EventHandler.Call_OnReportPos(transform.position, transform.rotation, null);
+            }
             else{
                 RaycastHit hit;
                 var dir = new List<Vector3>();
