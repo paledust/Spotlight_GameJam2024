@@ -21,17 +21,23 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
     private SafeZoneProbe safeZoneProbe;
     private Vector3[] safePoses = new Vector3[MAX_SAFE_POINTS];
     private Quaternion[] safeRots = new Quaternion[MAX_SAFE_POINTS];
-    private int safeIndex = 0;
+    private int safePointIndex = 0;
+    private bool isInStopZone = false;
+    private CoroutineExcuter ppFader;
 
     private const int MAX_SAFE_POINTS = 3;
 
     protected override void Awake(){
+        ppFader = new CoroutineExcuter(this);
+
         EventHandler.E_OnPlaneCrashed += OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos += OnReportPosHandler;
+        EventHandler.E_OnInteractingStopZone += OnInteractStopZoneHandler;
     }
     protected override void OnDestroy(){
         EventHandler.E_OnPlaneCrashed -= OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos -= OnReportPosHandler;
+        EventHandler.E_OnInteractingStopZone -= OnInteractStopZoneHandler;
     }
     void Start(){
         for(int i=0; i<safePoses.Length; i++){
@@ -45,6 +51,11 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
         safeZoneProbe.transform.parent = planeOnAir.transform;
         safeZoneProbe.transform.localPosition = Vector3.zero;
         safeZoneProbe.transform.localRotation = Quaternion.identity;
+    }
+#region Event Handlers
+    void OnInteractStopZoneHandler(bool isInZone){
+        isInStopZone = isInZone;
+        ppFader.Excute(coroutineFadePP(isInZone?1:0, 1f));
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
         StartCoroutine(CommonCoroutine.delayAction(()=>{
@@ -69,6 +80,9 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
         }, 2f));
     }
     void OnReportPosHandler(Vector3 position, Quaternion rotation, Vector3[] threatDirections){
+    //当飞机处于禁止区域时，不要更新飞行点
+        if(isInStopZone) return;
+    //更新飞行记录点
         Vector3 goingDir = transform.forward.ProjectOntoPlane(Vector3.up).normalized;
 
         if(threatDirections==null || threatDirections.Length == 0) {
@@ -104,15 +118,16 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
             }
         }
     }
+#endregion
     void AddSafePoint(Vector3 pos, Quaternion rot){
-        safeIndex ++;
-        safeIndex %= MAX_SAFE_POINTS;
+        safePointIndex ++;
+        safePointIndex %= MAX_SAFE_POINTS;
 
-        safePoses[safeIndex] = pos;
-        safeRots[safeIndex] = rot;
+        safePoses[safePointIndex] = pos;
+        safeRots[safePointIndex] = rot;
     }
     void ReadSafePoint(Vector3 refPos, out Vector3 safePos, out Quaternion safeRot){
-        int targetIndex = safeIndex;
+        int targetIndex = safePointIndex;
         float distance = 0;
         for(int i=0; i<MAX_SAFE_POINTS; i++){
             float temp = Vector3.SqrMagnitude(refPos-safePoses[i]);
@@ -122,6 +137,12 @@ public class RichardFlyingManager : Singleton<RichardFlyingManager>
             }
         }
         safePos = safePoses[targetIndex];
-        safeRot = safeRots[safeIndex];
+        safeRot = safeRots[safePointIndex];
+    }
+    IEnumerator coroutineFadePP(float targetWeight, float duration){
+        float initValue = stopZonePP.weight;
+        yield return new WaitForLoop(duration, (t)=>{
+            stopZonePP.weight = Mathf.Lerp(initValue, targetWeight, EasingFunc.Easing.SmoothInOut(t));
+        });
     }
 }
