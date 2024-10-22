@@ -182,14 +182,14 @@ MonoBehaviour:
   maxRollSpeed: 60
   agility: 2
   flyingSpeed: {x: 10, y: 30}
-  LWingTrans: {fileID: 6394294044887674494}
-  RWingTrans: {fileID: 7086714173216156742}
-  TailTrans: {fileID: 3306382468472683640}
-  FinTrans: {fileID: 7742008210257107581}
+  LWingTrans: {fileID: 8584446136385006643}
+  RWingTrans: {fileID: 8461063289006162685}
+  TailTrans: {fileID: 7608961323792513756}
+  FinTrans: {fileID: 1899222794558115190}
   MaxWingAngle: 30
   MaxTailAngle: 20
   MaxFinAngle: 20
-  rotator: {fileID: 6862198565118314752}
+  rotator: {fileID: 3594905968737086585}
   spinningSpeedRange: {x: 1000, y: 1800}
   m_cam: {fileID: 3369712747280930494}
   fovRange: {x: 55, y: 65}
@@ -413,21 +413,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb01a983fb27334ba279c556f686dd0, type: 3}
---- !u!4 &3306382468472683640 stripped
+--- !u!4 &1899222794558115190 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4284385882546390617, guid: 3eb01a983fb27334ba279c556f686dd0,
+  m_CorrespondingSourceObject: {fileID: 922382526380701527, guid: 3eb01a983fb27334ba279c556f686dd0,
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6394294044887674494 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5632467781076653151, guid: 3eb01a983fb27334ba279c556f686dd0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1627931508671314465}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6862198565118314752 stripped
+--- !u!114 &3594905968737086585 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5308897509338673953, guid: 3eb01a983fb27334ba279c556f686dd0,
+  m_CorrespondingSourceObject: {fileID: 2842959913024853592, guid: 3eb01a983fb27334ba279c556f686dd0,
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
@@ -437,21 +431,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d6ae59343a2094ea2ef9eac299b927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &7086714173216156742 stripped
+--- !u!4 &7608961323792513756 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8416809797504112231, guid: 3eb01a983fb27334ba279c556f686dd0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1627931508671314465}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7742008210257107581 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9072132452483113052, guid: 3eb01a983fb27334ba279c556f686dd0,
+  m_CorrespondingSourceObject: {fileID: 9155788452054319357, guid: 3eb01a983fb27334ba279c556f686dd0,
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8189930292661809790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627931508671314465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8461063289006162685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7204685384646359260, guid: 3eb01a983fb27334ba279c556f686dd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627931508671314465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8584446136385006643 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7040682385795913234, guid: 3eb01a983fb27334ba279c556f686dd0,
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
