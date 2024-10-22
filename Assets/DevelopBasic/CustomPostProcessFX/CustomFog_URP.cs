@@ -7,12 +7,12 @@ using UnityEngine.Rendering.Universal;
 [System.Serializable, VolumeComponentMenuForRenderPipeline("Custom/CustomFog", typeof(UniversalRenderPipeline))]
 public class CustomFog_URP : VolumeComponent, IPostProcessComponent
 {
-    public ColorParameter color = new ColorParameter(Color.blue);
-    public ClampedFloatParameter intensity = new ClampedFloatParameter(value : 1f, 0f, 1f);
+    public ColorParameter color = new ColorParameter(Color.clear);
+    public ClampedFloatParameter intensity = new ClampedFloatParameter(value : 0f, 0f, 1f);
     public FloatParameter startDistance = new FloatParameter(value : 0f);
     public FloatParameter fadeLength = new FloatParameter(value : 100f);
-    public ClampedFloatParameter controlOffset = new ClampedFloatParameter(value : 0.11f, 0.001f, 0.999f);
-    public ClampedFloatParameter controlValue = new ClampedFloatParameter(value : 0f, 0f, 1f);
+    public ClampedFloatParameter controlOffset = new ClampedFloatParameter(value : 0.5f, 0.001f, 0.999f);
+    public ClampedFloatParameter controlValue = new ClampedFloatParameter(value : 0.5f, 0f, 1f);
     public bool IsActive()=>intensity.value>0;
     public bool IsTileCompatible() => true;
 }

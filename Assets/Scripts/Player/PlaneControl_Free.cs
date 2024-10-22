@@ -104,6 +104,11 @@ public class PlaneControl_Free : MonoBehaviour
             m_rigid.AddForce(collision.impulse*0.5f+forward*2, ForceMode.Impulse);
             m_rigid.AddRelativeTorque(Vector3.right*10, ForceMode.VelocityChange);
 
+        //取消摄像机的跟随，降低优先级，为下一架飞机让路
+            m_cam.m_Follow = null;
+            m_cam.m_LookAt = null;
+            m_cam.Priority--;
+
             EventHandler.Call_OnPlaneCrashed();
             this.enabled = false;
         }

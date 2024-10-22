@@ -4,12 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Service{
+    public const int MAIN_VC_PRIORITY = 10;
 #region HelperFunction
-    /// <summary>
-    /// Return a list of all active and inactive objects of T type in loaded scenes.
-    /// </summary>
-    /// <typeparam name="T">Object Type</typeparam>
-    /// <returns></returns>
     public static T[] FindComponentsOfTypeIncludingDisable<T>(){
         int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCount;
         var MatchObjects = new List<T> ();
