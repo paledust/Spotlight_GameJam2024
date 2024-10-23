@@ -221,6 +221,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35141015}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &86602264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86602265}
+  m_Layer: 0
+  m_Name: -------Timeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &86602265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86602264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1303342508}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &117902021
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,12 +568,12 @@ PrefabInstance:
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.323097
+      value: -61.72311
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 132
+      value: 126.1
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
@@ -617,6 +649,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1303342507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1303342508}
+  - component: {fileID: 1303342509}
+  m_Layer: 0
+  m_Name: TL_RichardAboveCloud
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1303342508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303342507}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 86602265}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1303342509
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303342507}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -4321778725283677690, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
+    value: {fileID: 1626919342}
+  - key: {fileID: 1303013010028873501, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
+    value: {fileID: 3550005767004776789}
+  m_ExposedReferences:
+    m_References:
+    - cdece65a25f32a548b215bb0b89472d7: {fileID: 2082878067}
+    - e050cd108c9cd4f41940c30fd4209b8d: {fileID: 117902023}
 --- !u!1 &1417844587 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3013435273926244116, guid: 2ae8d0e3d972895409031e17bea9c3ef,
@@ -639,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1434761155
 Transform:
   m_ObjectHideFlags: 0
@@ -715,7 +802,6 @@ GameObject:
   - component: {fileID: 1613949038}
   - component: {fileID: 1613949040}
   - component: {fileID: 1613949039}
-  - component: {fileID: 1613949041}
   m_Layer: 0
   m_Name: P Cloud
   m_TagString: Untagged
@@ -5524,29 +5610,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!320 &1613949041
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613949037}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -4321778725283677690, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
-    value: {fileID: 1626919342}
-  - key: {fileID: 1303013010028873501, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
-    value: {fileID: 3550005767004776789}
-  m_ExposedReferences:
-    m_References:
-    - cdece65a25f32a548b215bb0b89472d7: {fileID: 2082878067}
-    - e050cd108c9cd4f41940c30fd4209b8d: {fileID: 117902023}
 --- !u!1 &1620170705
 GameObject:
   m_ObjectHideFlags: 3
@@ -5757,7 +5820,6 @@ GameObject:
   - component: {fileID: 1980914746}
   - component: {fileID: 1980914749}
   - component: {fileID: 1980914748}
-  - component: {fileID: 1980914747}
   m_Layer: 0
   m_Name: P Cloud_AtStart
   m_TagString: Untagged
@@ -5781,27 +5843,6 @@ Transform:
   m_Father: {fileID: 2022899664}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!320 &1980914747
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980914745}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -4321778725283677690, guid: 22e193e432951f149add5f2b26536a6b, type: 2}
-    value: {fileID: 1626919342}
-  m_ExposedReferences:
-    m_References:
-    - cdece65a25f32a548b215bb0b89472d7: {fileID: 2082878067}
-    - e050cd108c9cd4f41940c30fd4209b8d: {fileID: 117902023}
 --- !u!199 &1980914748
 ParticleSystemRenderer:
   serializedVersion: 6
