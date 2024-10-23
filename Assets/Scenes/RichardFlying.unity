@@ -745,7 +745,7 @@ MonoBehaviour:
     type: 3}
   SafeZoneProbePrefab: {fileID: 3373080136989039154, guid: b17fb8a6ced11ac498ed5f0f3c577384,
     type: 3}
-  spawnPoint: {fileID: 906277345}
+  spawnPoint: {fileID: 208337570}
   stopZonePP: {fileID: 1609449265}
   p_explode: {fileID: 198791560065034292}
   minimumDist: 8
@@ -1642,7 +1642,7 @@ PrefabInstance:
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.023626188
+      value: 0.02362619
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
@@ -2786,7 +2786,7 @@ PrefabInstance:
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000007591385
+      value: -0.0000000777765
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221918, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -25603,6 +25603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: VelocityModule.y.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 604903855397411326, guid: cf553fb1db9b0af488bafdefdf444f35,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
       objectReference: {fileID: 0}
     - target: {fileID: 604903855397411326, guid: cf553fb1db9b0af488bafdefdf444f35,
         type: 3}
