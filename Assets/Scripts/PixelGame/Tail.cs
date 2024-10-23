@@ -7,8 +7,10 @@ public class Tail : MonoBehaviour
     private LineRenderer lineRenderer;
     private Queue<Vector3> positions = new Queue<Vector3>();
     private Vector3 lastPos = Vector3.zero;
-    private int lineLength = 25;
-    private float tailFadeTime = 0.02f;
+    [Header("尾气长度")]
+    public int lineLength = 25;
+    [Header("尾气持续时间")]
+    public float tailFadeTime = 0.02f;
     private float curTime = 0f;
     private static readonly float TailLength = 0.05f;
     // Start is called before the first frame update
