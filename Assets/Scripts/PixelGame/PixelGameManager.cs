@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PixelGameManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PixelGameManager : MonoBehaviour
     public float mapStartPos;
     public float mapEndPos;
     public GameObject fuelBar;
+    public Text milesText;
+    public Text fuelText;
     public GameObject retryPanel;
     public GameObject winPanel;
 
@@ -25,7 +28,8 @@ public class PixelGameManager : MonoBehaviour
     private int fuelMax;
     [HideInInspector]
     public bool gameStart = true;
-    private bool gameFinished = false;
+    private int milesTextNum;
+    private int fuelTextNum;
     
     void Awake()
     {
@@ -37,6 +41,8 @@ public class PixelGameManager : MonoBehaviour
         planeStartPos = pixelPlaneControl.transform.position;
         fuelUsed = 0;
         fuelMax = fuelBar.transform.childCount;
+        milesTextNum = 0;
+        fuelTextNum = 10000;
     }
 
     void FixedUpdate()
@@ -93,6 +99,11 @@ public class PixelGameManager : MonoBehaviour
         for (int i = 0; i < fuelMax; i++)
             fuelBar.transform.GetChild(i).gameObject.SetActive(true);
 
+        milesTextNum = 0;
+        fuelTextNum = 10000;
+        SetMilesText();
+        SetFuelText();
+
         retryPanel.SetActive(false);
         gameStart = true;
     }
@@ -119,5 +130,22 @@ public class PixelGameManager : MonoBehaviour
             fuelBar.transform.GetChild(fuelUsed).gameObject.SetActive(false);
             fuelUsed++;
         }
+
+        milesTextNum = (int)(10000 * progress);
+        fuelTextNum = 10000 - (int)(progress * 10000);
+        SetMilesText();
+        SetFuelText();
+    }
+
+    private void SetMilesText()
+    {
+        string s = milesTextNum.ToString().PadLeft(6, '0');
+        milesText.text = s.Substring(0, 2) + "'" + s.Substring(2, 2) + "." + s.Substring(4) + "'";
+    }
+
+    private void SetFuelText()
+    {
+        string s = fuelTextNum.ToString().PadLeft(5, '0');
+        fuelText.text = s.Substring(0, 3) + ":" + s.Substring(3);
     }
 }
