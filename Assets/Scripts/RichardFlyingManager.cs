@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Cinemachine.Utility;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.Rendering;
 
 public class RichardFlyingManager : MonoBehaviour
@@ -20,6 +21,8 @@ public class RichardFlyingManager : MonoBehaviour
     [SerializeField] private float minimumForwardDist = 40;
 [Header("Height Limitation")]
     [SerializeField] private float limitedHeight = 500;
+[Header("End")]
+    [SerializeField] private PlayableDirector TL_AboveSky;
 
     private PlaneControl_Free planeOnAir;
     private SafeZoneProbe safeZoneProbe;
@@ -39,11 +42,13 @@ public class RichardFlyingManager : MonoBehaviour
         EventHandler.E_OnPlaneCrashed += OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos += OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone += OnInteractStopZoneHandler;
+        EventHandler.E_OnFlyAboveSky += OnFlyAboveSkyHandler;
     }
     protected void OnDestroy(){
         EventHandler.E_OnPlaneCrashed -= OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos -= OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone -= OnInteractStopZoneHandler;
+        EventHandler.E_OnFlyAboveSky -= OnFlyAboveSkyHandler;
     }
     void Start(){
         planeOnAir = FindObjectOfType<PlaneControl_Free>();
@@ -60,10 +65,13 @@ public class RichardFlyingManager : MonoBehaviour
         safeZoneProbe.transform.localPosition = Vector3.zero;
         safeZoneProbe.transform.localRotation = Quaternion.identity;
     }
-    void Update(){
-
+    public void GoToNextLevel(){
+        GameManager.Instance.SwitchingScene("RichardFall", 1f, Color.white);
     }
 #region Event Handlers
+    void OnFlyAboveSkyHandler(){
+        TL_AboveSky.Play();
+    }
     void OnInteractStopZoneHandler(bool isInZone){
         stopZoneCounter += isInZone?1:-1;
         ppFader.Excute(coroutineFadePP(isInStopZone?1:0, 1f));
