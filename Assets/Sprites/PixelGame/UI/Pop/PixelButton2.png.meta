@@ -129,8 +129,8 @@ TextureImporter:
       name: PixelButton2_1
       rect:
         serializedVersion: 2
-        x: 124
-        y: 38
+        x: 125
+        y: 39
         width: 54
         height: 10
       alignment: 0
