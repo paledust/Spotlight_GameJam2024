@@ -82,8 +82,9 @@ MonoBehaviour:
   planeRenderTrans: {fileID: 4759770054359640961}
   maxCorrectionAngle: 30
   flyingSpeed: 30
-  angularSpeed: 2
+  angularSpeed: 1.5
   rotateToForwardRatio: 3
+  externalRotateAngle: 0
 --- !u!54 &309834488129105291
 Rigidbody:
   m_ObjectHideFlags: 0
