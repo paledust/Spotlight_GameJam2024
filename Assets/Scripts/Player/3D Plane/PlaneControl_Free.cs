@@ -47,6 +47,7 @@ public class PlaneControl_Free : MonoBehaviour
     private float currentFlyingSpeed;
     private float targetFOV;
 
+    private bool canActivateInput{get{return !crashed;}}
     private bool crashed = false;
 
     void Awake(){
@@ -84,7 +85,7 @@ public class PlaneControl_Free : MonoBehaviour
         }
     //改变螺旋桨转速，航速，摄像机FOV
         {
-            float _s = Time.deltaTime*5;
+            float _s = Time.deltaTime*2;
             currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, targetFlyingSpeed, _s);
             rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, (targetFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x));
             m_cam.m_Lens.FieldOfView = Mathf.Lerp(fovRange.x, fovRange.y,(currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x));
@@ -115,6 +116,14 @@ public class PlaneControl_Free : MonoBehaviour
             playerInput.DeactivateInput();
             this.enabled = false;
         }
+    }
+    public void ForcePlaneRot(Quaternion rotation){
+        m_rigid.rotation = rotation;
+    }
+    public void TrySwitchInput(bool isActivate){
+        if(isActivate && canActivateInput) playerInput.ActivateInput();
+        else playerInput.DeactivateInput();
+
     }
 #region Input
     void OnMove(InputValue inputValue){

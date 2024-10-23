@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int targetFrameRate = 60;
 [Header("Scene Transition")]
     [SerializeField] private CanvasGroup BlackScreenCanvasGroup;
+    [SerializeField] private Image transitionScreen;
     [SerializeField] private float transitionDuration = 1;
 [Header("Scene Settings")]
     [SerializeField] private SceneSettings[] sceneSettings;
@@ -70,7 +71,7 @@ public class GameManager : Singleton<GameManager>
     //Load Level
         if(loadInitSceneFromGameManager){
             BlackScreenCanvasGroup.alpha = 1;
-            SwitchingScene(string.Empty, InitScene);
+            SwitchingScene(string.Empty, InitScene, Color.black);
         }
         else {
             LaunchSetting(debugSettings);
@@ -124,20 +125,26 @@ public class GameManager : Singleton<GameManager>
 #region Scene Transition
     public void SwitchingScene(string to, bool autosaveAfterTransition = true){
         string from = SceneManager.GetActiveScene().name;
-        SwitchingScene(from, to, autosaveAfterTransition);
+        SwitchingScene(from, to, Color.black, autosaveAfterTransition);
     }
     public void SwitchingScene(string to, float duration, bool autosaveAfterTransition = true){
         string from = SceneManager.GetActiveScene().name;
-        SwitchingScene(from, to, duration, autosaveAfterTransition);
+        SwitchingScene(from, to, duration, Color.black, autosaveAfterTransition);
     }
-    void SwitchingScene(string from, string to, float duration, bool autosaveAfterTransition = true){
+    public void SwitchingScene(string to, float duration, Color screenColor, bool autosaveAfterTransition = true){
+        string from = SceneManager.GetActiveScene().name;
+        SwitchingScene(from, to, duration, screenColor, autosaveAfterTransition);        
+    }
+    void SwitchingScene(string from, string to, float duration, Color screenColor, bool autosaveAfterTransition = true){
+        transitionScreen.color = screenColor;
         if(!IsSwitchingScene) StartCoroutine(SwitchSceneCoroutine(from, to, duration, autosaveAfterTransition));
     }
-    void SwitchingScene(string from, string to, bool autosaveAfterTransition = true){
+    void SwitchingScene(string from, string to, Color screenColor, bool autosaveAfterTransition = true){
+        transitionScreen.color = screenColor;
         if(!IsSwitchingScene) StartCoroutine(SwitchSceneCoroutine(from, to, transitionDuration, autosaveAfterTransition));
     }
     IEnumerator EndGameCoroutine(string level){
-        StartCoroutine(FadeInBlackScreen(1f));
+        StartCoroutine(FadeInTransitionScreen(1f));
         StartCoroutine(new WaitForLoop(3f, (t)=>{
             AudioManager.Instance.ChangeMasterVolume(Mathf.Lerp(0, -80, EasingFunc.Easing.QuadEaseIn(t)));
         }));
@@ -168,7 +175,7 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
     IEnumerator RestartLevel(string level){
-        yield return FadeInBlackScreen(3f);
+        yield return FadeInTransitionScreen(3f);
         IsSwitchingScene = true;
         //TO DO: do something before the last scene is unloaded. e.g: call event of saving 
         EventHandler.Call_BeforeUnloadScene();
@@ -183,7 +190,7 @@ public class GameManager : Singleton<GameManager>
         ApplySceneSettings(level);
 
         yield return null;
-        yield return FadeOutBlackScreen(transitionDuration);
+        yield return FadeOutTransitionScreen(transitionDuration);
         
         IsSwitchingScene = false;
     }
@@ -194,7 +201,7 @@ public class GameManager : Singleton<GameManager>
             lastScene = from;
             
             EventHandler.Call_BeforeUnloadScene();
-            yield return FadeInBlackScreen(duration);
+            yield return FadeInTransitionScreen(duration);
             yield return SceneManager.UnloadSceneAsync(from);
         }
     //TO DO: do something after the last scene is unloaded.
@@ -209,17 +216,17 @@ public class GameManager : Singleton<GameManager>
         if(autosaveAfterTransition) SaveGame(0);
 
         yield return null;
-        yield return FadeOutBlackScreen(duration);
+        yield return FadeOutTransitionScreen(duration);
 
         IsSwitchingScene = false;
     }
-    public IEnumerator FadeInBlackScreen(float fadeDuration){
+    IEnumerator FadeInTransitionScreen(float fadeDuration){
         float initAlpha = BlackScreenCanvasGroup.alpha;
         yield return new WaitForLoop(fadeDuration, (t)=>{
             BlackScreenCanvasGroup.alpha = Mathf.Lerp(initAlpha, 1, EasingFunc.Easing.QuadEaseOut(t));
         });
     }
-    public IEnumerator FadeOutBlackScreen(float fadeDuration){
+    IEnumerator FadeOutTransitionScreen(float fadeDuration){
         float initAlpha = BlackScreenCanvasGroup.alpha;
         yield return new WaitForLoop(fadeDuration, (t)=>{
             BlackScreenCanvasGroup.alpha = Mathf.Lerp(initAlpha, 0, EasingFunc.Easing.QuadEaseIn(t));

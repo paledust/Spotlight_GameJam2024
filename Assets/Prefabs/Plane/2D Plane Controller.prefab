@@ -83,7 +83,6 @@ MonoBehaviour:
   maxCorrectionAngle: 30
   flyingSpeed: 30
   angularSpeed: 2
-  maxAngularStep: 10
   rotateToForwardRatio: 3
 --- !u!54 &309834488129105291
 Rigidbody:
