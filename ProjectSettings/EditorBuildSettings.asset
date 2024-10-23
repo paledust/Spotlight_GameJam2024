@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Persistence.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Init.unity
-    guid: b8aae0da1a2117b4f8ed8bff5cd940ee
-  - enabled: 1
     path: Assets/Scenes/WorkingRichard.unity
     guid: a15cc1a75cc8de44e96d448994c22da3
   - enabled: 1
@@ -26,12 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RichardTakeOff.unity
     guid: 96e9a5c15c5533540a1c4aa2947b4cdf
+  - enabled: 1
+    path: Assets/Scenes/RichardFlying.unity
+    guid: d0642c40abcc94c4f8713842d1c7dd22
   - enabled: 0
     path: Assets/Scenes/GarageForPlane.unity
     guid: 8896d00da57a3ec48bf7f22da6b7120d
-  - enabled: 0
-    path: Assets/Scenes/RichardFlying.unity
-    guid: d0642c40abcc94c4f8713842d1c7dd22
   - enabled: 0
     path: Assets/Scenes/FallingTransition.unity
     guid: 9af8566e65b482e43a4aa57bce344f0b
