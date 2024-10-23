@@ -35,14 +35,6 @@ public class RichardPlayGameControl : MonoBehaviour
         pitch = Service.LerpValue(pitch, targetPitch, Time.deltaTime*5);
         roll = Service.LerpValue(roll, targetRoll, Time.deltaTime*5);
         richardBody.localRotation = Quaternion.AngleAxis(roll, richardFaceDir.forward)*Quaternion.AngleAxis(pitch, richardFaceDir.right);
-
-        if(!isDone) timer+=Time.deltaTime;
-        if(timer > DemoMiniGameTime && !isDone){
-            isDone = true;
-            targetPitch = 0;
-            targetRoll = 0;
-            EndGame();
-        }
     }
     void EndGame(){
         StartCoroutine(coroutineReturnPos(1.5f, 1f));

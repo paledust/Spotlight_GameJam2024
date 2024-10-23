@@ -13,6 +13,7 @@ public class PlaneControl_Platform : MonoBehaviour
     [SerializeField] private float flyingSpeed = 5;
     [SerializeField] private float angularSpeed = 2;
     [SerializeField] private float rotateToForwardRatio = 1.5f;
+    [SerializeField] private float externalRotateAngle;
 
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
@@ -30,12 +31,13 @@ public class PlaneControl_Platform : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         m_rigid = GetComponent<Rigidbody>();
+        currentLevelAngle = targetLevelAngle + externalRotateAngle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentLevelAngle = Service.LerpValue(currentLevelAngle, targetLevelAngle, Time.deltaTime*agility, 0.1f);
+        currentLevelAngle = Service.LerpValue(currentLevelAngle, targetLevelAngle+externalRotateAngle, Time.deltaTime*agility, 0.1f);
         
         planeRenderTrans.localRotation = Quaternion.Euler(0,0,-Vector2.SignedAngle(transform.forward, Vector2.right));
         forwardVel = Quaternion.Euler(0, 0, currentLevelAngle)*Vector3.right;
