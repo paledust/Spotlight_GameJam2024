@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Flying PostProcessing
+  m_Name: FinalZone PostProcessing
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 6809390368871562564}
---- !u!114 &6809390368871562564
+  - {fileID: 1969851786440477078}
+--- !u!114 &1969851786440477078
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23,25 +23,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7966edfb99661424dbf77b41b1104b2f, type: 3}
-  m_Name: CustomFog_URP
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
   active: 1
-  color:
+  postExposure:
     m_OverrideState: 1
-    m_Value: {r: 0.6415094, g: 0.5342239, b: 0.4926308, a: 1}
-  intensity:
+    m_Value: 3
+  contrast:
     m_OverrideState: 1
-    m_Value: 1
-  startDistance:
+    m_Value: 0
+  colorFilter:
     m_OverrideState: 1
-    m_Value: 200
-  fadeLength:
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  hueShift:
+    m_OverrideState: 0
+    m_Value: 0
+  saturation:
     m_OverrideState: 1
-    m_Value: 1800
-  controlOffset:
-    m_OverrideState: 1
-    m_Value: 0.564
-  controlValue:
-    m_OverrideState: 1
-    m_Value: 0.216
+    m_Value: 0
