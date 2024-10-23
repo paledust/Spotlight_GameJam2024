@@ -9,7 +9,7 @@ public class RichardFlyingManager : MonoBehaviour
 {
     [SerializeField] private GameObject FlyingPrefab;
     [SerializeField] private GameObject SafeZoneProbePrefab;
-    [SerializeField] private Transform defaultSpawn;
+    [SerializeField] private Transform spawnPoint;
 [Header("VFX")]
     [SerializeField] private Volume stopZonePP;
     [SerializeField] private ParticleSystem p_explode;
@@ -18,6 +18,8 @@ public class RichardFlyingManager : MonoBehaviour
     [SerializeField] private float minimumWidthDist = 20;
     [SerializeField] private float minimumHeightDist = 30;
     [SerializeField] private float minimumForwardDist = 40;
+[Header("Height Limitation")]
+    [SerializeField] private float limitedHeight = 500;
 
     private PlaneControl_Free planeOnAir;
     private SafeZoneProbe safeZoneProbe;
@@ -44,12 +46,14 @@ public class RichardFlyingManager : MonoBehaviour
         EventHandler.E_OnInteractingStopZone -= OnInteractStopZoneHandler;
     }
     void Start(){
+        planeOnAir = FindObjectOfType<PlaneControl_Free>();
+        planeOnAir.transform.position = spawnPoint.position;
+        planeOnAir.transform.rotation = spawnPoint.rotation;
         for(int i=0; i<safePoses.Length; i++){
-            safePoses[i] = defaultSpawn.position;
-            safeRots[i] = defaultSpawn.rotation;
+            safePoses[i] = spawnPoint.position;
+            safeRots[i] = spawnPoint.rotation;
         }
 
-        planeOnAir = FindObjectOfType<PlaneControl_Free>();
 
         safeZoneProbe = Instantiate(SafeZoneProbePrefab).GetComponent<SafeZoneProbe>();
         safeZoneProbe.transform.parent = planeOnAir.transform;
@@ -154,5 +158,10 @@ public class RichardFlyingManager : MonoBehaviour
         yield return new WaitForLoop(duration, (t)=>{
             stopZonePP.weight = Mathf.Lerp(initValue, targetWeight, EasingFunc.Easing.SmoothInOut(t));
         });
+    }
+    void OnDrawGizmos(){
+        Gizmos.color = new Color(1,0,0,0.2f);
+
+        Gizmos.DrawCube(Vector3.up * limitedHeight, new Vector3(10000, 0.05f, 10000f));
     }
 }
