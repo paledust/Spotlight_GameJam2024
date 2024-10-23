@@ -1,3 +1,5 @@
+#define Demo
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,18 +16,33 @@ public class RichardPlayGameControl : MonoBehaviour
     [SerializeField] private float maxPitch;
 [Header("Ending")]
     [SerializeField] private PlayableDirector endTimeline;
+    [SerializeField] private float DemoMiniGameTime = 20;
     
-    private Vector3 shuttleVel;
     private float targetPitch;
     private float targetRoll;
     private float pitch = 0;
     private float roll = 0;
-
+    private float timer = 0;
+    private bool isDone = false;
+    void OnEnable(){
+        EventHandler.E_OnPixelGameFinished += EndGame;
+    }
+    void OnDisable(){
+        EventHandler.E_OnPixelGameFinished -= EndGame;
+    }
     void Update(){
     //控制理查的身体晃动
         pitch = Service.LerpValue(pitch, targetPitch, Time.deltaTime*5);
         roll = Service.LerpValue(roll, targetRoll, Time.deltaTime*5);
         richardBody.localRotation = Quaternion.AngleAxis(roll, richardFaceDir.forward)*Quaternion.AngleAxis(pitch, richardFaceDir.right);
+
+        if(!isDone) timer+=Time.deltaTime;
+        if(timer > DemoMiniGameTime && !isDone){
+            isDone = true;
+            targetPitch = 0;
+            targetRoll = 0;
+            EndGame();
+        }
     }
     void EndGame(){
         StartCoroutine(coroutineReturnPos(1.5f, 1f));

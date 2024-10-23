@@ -1158,7 +1158,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: HeroPlane/SM_PlayerPlane/direction.001
+    path: HeroPlane/SM_PlayerPlane/direction
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
@@ -1171,7 +1171,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3854059494
+      path: 3525167622
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -1269,7 +1269,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: HeroPlane/SM_PlayerPlane/direction.001
+    path: HeroPlane/SM_PlayerPlane/direction
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1297,7 +1297,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: HeroPlane/SM_PlayerPlane/direction.001
+    path: HeroPlane/SM_PlayerPlane/direction
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1325,7 +1325,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: HeroPlane/SM_PlayerPlane/direction.001
+    path: HeroPlane/SM_PlayerPlane/direction
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -1336,7 +1336,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: HeroPlane/SM_PlayerPlane/direction.001
+    path: HeroPlane/SM_PlayerPlane/direction
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1346,7 +1346,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: HeroPlane/SM_PlayerPlane/direction.001
+    path: HeroPlane/SM_PlayerPlane/direction
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1356,7 +1356,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: HeroPlane/SM_PlayerPlane/direction.001
+    path: HeroPlane/SM_PlayerPlane/direction
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
