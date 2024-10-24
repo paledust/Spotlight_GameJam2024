@@ -64,8 +64,6 @@ public class GameManager : Singleton<GameManager>
 
         if(isTesting) debugActions.Enable();
     #endif
-
-        Cursor.visible = false;
     //To Do: Game Loading
     #if UNITY_EDITOR
     //Load Level
