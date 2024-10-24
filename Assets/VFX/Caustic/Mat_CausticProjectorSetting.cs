@@ -4,7 +4,7 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 public class Mat_CausticProjectorSetting : MonoBehaviour {
-    public Projector m_projector;
+    public Renderer m_renderer;
     public Material TargetMaterial;
     protected Material m_mat;
 #region  MAT_PARAMS
@@ -12,17 +12,12 @@ public class Mat_CausticProjectorSetting : MonoBehaviour {
     public float Tiled;
     public float Density;
     public float Intensity;
-    public float Lerp;
-    public float FadeHeight;
-    public float FadeFalloff;
+    [Range(0, 1)] public float Lerp;
     public float RWC2Wave;
     public float AnimationSpeed;
-    [Range(0,1)]
-    public float MaskFadeOff;
-    [Range(0,1)]
-    public float MaskFadeSmoothness;
-    [Range(0,0.01f)]
-    public float ColorSeparate = 0;
+    [Range(0,1)] public float MaskFadeOff;
+    [Range(0,1)] public float MaskFadeSmoothness;
+    [Range(0,0.01f)] public float ColorSeparate = 0;
     public bool UseType2Caustic;
     public bool UseMask;
     public int RenderQueue=3000;
@@ -30,8 +25,6 @@ public class Mat_CausticProjectorSetting : MonoBehaviour {
     protected int TiledID = Shader.PropertyToID("_Tiled");
     protected int DensityID = Shader.PropertyToID("_Density");
     protected int LerpID = Shader.PropertyToID("_Lerp");
-    protected int FadeHeightID = Shader.PropertyToID("_FadeHeight");
-    protected int FadeFalloffID = Shader.PropertyToID("_FadeFalloff");
     protected int RWC2WaveID = Shader.PropertyToID("_RWC2_Wave");
     protected int AnimationSpeedID = Shader.PropertyToID("_Speed");
     protected int MaskFadeOffID = Shader.PropertyToID("_Fade");
@@ -45,8 +38,8 @@ public class Mat_CausticProjectorSetting : MonoBehaviour {
         if(m_mat==null){
             InitMaterial();
         }
-        if(m_projector.material!=m_mat){
-            m_projector.material = m_mat;
+        if(m_renderer.material!=m_mat){
+            m_renderer.material = m_mat;
         }
 		CopyMaterialFromShareMaterial();
 		ParameterUpdate();
@@ -65,8 +58,6 @@ public class Mat_CausticProjectorSetting : MonoBehaviour {
         m_mat.SetFloat(TiledID, Tiled);
         m_mat.SetFloat(DensityID, Density);
         m_mat.SetFloat(LerpID, Lerp);
-        m_mat.SetFloat(FadeHeightID, FadeHeight);
-        m_mat.SetFloat(FadeFalloffID, FadeFalloff);
         m_mat.SetFloat(RWC2WaveID, RWC2Wave);
         m_mat.SetFloat(AnimationSpeedID, AnimationSpeed);
         m_mat.SetFloat(MaskFadeOffID, MaskFadeOff);
@@ -93,10 +84,10 @@ public class Mat_CausticProjectorSetting : MonoBehaviour {
 	}
 	protected void InitMaterial(){
 		m_mat = Instantiate(TargetMaterial);
-		m_projector.material = m_mat;
+		m_renderer.material = m_mat;
 	}
 	protected bool ParameterChecking(){
-		if(!m_projector||!TargetMaterial) return false;
+		if(!m_renderer||!TargetMaterial) return false;
 
 		return true;
 	}

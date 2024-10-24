@@ -1,4 +1,4 @@
-﻿Shader "Water_FX/CG_CausticsFade"
+﻿Shader "Custom/CG_CausticsFade"
 {
 	Properties
 	{
@@ -7,8 +7,6 @@
 		_Density ("Density", Range(0.002, 0.02)) = 0.005
 		_Intensity ("Intensity", Range(0, 4)) = 1.4
 		_Lerp ("Lerp", Range(0, 1)) = 0.5
-		_FadeHeight ("Fade Height", Float) = 2
-		_FadeFalloff ("Fade Falloff", Range(0.1, 2)) = 1
 		_RWC2_Wave ("RWC2 Wave", Float) = 0.3
 		_Speed("Animaiton Speed", Float) = 1.0
 		
@@ -50,8 +48,6 @@
 			uniform float _Density;
 			uniform float _Intensity;
 			uniform float _Lerp;
-			uniform float _FadeHeight;
-			uniform float _FadeFalloff;
 			uniform float _RWC2_Wave;
 			uniform float _Speed;
 			uniform float _ColorSeparate;
@@ -61,20 +57,16 @@
 			struct v2f
 			{
 				float4 pos : SV_POSITION;
-				float2 tex : TEXCOORD0;
-				float3 wldpos : TEXCOORD1;
-				float3 wldnor : TEXCOORD2;
-				float4 posProj: TEXCOORD3;
+				float2 uv : TEXCOORD0;
+				// float4 posProj: TEXCOORD3;
 			};
 
 			v2f vert (appdata_base v)
 			{
 				v2f o;
 				o.pos = UnityObjectToClipPos(v.vertex);
-				o.tex = v.texcoord;
-				o.wldpos = mul(unity_ObjectToWorld, v.vertex).xyz;
-				o.wldnor = mul(unity_ObjectToWorld, float4(SCALED_NORMAL.x, SCALED_NORMAL.y, SCALED_NORMAL.z, 0));
-				o.posProj = mul(unity_Projector, v.vertex);
+				o.uv = v.texcoord;
+				// o.posProj = mul(unity_Projector, v.vertex);
 				return o;
 			}
 			float4 caustic(float2 uv){
@@ -88,19 +80,8 @@
 
 			float4 frag (v2f input) : SV_TARGET
 			{
-				// height fade
-				float fade = min(0,input.wldpos.y - _FadeHeight) / _FadeFalloff;
-				fade = 1 - fade;
-
-				// below side fade
-				float3 UP = float3(0, 1, 0);
-				float3 N = normalize(input.wldnor);
-				fade *= min(1, max(0, dot(N, UP) + 0.5));
-				fade = max(0,fade);
-				// two kinds of caustics
-
-				float2 posProj = input.posProj.xy/input.posProj.w;
-				posProj = clamp(posProj, 0, 1);
+				// float2 posProj = input.posProj.xy/input.posProj.w;
+				float2 posProj = input.uv;
 
 			#ifdef USE_TYPE2
 				float4 cR,cG,cB;
@@ -129,19 +110,13 @@
 			#endif
 
 			#ifdef USE_MASK
+				float mask = tex2D(_Mask, posProj).r;
+				mask = (mask-_Smooth) * _Fade;
+				mask = clamp(mask, 0, 1);
 
-
-				if(input.posProj.w > 0.0){
-					float mask = tex2D(_Mask, posProj).r;
-					mask = (mask-_Smooth) * _Fade;
-					mask = clamp(mask, 0, 1);
-
-					return float4(cc * _Color * fade * mask, _Lerp);
-				}
-				else
-					return 0.0;
+				return float4(cc * _Color * mask, _Lerp);;
 			#else
-				return float4(cc * _Color * fade, _Lerp);
+				return float4(cc * _Color, _Lerp);
 			#endif
 			}
 			ENDCG
