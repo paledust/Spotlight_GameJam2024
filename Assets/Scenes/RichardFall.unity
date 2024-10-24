@@ -154,8 +154,8 @@ Transform:
   m_LocalScale: {x: 500, y: 1, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1152795627}
-  m_RootOrder: 2
+  m_Father: {fileID: 2022899664}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &35141018
 MeshRenderer:
@@ -580,6 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630391164}
   - component: {fileID: 630391165}
+  - component: {fileID: 630391166}
   m_Layer: 0
   m_Name: UpTrigger
   m_TagString: Untagged
@@ -615,6 +616,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &630391166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630391163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56af171cb15939442bc59af17d1fd5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &789522716
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +856,6 @@ Transform:
   m_Children:
   - {fileID: 789522717}
   - {fileID: 3550005767004776785}
-  - {fileID: 35141016}
   m_Father: {fileID: 1271369800}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1078,6 +1090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1440540040}
   - component: {fileID: 1440540041}
+  - component: {fileID: 1440540042}
   m_Layer: 0
   m_Name: BottomTrigger
   m_TagString: Untagged
@@ -1113,6 +1126,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1440540042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440540039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56af171cb15939442bc59af17d1fd5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1590959215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1203,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2022899664}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &1613949039
 ParticleSystemRenderer:
@@ -6125,6 +6150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallingTravelDistance: 2000
   planeControl_Platform: {fileID: 3550005767004776791}
+  totalLength: 0
 --- !u!4 &1637612268
 Transform:
   m_ObjectHideFlags: 0
@@ -6256,8 +6282,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1613949038}
+  - {fileID: 35141016}
   - {fileID: 440510806}
+  - {fileID: 1613949038}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

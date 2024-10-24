@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3013435273926244117}
   - component: {fileID: 3013435273926244118}
   - component: {fileID: 3013435273926244112}
+  - component: {fileID: 9029594981197608098}
   - component: {fileID: 309834488129105291}
   m_Layer: 0
   m_Name: 2D Plane Controller
@@ -85,6 +86,19 @@ MonoBehaviour:
   angularSpeed: 1.5
   rotateToForwardRatio: 3
   externalRotateAngle: 0
+--- !u!114 &9029594981197608098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3013435273926244116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66cb485c26c27c44dac6beb02d619a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  context: {fileID: 3013435273926244112}
 --- !u!54 &309834488129105291
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -27,6 +27,9 @@ public class PlaneControl_Platform : MonoBehaviour
     private float rotationTimer = 0;
     private bool isRotating = false;
 
+    private bool canActivateInput{get{return true;}}
+    public float m_externalRotateAngle{get{return externalRotateAngle;}}
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -55,7 +58,12 @@ public class PlaneControl_Platform : MonoBehaviour
         m_rigid.rotation = Quaternion.Euler(Vector3.SignedAngle(totalVel, Vector3.right, Vector3.forward),90,0);
         m_rigid.velocity = totalVel;
     }
+    public void SetExternalAngle(float angle)=>externalRotateAngle = angle;
 #region Input
+    public void SwitchInput(bool isActivated){
+        if(isActivated && canActivateInput) playerInput.ActivateInput();
+        else playerInput.DeactivateInput();
+    }
     void OnRotation(InputValue inputValue){
         float input = inputValue.Get<float>();
         currentAngularSpeed = -input * angularSpeed;
