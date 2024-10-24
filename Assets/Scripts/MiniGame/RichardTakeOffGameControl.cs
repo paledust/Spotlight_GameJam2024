@@ -108,7 +108,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
         }
     }
     public void GoToFlightScene(){
-        GameManager.Instance.SwitchingScene("RichardFlying");
+        GameManager.Instance.SwitchingScene(Service.FLYING_TWO);
     }
     IEnumerator coroutineDissolveText(Animation textAnime, float duration, float target, System.Action OnComplete){
         if(!textAnime.isPlaying) textAnime.Play();

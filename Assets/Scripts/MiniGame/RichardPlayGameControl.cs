@@ -48,8 +48,8 @@ public class RichardPlayGameControl : MonoBehaviour
         this.enabled = true;
         playerInput.ActivateInput();
     }
-    public void GoToNextLevel(string level){
-        GameManager.Instance.SwitchingScene(level, 1f);
+    public void GoToNextLevel(){
+        GameManager.Instance.SwitchingScene(Service.TAKE_OFF, 1f);
     }
 #endregion
 

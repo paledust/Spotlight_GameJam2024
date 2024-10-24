@@ -4,6 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Service{
+#region Scene Name
+    public const string MENU = "Menu";
+    public const string WORKING = "WorkingRichard";
+    public const string CHILD = "ChildRichard";
+    public const string TAKE_OFF = "RichardTakeOff";
+    public const string FLYING_ONE = "RichardFlying_1";
+    public const string FLYING_TWO = "RichardFlying_2";
+    public const string FALL = "RichardFall";
+    public const string FALL_TRANSITION = "FallingTransition";
+    public const string OCEAN = "Ocean";
+#endregion
     public const string PLAYER_TAG = "Player";
     public static LayerMask TerrainLayer = 1<<LayerMask.NameToLayer("Terrain");
 #region HelperFunction

@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
     }
     public void ButtonEvent_StartGame(){
         Cursor.visible = false;
-        GameManager.Instance.SwitchingScene("WorkingRichard");
+        GameManager.Instance.SwitchingScene(Service.WORKING);
     }
     public void ButtonEvent_EndGame(){
         Cursor.visible = false;

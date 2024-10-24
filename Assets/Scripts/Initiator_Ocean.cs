@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class Initiator_OceanTunnle : MonoBehaviour
+public class Initiator_Ocean : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera cm_start;
     void Start()

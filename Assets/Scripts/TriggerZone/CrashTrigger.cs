@@ -6,7 +6,7 @@ public class CrashTrigger : MonoBehaviour
 {
     void OnTriggerEnter(Collider other){
         if(other.tag == Service.PLAYER_TAG){
-            GameManager.Instance.SwitchingScene("FallingTransition", 0.05f, Color.white);
+            GameManager.Instance.SwitchingScene(Service.FALL_TRANSITION, 0.05f, Color.white);
         }
     }
 }

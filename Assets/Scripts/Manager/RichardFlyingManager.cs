@@ -66,7 +66,7 @@ public class RichardFlyingManager : MonoBehaviour
         safeZoneProbe.transform.localRotation = Quaternion.identity;
     }
     public void GoToNextLevel(){
-        GameManager.Instance.SwitchingScene("RichardFall", 1f, Color.white);
+        GameManager.Instance.SwitchingScene(Service.FALL, 1f, Color.white);
     }
 #region Event Handlers
     void OnFlyAboveSkyHandler(){
