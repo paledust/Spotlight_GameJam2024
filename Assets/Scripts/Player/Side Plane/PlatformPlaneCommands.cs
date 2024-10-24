@@ -6,6 +6,9 @@ public class PlatformPlaneCommand : Command<PlaneControl_Platform>{}
 
 public class PPC_SwitchInput: PlatformPlaneCommand{
     public bool isActivated;
+    public PPC_SwitchInput(bool activated){
+        isActivated = activated;
+    }
     internal override void CommandUpdate(PlaneControl_Platform context)
     {
         context.SwitchInput(isActivated);
