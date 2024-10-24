@@ -47,7 +47,6 @@ public class PlaneControl_Free : MonoBehaviour
     private float currentWingAngle;
     private float targetFlyingSpeed;
     private float currentFlyingSpeed;
-    private float targetFOV;
 
     private const string trigger_shake = "Shake";
 
