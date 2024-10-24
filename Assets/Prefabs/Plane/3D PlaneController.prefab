@@ -193,6 +193,7 @@ MonoBehaviour:
   spinningSpeedRange: {x: 1000, y: 1800}
   m_cam: {fileID: 3369712747280930494}
   fovRange: {x: 55, y: 65}
+  planeAnimator: {fileID: 8770736377163429593}
 --- !u!114 &3338385546433560253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,8 +273,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8977869910378160333}
-  m_LocalRotation: {x: -0.09853765, y: 0.00000074505806, z: -0.0000000777765, w: -0.9951334}
-  m_LocalPosition: {x: 0.000029563904, y: 4, z: -19.999996}
+  m_LocalRotation: {x: 0.098537624, y: -0.0000000042806607, z: 4.238689e-10, w: 0.99513334}
+  m_LocalPosition: {x: 0, y: 4, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -452,6 +453,12 @@ Transform:
 --- !u!4 &8584446136385006643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7040682385795913234, guid: 3eb01a983fb27334ba279c556f686dd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627931508671314465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8770736377163429593 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8007533526237367544, guid: 3eb01a983fb27334ba279c556f686dd0,
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
