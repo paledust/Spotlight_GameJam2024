@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PlayGround 3D.unity
     guid: c1dd9d4614e75c94d938e24373166205
+  - enabled: 0
+    path: Assets/Scenes/GarageForPlane.unity
+    guid: 8896d00da57a3ec48bf7f22da6b7120d
   - enabled: 1
     path: Assets/Scenes/Persistence.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: ed3eac16381ee8b468f15dba34cf4306
   - enabled: 1
     path: Assets/Scenes/WorkingRichard.unity
     guid: a15cc1a75cc8de44e96d448994c22da3
@@ -26,12 +32,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RichardFall.unity
     guid: 13dbebbf0ff3bb941ad516f849f96ed9
-  - enabled: 0
-    path: Assets/Scenes/GarageForPlane.unity
-    guid: 8896d00da57a3ec48bf7f22da6b7120d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FallingTransition.unity
     guid: 9af8566e65b482e43a4aa57bce344f0b
+  - enabled: 1
+    path: Assets/Scenes/OceanTunnle.unity
+    guid: d548ede503757584cb7714238e7a0ac7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 7bb1f27fed19f3a48bb310440cc63559,
       type: 2}
