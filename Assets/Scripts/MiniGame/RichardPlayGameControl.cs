@@ -16,14 +16,11 @@ public class RichardPlayGameControl : MonoBehaviour
     [SerializeField] private float maxPitch;
 [Header("Ending")]
     [SerializeField] private PlayableDirector endTimeline;
-    [SerializeField] private float DemoMiniGameTime = 20;
     
     private float targetPitch;
     private float targetRoll;
     private float pitch = 0;
     private float roll = 0;
-    private float timer = 0;
-    private bool isDone = false;
     void OnEnable(){
         EventHandler.E_OnPixelGameFinished += EndGame;
     }

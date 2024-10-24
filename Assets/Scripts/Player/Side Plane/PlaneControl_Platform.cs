@@ -14,6 +14,8 @@ public class PlaneControl_Platform : MonoBehaviour
     [SerializeField] private float angularSpeed = 2;
     [SerializeField] private float rotateToForwardRatio = 1.5f;
     [SerializeField] private float externalRotateAngle;
+[Header("Shake Animation")]
+    [SerializeField] private Animator planeAnimator;
 
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
@@ -26,6 +28,8 @@ public class PlaneControl_Platform : MonoBehaviour
     private float currentAngularSpeed;
     private float rotationTimer = 0;
     private bool isRotating = false;
+
+    private const string trigger_shake = "Shake";
 
     private bool canActivateInput{get{return true;}}
     public float m_externalRotateAngle{get{return externalRotateAngle;}}
@@ -59,6 +63,13 @@ public class PlaneControl_Platform : MonoBehaviour
         m_rigid.velocity = totalVel;
     }
     public void SetExternalAngle(float angle)=>externalRotateAngle = angle;
+
+#region Animation
+    public void ShakePlane(){
+        planeAnimator.SetTrigger(trigger_shake);
+    }
+#endregion
+
 #region Input
     public void SwitchInput(bool isActivated){
         if(isActivated && canActivateInput) playerInput.ActivateInput();

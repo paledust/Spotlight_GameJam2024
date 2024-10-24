@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaneCommands : Command<PlaneControl_Free>{}
+
+#region Plane Shake
 public class PC_ShakePlane : PlaneCommands{
     public float shakeStrength = 20;
     public float shakeFreq = 10;
@@ -15,8 +17,9 @@ public class PC_ShakePlaneImpluse : PlaneCommands{
 }
 public class PC_StopPlaneShake : PlaneCommands{
     public float duration;
-    
 }
+#endregion
+
 public class PC_TurnPlane : PlaneCommands{
     public float duration;
     public Vector3 targetDirection;
