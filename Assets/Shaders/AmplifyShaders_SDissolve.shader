@@ -8,6 +8,8 @@ Shader "AmplifyShaders/Sprite Dissolve"
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("MainTex", 2D) = "white" {}
+		_PolarCenter("PolarCenter", Vector) = (0.5,0.5,0,0)
+		[KeywordEnum(Flat,V,PolarX,PolarY)] _DissolveDirection("DissolveDirection", Float) = 0
 		_DissolveValue("DissolveValue", Float) = 0.99
 		[Toggle]_InverseDissolveDirection("InverseDissolveDirection", Float) = 1
 		_DissolveTex("DissolveTex", 2D) = "white" {}
@@ -16,8 +18,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 		_EdgeOffset("EdgeOffset", Float) = 0.5
 		_EdgeSmoothness("EdgeSmoothness", Float) = -0.01
 		[HDR]_EdgeColor("EdgeColor", Color) = (1,1,1,1)
-		[KeywordEnum(Flat,V,PolarX,PolarY)] _DissolveDirection("DissolveDirection", Float) = 0
-		_PolarCenter("PolarCenter", Vector) = (0.5,0.5,0,0)
+		_DissolvePan("DissolvePan", Vector) = (0,0,0,0)
 
 		[HideInInspector][NoScaleOffset] unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
         [HideInInspector][NoScaleOffset] unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
@@ -91,6 +92,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				UNITY_DEFINE_INSTANCED_PROP(float, _DissolveLength)
 			UNITY_INSTANCING_BUFFER_END(AmplifyShadersSpriteDissolve)
 			CBUFFER_START( UnityPerMaterial )
+			float2 _DissolvePan;
 			float2 _PolarCenter;
 			float _EdgeOffset;
 			float _EdgeSmoothness;
@@ -187,6 +189,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				#else
 				float2 staticSwitch124 = uv_DissolveTex;
 				#endif
+				float2 panner126 = ( 1.0 * _Time.y * _DissolvePan + staticSwitch124);
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
 				float2 texCoord111 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break122 = polarUV116;
@@ -205,7 +208,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
-				float clip74 = saturate( ( tex2D( _DissolveTex, staticSwitch124 ).r + dissolve69 ) );
+				float clip74 = saturate( ( tex2D( _DissolveTex, panner126 ).r + dissolve69 ) );
 				float smoothstepResult90 = smoothstep( _EdgeOffset , ( _EdgeOffset + _EdgeSmoothness ) , clip74);
 				float4 _EdgeColor_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_EdgeColor);
 				float3 edge96 = ( smoothstepResult90 * _EdgeColor_Instance.rgb );
@@ -289,6 +292,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				UNITY_DEFINE_INSTANCED_PROP(float, _DissolveLength)
 			UNITY_INSTANCING_BUFFER_END(AmplifyShadersSpriteDissolve)
 			CBUFFER_START( UnityPerMaterial )
+			float2 _DissolvePan;
 			float2 _PolarCenter;
 			float _EdgeOffset;
 			float _EdgeSmoothness;
@@ -385,6 +389,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				#else
 				float2 staticSwitch124 = uv_DissolveTex;
 				#endif
+				float2 panner126 = ( 1.0 * _Time.y * _DissolvePan + staticSwitch124);
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
 				float2 texCoord111 = IN.texCoord0.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break122 = polarUV116;
@@ -403,7 +408,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
-				float clip74 = saturate( ( tex2D( _DissolveTex, staticSwitch124 ).r + dissolve69 ) );
+				float clip74 = saturate( ( tex2D( _DissolveTex, panner126 ).r + dissolve69 ) );
 				float smoothstepResult90 = smoothstep( _EdgeOffset , ( _EdgeOffset + _EdgeSmoothness ) , clip74);
 				float4 _EdgeColor_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_EdgeColor);
 				float3 edge96 = ( smoothstepResult90 * _EdgeColor_Instance.rgb );
@@ -485,6 +490,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				UNITY_DEFINE_INSTANCED_PROP(float, _DissolveLength)
 			UNITY_INSTANCING_BUFFER_END(AmplifyShadersSpriteDissolve)
 			CBUFFER_START( UnityPerMaterial )
+			float2 _DissolvePan;
 			float2 _PolarCenter;
 			float _EdgeOffset;
 			float _EdgeSmoothness;
@@ -567,6 +573,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				#else
 				float2 staticSwitch124 = uv_DissolveTex;
 				#endif
+				float2 panner126 = ( 1.0 * _Time.y * _DissolvePan + staticSwitch124);
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
 				float2 texCoord111 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break122 = polarUV116;
@@ -585,7 +592,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
-				float clip74 = saturate( ( tex2D( _DissolveTex, staticSwitch124 ).r + dissolve69 ) );
+				float clip74 = saturate( ( tex2D( _DissolveTex, panner126 ).r + dissolve69 ) );
 				float smoothstepResult90 = smoothstep( _EdgeOffset , ( _EdgeOffset + _EdgeSmoothness ) , clip74);
 				float4 _EdgeColor_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_EdgeColor);
 				float3 edge96 = ( smoothstepResult90 * _EdgeColor_Instance.rgb );
@@ -647,6 +654,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				UNITY_DEFINE_INSTANCED_PROP(float, _DissolveLength)
 			UNITY_INSTANCING_BUFFER_END(AmplifyShadersSpriteDissolve)
 			CBUFFER_START( UnityPerMaterial )
+			float2 _DissolvePan;
 			float2 _PolarCenter;
 			float _EdgeOffset;
 			float _EdgeSmoothness;
@@ -727,6 +735,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				#else
 				float2 staticSwitch124 = uv_DissolveTex;
 				#endif
+				float2 panner126 = ( 1.0 * _Time.y * _DissolvePan + staticSwitch124);
 				float _DissolveValue_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_DissolveValue);
 				float2 texCoord111 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break122 = polarUV116;
@@ -745,7 +754,7 @@ Shader "AmplifyShaders/Sprite Dissolve"
 				float temp_output_66_0 = ( ( staticSwitch113 - _DissolveRadius ) / _DissolveLength_Instance );
 				float lerpResult67 = lerp( temp_output_66_0 , ( 1.0 - temp_output_66_0 ) , _InverseDissolveDirection);
 				float dissolve69 = lerpResult67;
-				float clip74 = saturate( ( tex2D( _DissolveTex, staticSwitch124 ).r + dissolve69 ) );
+				float clip74 = saturate( ( tex2D( _DissolveTex, panner126 ).r + dissolve69 ) );
 				float smoothstepResult90 = smoothstep( _EdgeOffset , ( _EdgeOffset + _EdgeSmoothness ) , clip74);
 				float4 _EdgeColor_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteDissolve,_EdgeColor);
 				float3 edge96 = ( smoothstepResult90 * _EdgeColor_Instance.rgb );
@@ -767,41 +776,43 @@ Shader "AmplifyShaders/Sprite Dissolve"
 /*ASEBEGIN
 Version=19603
 Node;AmplifyShaderEditor.TextureCoordinatesNode;117;-5136,1872;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.Vector2Node;125;-5104,2064;Inherit;False;Property;_PolarCenter;PolarCenter;11;0;Create;True;0;0;0;False;0;False;0.5,0.5;0.5,0.5;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.Vector2Node;125;-5104,2064;Inherit;False;Property;_PolarCenter;PolarCenter;2;0;Create;True;0;0;0;False;0;False;0.5,0.5;0.5,0.5;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
 Node;AmplifyShaderEditor.FunctionNode;114;-4880,1952;Inherit;False;Polar Coordinates;-1;;31;7dab8e02884cf104ebefaa2e788e4162;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0.5,0.5;False;3;FLOAT;1;False;4;FLOAT;1;False;3;FLOAT2;0;FLOAT;55;FLOAT;56
 Node;AmplifyShaderEditor.SimpleAddOpNode;115;-4656,1952;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0.5;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;116;-4528,1952;Inherit;False;polarUV;-1;True;1;0;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.GetLocalVarNode;120;-4320,1552;Inherit;False;116;polarUV;1;0;OBJECT;;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.RangedFloatNode;109;-4192,1200;Inherit;False;InstancedProperty;_DissolveValue;DissolveValue;2;0;Create;True;0;0;0;False;0;False;0.99;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;109;-4192,1200;Inherit;False;InstancedProperty;_DissolveValue;DissolveValue;4;0;Create;True;0;0;0;False;0;False;0.99;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;111;-4224,1312;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.BreakToComponentsNode;122;-4128,1552;Inherit;False;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;112;-3952,1280;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;118;-3952,1392;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;119;-3952,1504;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;60;-3632,1392;Inherit;False;Property;_DissolveRadius;DissolveRadius;5;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.StaticSwitch;113;-3744,1200;Inherit;False;Property;_DissolveDirection;DissolveDirection;10;0;Create;True;0;0;0;False;0;False;0;0;0;True;;KeywordEnum;4;Flat;V;PolarX;PolarY;Create;True;True;All;9;1;FLOAT;0;False;0;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;60;-3632,1392;Inherit;False;Property;_DissolveRadius;DissolveRadius;7;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.StaticSwitch;113;-3744,1200;Inherit;False;Property;_DissolveDirection;DissolveDirection;3;0;Create;True;0;0;0;False;0;False;0;0;0;True;;KeywordEnum;4;Flat;V;PolarX;PolarY;Create;True;True;All;9;1;FLOAT;0;False;0;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;87;-3424,1312;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;61;-3168,1488;Inherit;False;InstancedProperty;_DissolveLength;DissolveLength;6;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;61;-3168,1488;Inherit;False;InstancedProperty;_DissolveLength;DissolveLength;8;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleDivideOpNode;66;-2928,1312;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode;68;-2656,1408;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;64;-2752,1488;Inherit;False;Property;_InverseDissolveDirection;InverseDissolveDirection;3;1;[Toggle];Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;64;-2752,1488;Inherit;False;Property;_InverseDissolveDirection;InverseDissolveDirection;5;1;[Toggle];Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;107;-3920,528;Inherit;False;0;5;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.GetLocalVarNode;123;-3888,688;Inherit;False;116;polarUV;1;0;OBJECT;;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.LerpOp;67;-2432,1312;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;107;-3664,496;Inherit;False;0;5;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.GetLocalVarNode;123;-3632,656;Inherit;False;116;polarUV;1;0;OBJECT;;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.TexturePropertyNode;5;-3376,352;Inherit;True;Property;_DissolveTex;DissolveTex;4;0;Create;True;0;0;0;False;0;False;937066ef7ca7d124e950924ee50fdf23;937066ef7ca7d124e950924ee50fdf23;False;white;Auto;Texture2D;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
+Node;AmplifyShaderEditor.StaticSwitch;124;-3664,576;Inherit;False;Property;_Keyword0;Keyword 0;3;0;Create;True;0;0;0;False;0;False;0;0;0;True;;Toggle;2;Key0;Key1;Reference;113;True;True;All;9;1;FLOAT2;0,0;False;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT2;0,0;False;6;FLOAT2;0,0;False;7;FLOAT2;0,0;False;8;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.Vector2Node;127;-3600,768;Inherit;False;Property;_DissolvePan;DissolvePan;12;0;Create;True;0;0;0;False;0;False;0,0;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.TexturePropertyNode;5;-3376,352;Inherit;True;Property;_DissolveTex;DissolveTex;6;0;Create;True;0;0;0;False;0;False;937066ef7ca7d124e950924ee50fdf23;937066ef7ca7d124e950924ee50fdf23;False;white;Auto;Texture2D;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
 Node;AmplifyShaderEditor.RegisterLocalVarNode;69;-2256,1312;Inherit;True;dissolve;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.StaticSwitch;124;-3392,560;Inherit;False;Property;_Keyword0;Keyword 0;10;0;Create;True;0;0;0;False;0;False;0;0;0;True;;Toggle;2;Key0;Key1;Reference;113;True;True;All;9;1;FLOAT2;0,0;False;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT2;0,0;False;6;FLOAT2;0,0;False;7;FLOAT2;0,0;False;8;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.PannerNode;126;-3344,576;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.SamplerNode;108;-3056,512;Inherit;True;Property;_TextureSample0;Texture Sample 0;11;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.GetLocalVarNode;70;-2944,736;Inherit;False;69;dissolve;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;71;-2672,560;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SaturateNode;73;-2464,560;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;91;-3072,1952;Inherit;False;Property;_EdgeOffset;EdgeOffset;7;0;Create;True;0;0;0;False;0;False;0.5;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;93;-3104,2032;Inherit;False;Property;_EdgeSmoothness;EdgeSmoothness;8;0;Create;True;0;0;0;False;0;False;-0.01;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;91;-3072,1952;Inherit;False;Property;_EdgeOffset;EdgeOffset;9;0;Create;True;0;0;0;False;0;False;0.5;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;93;-3104,2032;Inherit;False;Property;_EdgeSmoothness;EdgeSmoothness;10;0;Create;True;0;0;0;False;0;False;-0.01;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;74;-2304,560;Inherit;True;clip;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;92;-2848,2016;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;99;-3056,1872;Inherit;False;74;clip;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SmoothstepOpNode;90;-2688,1936;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;95;-2704,2160;Inherit;False;InstancedProperty;_EdgeColor;EdgeColor;9;1;[HDR];Create;True;0;0;0;False;0;False;1,1,1,1;0,0,0,0;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.ColorNode;95;-2704,2160;Inherit;False;InstancedProperty;_EdgeColor;EdgeColor;11;1;[HDR];Create;True;0;0;0;False;0;False;1,1,1,1;0,0,0,0;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.TextureCoordinatesNode;23;524.7559,-419.4265;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;94;-2419.995,2084.221;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.ColorNode;21;828.7559,-611.4265;Inherit;False;InstancedProperty;_Color;Color;0;0;Create;True;0;0;0;False;0;False;1,1,1,1;0,0,0,0;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
@@ -842,13 +853,15 @@ WireConnection;68;0;66;0
 WireConnection;67;0;66;0
 WireConnection;67;1;68;0
 WireConnection;67;2;64;0
-WireConnection;69;0;67;0
 WireConnection;124;1;107;0
 WireConnection;124;0;107;0
 WireConnection;124;2;123;0
 WireConnection;124;3;123;0
+WireConnection;69;0;67;0
+WireConnection;126;0;124;0
+WireConnection;126;2;127;0
 WireConnection;108;0;5;0
-WireConnection;108;1;124;0
+WireConnection;108;1;126;0
 WireConnection;71;0;108;1
 WireConnection;71;1;70;0
 WireConnection;73;0;71;0
@@ -874,4 +887,4 @@ WireConnection;104;0;105;0
 WireConnection;104;3;110;0
 WireConnection;100;1;104;0
 ASEEND*/
-//CHKSM=1FD60F875280496E5B9B0DB5ACB84F8E97DFA608
+//CHKSM=CCEBE0149D435944A792DF4F6A882304239FC7B1
