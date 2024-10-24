@@ -16,10 +16,12 @@ public class PlaneControl_Platform : MonoBehaviour
     [SerializeField] private float externalRotateAngle;
 [Header("Shake Animation")]
     [SerializeField] private Animator planeAnimator;
+[Header("Falling")]
 
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
     private Vector3 forwardVel;
+    private Vector3 fallingVel;
     private Vector3 currentRotateVel;
     private float targetRotateAngle;
     private float currentRotateAngle;
@@ -38,6 +40,7 @@ public class PlaneControl_Platform : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         m_rigid = GetComponent<Rigidbody>();
+        fallingVel = Vector3.zero;
         currentLevelAngle = targetLevelAngle + externalRotateAngle;
     }
 
@@ -60,7 +63,7 @@ public class PlaneControl_Platform : MonoBehaviour
     void FixedUpdate(){
         Vector3 totalVel = (currentRotateVel*rotateToForwardRatio + forwardVel).normalized * flyingSpeed;
         m_rigid.rotation = Quaternion.Euler(Vector3.SignedAngle(totalVel, Vector3.right, Vector3.forward),90,0);
-        m_rigid.velocity = totalVel;
+        m_rigid.velocity = totalVel + fallingVel;
     }
     public void SetExternalAngle(float angle)=>externalRotateAngle = angle;
 
@@ -69,7 +72,14 @@ public class PlaneControl_Platform : MonoBehaviour
         planeAnimator.SetTrigger(trigger_shake);
     }
 #endregion
-
+    public void StartFalling(float fallingSpeed){
+        StartCoroutine(coroutineIncreaseFallingSpeed(fallingSpeed, 4f));
+    }
+    IEnumerator coroutineIncreaseFallingSpeed(float targetSpeed, float duration){
+        yield return new WaitForLoop(duration, (t)=>{
+            fallingVel = Vector3.down * Mathf.Lerp(0, targetSpeed, t);
+        });
+    }
 #region Input
     public void SwitchInput(bool isActivated){
         if(isActivated && canActivateInput) playerInput.ActivateInput();

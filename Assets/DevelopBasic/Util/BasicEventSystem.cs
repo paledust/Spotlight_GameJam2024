@@ -18,6 +18,8 @@ public static class EventHandler
 #endregion
 
 #region Fly Event
+    public static event Action E_OnStartToFall;
+    public static void Call_OnStartToFall()=>E_OnStartToFall?.Invoke();
     public static event Action<bool> E_OnInteractingStopZone;
     public static void Call_OnInteractingStopZone(bool isInZone)=>E_OnInteractingStopZone?.Invoke(isInZone);
     public static event Action<Vector3, Quaternion, Vector3[]> E_OnReportPos;
