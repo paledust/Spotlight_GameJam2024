@@ -27,6 +27,8 @@ public class PlaneControl_Free : MonoBehaviour
 [Header("Cam Control")]
     [SerializeField] private CinemachineVirtualCamera m_cam;
     [SerializeField] private Vector2 fovRange;
+[Header("Plane Shake")]
+    [SerializeField] private Animator planeAnimator;
 
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
@@ -46,6 +48,8 @@ public class PlaneControl_Free : MonoBehaviour
     private float targetFlyingSpeed;
     private float currentFlyingSpeed;
     private float targetFOV;
+
+    private const string trigger_shake = "Shake";
 
     private bool canActivateInput{get{return !crashed;}}
     private bool crashed = false;
@@ -123,8 +127,14 @@ public class PlaneControl_Free : MonoBehaviour
     public void TrySwitchInput(bool isActivate){
         if(isActivate && canActivateInput) playerInput.ActivateInput();
         else playerInput.DeactivateInput();
-
     }
+
+#region Animation
+    public void ShakePlaneForItem(){
+        planeAnimator.SetTrigger(trigger_shake);
+    }
+#endregion
+
 #region Input
     void OnMove(InputValue inputValue){
         Vector2 input = inputValue.Get<Vector2>();
