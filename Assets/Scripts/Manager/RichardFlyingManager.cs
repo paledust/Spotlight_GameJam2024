@@ -167,7 +167,7 @@ public class RichardFlyingManager : MonoBehaviour
             stopZonePP.weight = Mathf.Lerp(initValue, targetWeight, EasingFunc.Easing.SmoothInOut(t));
         });
     }
-    void OnDrawGizmos(){
+    void OnDrawGizmosSelected(){
         Gizmos.color = new Color(1,0,0,0.2f);
 
         Gizmos.DrawCube(Vector3.up * limitedHeight, new Vector3(10000, 0.05f, 10000f));
