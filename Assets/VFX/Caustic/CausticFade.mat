@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -67,9 +67,9 @@ Material:
     m_Floats:
     - _BlinkSpeed: 10
     - _BumpScale: 1
-    - _ColorSeparate: 0.002
+    - _ColorSeparate: 0
     - _Cutoff: 0.5
-    - _Density: 0.00517
+    - _Density: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Fade: 1
@@ -81,29 +81,29 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 4
-    - _Lerp: 1
+    - _Intensity: 2
+    - _Lerp: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RWC2_Intensity: 5.1
     - _RWC2_Tiled: 512.56
-    - _RWC2_Wave: 0.3
+    - _RWC2_Wave: 0.1
     - _ScanWidth: 0.05
-    - _Smooth: 0
+    - _Smooth: 0.457
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.5
+    - _Speed: 0.4
     - _SrcBlend: 1
     - _StripeWidth: 0.47
-    - _Tiled: 10
+    - _Tiled: 15
     - _USEMASK: 1
     - _USETYPE2: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 1.5058824, g: 2.9960785, b: 2.8705883, a: 1}
+    - _Color: {r: 0.41735297, g: 0.56352943, b: 0.64705884, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
