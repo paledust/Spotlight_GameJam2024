@@ -77,8 +77,8 @@ public class RichardFlyingManager : MonoBehaviour
         ppFader.Excute(coroutineFadePP(isInStopZone?1:0, 1f));
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
-            p_explode.transform.position = crashPos;
-            p_explode.Play(true);
+            // p_explode.transform.position = crashPos;
+            // p_explode.Play(true);
             
         StartCoroutine(CommonCoroutine.delayAction(()=>{
             Vector3 lastSafePos;

@@ -27,6 +27,8 @@ public class PlaneControl_Free : MonoBehaviour
 [Header("Cam Control")]
     [SerializeField] private CinemachineVirtualCamera m_cam;
     [SerializeField] private Vector2 fovRange;
+[Header("Particles")]
+    [SerializeField] private ParticleSystem p_explodePuff;
 [Header("Plane Shake")]
     [SerializeField] private Animator planeAnimator;
 
@@ -118,6 +120,9 @@ public class PlaneControl_Free : MonoBehaviour
             EventHandler.Call_OnPlaneCrashed(transform.position);
             playerInput.DeactivateInput();
             this.enabled = false;
+
+        //播放爆炸例子效果
+            p_explodePuff.Play(true);
         }
     }
     public void ForcePlaneRot(Quaternion rotation){
