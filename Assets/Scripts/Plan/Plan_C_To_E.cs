@@ -6,13 +6,13 @@ using UnityEngine.Playables;
 public class Plan_C_To_E : MonoBehaviour
 {
     [SerializeField] private PlayableDirector TL_AboveSky;
-    void Start(){
-        EventHandler.E_OnFlyAboveSky += OnFlyAboveSkyHandler;
-    }
     void OnEnable(){
-        EventHandler.E_OnFlyAboveSky -= OnFlyAboveSkyHandler;
+        EventHandler.E_OnReachExit += OnReachExit;
     }
-    void OnFlyAboveSkyHandler(){
+    void OnDisable(){
+        EventHandler.E_OnReachExit -= OnReachExit;
+    }
+    void OnReachExit(){
         TL_AboveSky.Play();
     }
     public void TimelineEvent_GoToNextLevel(){

@@ -27,8 +27,8 @@ public static class EventHandler
 #endregion
 
 #region  Interaction Event
-    public static event Action E_OnFlyAboveSky;
-    public static void Call_OnFlyAboveSky()=>E_OnFlyAboveSky?.Invoke();
+    public static event Action E_OnReachExit;
+    public static void Call_OnReachExit()=>E_OnReachExit?.Invoke();
     public static event Action E_OnPixelGameFinished;
     public static void Call_OnPixelGameFinished()=>E_OnPixelGameFinished?.Invoke();
     public static event Action<int> E_OnConductDirection;
