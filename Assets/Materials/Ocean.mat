@@ -144,13 +144,13 @@ Material:
     - _DissolveFadeCenter: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveScale: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlowVector: {r: 0.01, g: 0.05, b: -0.015, a: 0.03}
+    - _FlowVector: {r: 0.02, g: 0.1, b: -0.015, a: 0.03}
     - _FoamColor: {r: 0.7584906, g: 1, b: 1, a: 1}
     - _GradientColor: {r: 0.058823504, g: 0.29019606, b: 0.45490193, a: 1}
     - _ShimerColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
     - _ShimerVector: {r: 1, g: -2, b: -0.3, a: -1.2}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TexTiling: {r: 0.005, g: 0.005, b: 0.005, a: 0.005}
+    - _TexTiling: {r: 0.01, g: 0.01, b: 0.01, a: 0.01}
   m_BuildTextureStacks: []
 --- !u!114 &2186526284198978725
 MonoBehaviour:
