@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: 1
   startDistance:
     m_OverrideState: 1
-    m_Value: 21
+    m_Value: 20
   fadeLength:
     m_OverrideState: 1
     m_Value: 200
