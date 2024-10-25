@@ -1067,6 +1067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132362785}
   - component: {fileID: 132362786}
+  - component: {fileID: 132362787}
   m_Layer: 0
   m_Name: RicharFlying Manager
   m_TagString: Untagged
@@ -1107,12 +1108,24 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 1410651555}
   stopZonePP: {fileID: 1609449265}
-  p_explode: {fileID: 198791560065034292}
   minimumDist: 8
   minimumWidthDist: 10
   minimumHeightDist: 20
   minimumForwardDist: 25
   limitedHeight: 400
+  TL_AboveSky: {fileID: 2048574166}
+--- !u!114 &132362787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132362784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166a7b905a469954c93cacfc30d1cb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   TL_AboveSky: {fileID: 2048574166}
 --- !u!1001 &138043151
 PrefabInstance:
@@ -2434,7 +2447,7 @@ PrefabInstance:
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.02362619
+      value: 0.023626188
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
@@ -3920,7 +3933,7 @@ PrefabInstance:
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000777765
+      value: -0.00000007591385
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221918, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -15404,8 +15417,8 @@ Transform:
   - {fileID: 1209892079}
   - {fileID: 1487350679}
   - {fileID: 1161716900}
-  - {fileID: 1360706394}
   - {fileID: 4526740634207885517}
+  - {fileID: 1360706394}
   - {fileID: 1607027277}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -15930,7 +15943,7 @@ Transform:
   - {fileID: 2060566657}
   - {fileID: 1482501826}
   m_Father: {fileID: 4526740634207885517}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1595383950
 PrefabInstance:
@@ -24605,9 +24618,9 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 132362786}
-          m_TargetAssemblyTypeName: RichardFlyingManager, Assembly-CSharp
-          m_MethodName: GoToNextLevel
+        - m_Target: {fileID: 132362787}
+          m_TargetAssemblyTypeName: Plan_C_To_E, Assembly-CSharp
+          m_MethodName: TimelineEvent_GoToNextLevel
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -30679,12 +30692,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5195406096706395115}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &198791560065034292 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5394174974981370847, guid: bfd060c797396a34ba04de10356995ca,
-    type: 3}
-  m_PrefabInstance: {fileID: 5195406096706395115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3960818640177147120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30848,15 +30855,15 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1146113507}
-  - {fileID: 4526740636152973193}
   - {fileID: 1524954302}
+  - {fileID: 4526740636152973193}
   - {fileID: 523682447}
   - {fileID: 929862417}
   - {fileID: 4526740634262007525}
   - {fileID: 4526740635119468908}
   - {fileID: 4526740636259562409}
   m_Father: {fileID: 1461160002}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4526740634262007524
 PrefabInstance:

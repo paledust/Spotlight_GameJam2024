@@ -20,8 +20,6 @@ public class RichardFlyingManager : MonoBehaviour
     [SerializeField] private float minimumForwardDist = 40;
 [Header("Height Limitation")]
     [SerializeField] private float limitedHeight = 500;
-[Header("End")]
-    [SerializeField] private PlayableDirector TL_AboveSky;
 
     private PlaneControl_Free planeOnAir;
     private SafeZoneProbe safeZoneProbe;
@@ -41,13 +39,11 @@ public class RichardFlyingManager : MonoBehaviour
         EventHandler.E_OnPlaneCrashed += OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos += OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone += OnInteractStopZoneHandler;
-        EventHandler.E_OnFlyAboveSky += OnFlyAboveSkyHandler;
     }
     protected void OnDestroy(){
         EventHandler.E_OnPlaneCrashed -= OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos -= OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone -= OnInteractStopZoneHandler;
-        EventHandler.E_OnFlyAboveSky -= OnFlyAboveSkyHandler;
     }
     void Start(){
         planeOnAir = FindObjectOfType<PlaneControl_Free>();
@@ -58,27 +54,17 @@ public class RichardFlyingManager : MonoBehaviour
             safeRots[i] = spawnPoint.rotation;
         }
 
-
         safeZoneProbe = Instantiate(SafeZoneProbePrefab).GetComponent<SafeZoneProbe>();
         safeZoneProbe.transform.parent = planeOnAir.transform;
         safeZoneProbe.transform.localPosition = Vector3.zero;
         safeZoneProbe.transform.localRotation = Quaternion.identity;
     }
-    public void GoToNextLevel(){
-        GameManager.Instance.SwitchingScene(Service.FALL, 1f, Color.white);
-    }
 #region Event Handlers
-    void OnFlyAboveSkyHandler(){
-        TL_AboveSky.Play();
-    }
     void OnInteractStopZoneHandler(bool isInZone){
         stopZoneCounter += isInZone?1:-1;
         ppFader.Excute(coroutineFadePP(isInStopZone?1:0, 1f));
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
-            // p_explode.transform.position = crashPos;
-            // p_explode.Play(true);
-            
         StartCoroutine(CommonCoroutine.delayAction(()=>{
             Vector3 lastSafePos;
             Quaternion lastSafeRot;
@@ -168,7 +154,6 @@ public class RichardFlyingManager : MonoBehaviour
     }
     void OnDrawGizmosSelected(){
         Gizmos.color = new Color(1,0,0,0.2f);
-
         Gizmos.DrawCube(Vector3.up * limitedHeight, new Vector3(10000, 0.05f, 10000f));
     }
 }
