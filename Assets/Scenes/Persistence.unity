@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -226,6 +226,31 @@ PrefabInstance:
         type: 3}
       propertyPath: targetFrameRate
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759861360168245595, guid: 12e0e346df9c8f049906162f53c5e766,
+        type: 3}
+      propertyPath: sceneSettings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759861360168245595, guid: 12e0e346df9c8f049906162f53c5e766,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[0].sceneName
+      value: RichardFlying_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759861360168245595, guid: 12e0e346df9c8f049906162f53c5e766,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].sceneName
+      value: RichardFlying_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759861360168245595, guid: 12e0e346df9c8f049906162f53c5e766,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[0].overrideShadowDistance
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759861360168245595, guid: 12e0e346df9c8f049906162f53c5e766,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].overrideShadowDistance
+      value: 1500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12e0e346df9c8f049906162f53c5e766, type: 3}

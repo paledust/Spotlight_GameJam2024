@@ -13,7 +13,6 @@ public class RichardFlyingManager : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
 [Header("VFX")]
     [SerializeField] private Volume stopZonePP;
-    [SerializeField] private ParticleSystem p_explode;
 [Header("Safe Condition")]
     [SerializeField] private float minimumDist = 5;
     [SerializeField] private float minimumWidthDist = 20;
