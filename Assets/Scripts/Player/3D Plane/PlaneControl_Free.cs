@@ -12,7 +12,7 @@ public class PlaneControl_Free : MonoBehaviour
     [SerializeField] private float maxPitchSpeed;
     [SerializeField] private float maxRollSpeed;
     [SerializeField, Tooltip("控制输入反应速度")] private float agility = 5;
-    [SerializeField] private Vector2 flyingSpeed;
+    public Vector2 flyingSpeed;
 [Header("Fin Control")]
     [SerializeField, Tooltip("左副翼")] private Transform LWingTrans;
     [SerializeField, Tooltip("右副翼")] private Transform RWingTrans;

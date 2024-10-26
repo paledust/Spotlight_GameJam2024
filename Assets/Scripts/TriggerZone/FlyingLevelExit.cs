@@ -7,6 +7,7 @@ public class FlyingLevelExit : MonoBehaviour
     [SerializeField] private float TurnDuration = 4;
     void OnTriggerEnter(Collider other){
         if(other.tag == Service.PLAYER_TAG){
+            GetComponent<Collider>().enabled = false;
             var cmdManager = other.GetComponent<PlaneCommandManager>();
             var cmd = new PC_SwitchPlaneInput(){isActivated = false};
             cmd.QueueCommand(new PC_TurnPlane(){duration = TurnDuration, targetDirection = -transform.up})
