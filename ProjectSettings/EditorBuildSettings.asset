@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ocean.unity
     guid: d548ede503757584cb7714238e7a0ac7
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 3d2f5a945e3f5be498e4939ca1974ade
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 7bb1f27fed19f3a48bb310440cc63559,
       type: 2}

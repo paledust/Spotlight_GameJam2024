@@ -48,10 +48,19 @@ public class MenuManager : MonoBehaviour
     }
     IEnumerator coroutineTransistToCredit(bool isOn){
         isCreditTransition = true;
-        StartCoroutine(CommonCoroutine.coroutineFadeUI(creditButton.image, 0, 0.5f));
-        creditBackButton.interactable = false;
-        creditBackButton.interactable = true;
-        yield return CommonCoroutine.coroutineFadeUI(creditBackButton.image, 1, 0.5f);
+
+        float duration = 0.25f;
+        creditButton.interactable = !isOn;
+        creditButton.image.raycastTarget = !isOn;
+        creditBackButton.interactable = isOn;
+        creditBackButton.image.raycastTarget = isOn;
+        bCanvas.interactable = !isOn;
+
+        StartCoroutine(CommonCoroutine.coroutineFadeSprite(creditImage, isOn?1:0, duration));
+        yield return new WaitForLoop(duration, (t)=>{
+            bCanvas.alpha = Mathf.Lerp(isOn?1:0, isOn?0:1, EasingFunc.Easing.SmoothInOut(t));
+        });
+
         isCreditTransition = false;
     }
 }
