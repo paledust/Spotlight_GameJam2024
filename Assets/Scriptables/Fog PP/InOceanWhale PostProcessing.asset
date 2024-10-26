@@ -1,20 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: AboveSky PostProcessing 1
-  m_EditorClassIdentifier: 
-  components:
-  - {fileID: 6809390368871562564}
---- !u!114 &6809390368871562564
+--- !u!114 &-5024196625321068627
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,19 +15,33 @@ MonoBehaviour:
   active: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.24216947, b: 0, a: 1}
+    m_Value: {r: 0.14273913, g: 0.37384063, b: 0.469, a: 1}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.13
+    m_Value: 1
   startDistance:
     m_OverrideState: 1
-    m_Value: 28.1
+    m_Value: 50
   fadeLength:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 1200
   controlOffset:
     m_OverrideState: 1
-    m_Value: 0.55
+    m_Value: 0.512
   controlValue:
     m_OverrideState: 1
-    m_Value: 0.48
+    m_Value: 0.43
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: InOceanWhale PostProcessing
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -5024196625321068627}
