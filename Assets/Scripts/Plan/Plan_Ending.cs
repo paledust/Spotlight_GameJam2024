@@ -10,4 +10,7 @@ public class Plan_Ending : MonoBehaviour
     {
         tl_ending.Play();
     }
+    public void GoToMenu(){
+        
+    }
 }
