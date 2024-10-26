@@ -9,16 +9,20 @@ public class RichardTakeOffGameControl : MonoBehaviour
 [Header("Text Control")]
     [SerializeField] private FloatingMotionGroup leftMotionGroup;
     [SerializeField] private Animation leftAnime;
+    [SerializeField] private Animation leftLightAnime;
     [SerializeField] private ParticleSystem p_leftBurst;
     [SerializeField] private FloatingMotionGroup rightMotionGroup;
     [SerializeField] private Animation rightAnime;
+    [SerializeField] private Animation rightLightAnime;
     [SerializeField] private ParticleSystem p_rightBurst;
 [Header("Forward Interaction")]
     [SerializeField, Range(0, 1)] private float powerValue;
     [SerializeField] private float powerUpSpeed = 0.5f;
+    [SerializeField] private LoopGroup loopGroup;
 [Header("Finish Animation")]
     [SerializeField] private PlayableDirector TL_TakeOff;
     [SerializeField] private Animation dissolveControlAnimation;
+    [SerializeField] private Animation forwardLightAnimation;
     [SerializeField] private PerRendererSpriteDissolve forwardDissolve;
     [SerializeField] private Rotator rotator;
     [SerializeField] private Transform powerTransform;
@@ -49,10 +53,12 @@ public class RichardTakeOffGameControl : MonoBehaviour
             powerValue += Time.deltaTime*(powerUp?powerUpSpeed:0);
             powerTransform.localPosition = Vector3.Lerp(initPowerPos, initPowerPos + powerTransform.forward*pushDistance, powerValue);
             rotator.rotateSpeed = Mathf.Lerp(0, 1500, powerValue);
+            loopGroup.targetSpeedMulti = Mathf.Lerp(0, 1, powerValue);
 
             if(powerValue>=1 && !isDone){
                 isDone = true;
                 this.enabled = false;
+                forwardLightAnimation.Play();
                 GetComponent<PlayerInput>().DeactivateInput();
                 TL_TakeOff.Play();
             }
@@ -64,6 +70,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
             leftProgresser.Excute(coroutineDissolveText(leftAnime, 2f, 0.5f, ()=>{
                 leftIsDone=true;
                 leftProgresser.Excute(coroutineDissolveText(leftAnime, 0.2f, 1, null));
+                leftLightAnime.Play();
                 dissolveControlAnimation.Play(DissolveMapName);
                 p_leftBurst.Play(true);
 
@@ -84,6 +91,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
             rightProgresser.Excute(coroutineDissolveText(rightAnime, 2f, 0.5f, ()=>{
                 rightIsDone=true;
                 rightProgresser.Excute(coroutineDissolveText(rightAnime, 0.2f, 1, null));
+                rightLightAnime.Play();
                 dissolveControlAnimation.Play(DissolveControlName);
                 p_rightBurst.Play(true);
 

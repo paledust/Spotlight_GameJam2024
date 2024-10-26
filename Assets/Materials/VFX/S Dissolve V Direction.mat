@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: S Dissolve V
+  m_Name: S Dissolve V Direction
   m_Shader: {fileID: 4800000, guid: f6dcec1e2bc7af14f8510e5277582cef, type: 3}
   m_ValidKeywords:
   - _DISSOLVEDIRECTION_V
