@@ -23,12 +23,11 @@ public class LoopGroup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedMulti = Service.LerpValue(speedMulti, speedMulti, Time.deltaTime*0.1f);
+        speedMulti = Service.LerpValue(speedMulti, targetSpeedMulti, Time.deltaTime*.1f);
         for(int i=0; i<loopTranses.Length; i++){
             loopTranses[i].localPosition += moveVelocity*speedMulti*Time.deltaTime;
 
             if(Vector3.Dot(moveVelocity.normalized, loopTranses[i].localPosition)>=recycleLength){
-                Debug.Log(Vector3.Dot(moveVelocity, loopTranses[i].localPosition));
                 loopTranses[i].localPosition = loopTranses[lastIndex].localPosition - moveVelocity.normalized*intersection;
                 lastIndex = i;
             }

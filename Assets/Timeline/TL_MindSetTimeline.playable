@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 6.233408831463501
+    m_Start: 8.783408831463497
     m_ClipIn: 0
     m_Asset: {fileID: -9087309509329606028}
     m_Duration: 2.3841387996450063
@@ -1688,7 +1688,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 9.04708996533106
+    m_Start: 11.597089965331058
     m_ClipIn: 0
     m_Asset: {fileID: -5969779890226082663}
     m_Duration: 0.7500000000000002
@@ -1736,7 +1736,7 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 9.04708996533106
+    m_PreExtrapolationTime: 11.597089965331058
     m_DisplayName: Recorded (4)
   m_Markers:
     m_Objects: []
@@ -1780,7 +1780,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 9.380423298664393
+    m_Start: 11.93042329866439
     m_ClipIn: 0
     m_Asset: {fileID: 530379873411264870}
     m_Duration: 1.3333333333333333
@@ -1846,7 +1846,7 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 9.380423298664393
+    m_PreExtrapolationTime: 11.93042329866439
     m_DisplayName: Recorded
   m_Markers:
     m_Objects: []
@@ -1934,7 +1934,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 4.7137566319977235
+    m_Start: 7.26375663199772
     m_ClipIn: 0
     m_Asset: {fileID: -9174654347021267917}
     m_Duration: 1.3333333333333333
@@ -2000,7 +2000,7 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 4.7137566319977235
+    m_PreExtrapolationTime: 7.26375663199772
     m_DisplayName: Recorded (2)
   m_Markers:
     m_Objects: []
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 10.713756631997727
+  m_Time: 13.263756631997726
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 9fcc4c5b645136b458e1abf6fd4282eb, type: 2}
@@ -2084,7 +2084,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 4.247089965331058
+    m_Start: 6.797089965331053
     m_ClipIn: 0
     m_Asset: {fileID: -6272260516743622884}
     m_Duration: 0.6499999999999999
@@ -2150,7 +2150,7 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 4.247089965331058
+    m_PreExtrapolationTime: 6.797089965331053
     m_DisplayName: Recorded (3)
   m_Markers:
     m_Objects: []
@@ -3997,10 +3997,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0
+    m_Start: 3
     m_ClipIn: 0
     m_Asset: {fileID: 8248858232225440385}
-    m_Duration: 3.8304232986643907
+    m_Duration: 3.3804232986643896
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2950851347338601147}
     m_EaseInDuration: 0
@@ -4066,7 +4066,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Active
   - m_Version: 1
-    m_Start: 6.233408831463501
+    m_Start: 8.783408831463497
     m_ClipIn: 0
     m_Asset: {fileID: -1762578282386388667}
     m_Duration: 2.3841387996450063
@@ -4291,7 +4291,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.4462844990193844
+    m_Start: 3.9962844990193833
     m_ClipIn: 0
     m_Asset: {fileID: -2093681806138778726}
     m_Duration: 2.3841387996450063
@@ -4534,7 +4534,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 9.380423298664393
+    m_Start: 11.93042329866439
     m_ClipIn: 0
     m_Asset: {fileID: -1086213211803102768}
     m_Duration: 1.333333333333333
@@ -4600,7 +4600,7 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 9.380423298664393
+    m_PreExtrapolationTime: 11.93042329866439
     m_DisplayName: Recorded (1)
   m_Markers:
     m_Objects: []
