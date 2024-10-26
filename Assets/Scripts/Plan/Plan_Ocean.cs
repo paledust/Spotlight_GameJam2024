@@ -13,6 +13,6 @@ public class Plan_Ocean : MonoBehaviour
         EventHandler.E_OnReachExit -= OnReachExit;
     }
     void OnReachExit(){
-        GameManager.Instance.SwitchingScene(Service.FLYING_TWO, transitionTime, transitionColor);
+        GameManager.Instance.SwitchingScene(Service.END, transitionTime, transitionColor);
     }
 }

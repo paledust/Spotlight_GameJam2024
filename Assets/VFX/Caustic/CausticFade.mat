@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 2800000, guid: 8c4a7fca2884fab419769ccc0355c0c1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0e82247fa19c1794aa78b385c04f0236, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -91,13 +91,13 @@ Material:
     - _RWC2_Tiled: 512.56
     - _RWC2_Wave: 0.1
     - _ScanWidth: 0.05
-    - _Smooth: 0.457
+    - _Smooth: 0.435
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.4
     - _SrcBlend: 1
     - _StripeWidth: 0.47
-    - _Tiled: 15
+    - _Tiled: 5
     - _USEMASK: 1
     - _USETYPE2: 1
     - _UVSec: 0

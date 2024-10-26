@@ -12,7 +12,8 @@ public class PlaneControl_Free : MonoBehaviour
     [SerializeField] private float maxPitchSpeed;
     [SerializeField] private float maxRollSpeed;
     [SerializeField, Tooltip("控制输入反应速度")] private float agility = 5;
-    public Vector2 flyingSpeed;
+    [SerializeField] private Vector2 flyingSpeed;
+    public float maxSpeed;
 [Header("Fin Control")]
     [SerializeField, Tooltip("左副翼")] private Transform LWingTrans;
     [SerializeField, Tooltip("右副翼")] private Transform RWingTrans;
@@ -91,9 +92,10 @@ public class PlaneControl_Free : MonoBehaviour
     //改变螺旋桨转速，航速，摄像机FOV
         {
             float _s = Time.deltaTime*2;
+            targetFlyingSpeed = Mathf.Min(targetFlyingSpeed, maxSpeed);
             currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, targetFlyingSpeed, _s);
-            rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, (targetFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x));
-            m_cam.m_Lens.FieldOfView = Mathf.Lerp(fovRange.x, fovRange.y,(currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x));
+            rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, Mathf.Clamp01((targetFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
+            m_cam.m_Lens.FieldOfView = Mathf.Lerp(fovRange.x, fovRange.y, Mathf.Clamp01((currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
         }
     }
     void FixedUpdate(){

@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e27ebb91db53d4d94cc16e4ef14711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTex: {fileID: 0}
+  cursorTex: {fileID: 2800000, guid: 0c94ed8bc940d8c42b7b8962a6b09a5b, type: 3}
   tl_ending: {fileID: 1056834233}
   tl_goToMenu: {fileID: 807427748}
   bCanvas: {fileID: 1398862289}

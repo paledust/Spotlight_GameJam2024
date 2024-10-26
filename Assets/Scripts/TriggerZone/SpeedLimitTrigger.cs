@@ -14,9 +14,9 @@ public class SpeedLimitTrigger : MonoBehaviour
         }
     }
     IEnumerator coroutineLerpMaxSpeed(PlaneControl_Free planeControl){
-        Vector2 initSpeed = planeControl.flyingSpeed;
+        float initMaxSpeed = planeControl.maxSpeed;
         yield return new WaitForLoop(transitionTime, (t)=>{
-            planeControl.flyingSpeed = Vector2.Lerp(initSpeed, maxSpeed*Vector2.one, EasingFunc.Easing.SmoothInOut(t));
+            planeControl.maxSpeed = Mathf.Lerp(initMaxSpeed, maxSpeed, EasingFunc.Easing.SmoothInOut(t));
         });
     }
 }

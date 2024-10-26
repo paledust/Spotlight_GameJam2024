@@ -14,6 +14,7 @@ public static class Service{
     public const string FALL = "RichardFall";
     public const string FALL_TRANSITION = "FallingTransition";
     public const string OCEAN = "Ocean";
+    public const string END = "Ending";
 #endregion
     public const string PLAYER_TAG = "Player";
     public static LayerMask TerrainLayer = 1<<LayerMask.NameToLayer("Terrain");
