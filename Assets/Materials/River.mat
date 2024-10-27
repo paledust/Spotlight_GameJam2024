@@ -144,7 +144,7 @@ Material:
     - _DissolveFadeCenter: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveScale: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlowVector: {r: 0.04, g: -0.25, b: -0.015, a: -0.2}
+    - _FlowVector: {r: 0.04, g: 0.25, b: -0.015, a: 0.2}
     - _FoamColor: {r: 0.7584906, g: 1, b: 1, a: 1}
     - _GradientColor: {r: 0.0890948, g: 0.4395345, b: 0.689, a: 1}
     - _ShimerColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
