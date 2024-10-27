@@ -24,7 +24,7 @@ public class RichardFlyingManager : MonoBehaviour
     private Vector3[] safePoses = new Vector3[MAX_SAFE_POINTS];
     private Quaternion[] safeRots = new Quaternion[MAX_SAFE_POINTS];
     private int safePointIndex = 0;
-    private int stopZoneCounter = 0;
+    [SerializeField] private int stopZoneCounter = 0;
     private CoroutineExcuter ppFader;
 
     private const int MAX_SAFE_POINTS = 3;

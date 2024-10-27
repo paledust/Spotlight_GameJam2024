@@ -33,8 +33,7 @@ public class PlaneControl_Free : MonoBehaviour
     [SerializeField] private ParticleSystem p_explodePuff;
 [Header("Plane Shake")]
     [SerializeField] private Animator planeAnimator;
-
-    private Rigidbody m_rigid;
+    
     private PlayerInput playerInput;
     private Quaternion initLWingRot;
     private Quaternion initRWingRot;
@@ -57,6 +56,8 @@ public class PlaneControl_Free : MonoBehaviour
 
     private bool canActivateInput{get{return !crashed;}}
     private bool crashed = false;
+
+    public Rigidbody m_rigid{get; private set;}
 
     void Awake(){
         playerInput = GetComponent<PlayerInput>();
@@ -102,6 +103,7 @@ public class PlaneControl_Free : MonoBehaviour
     void FixedUpdate(){
         m_rigid.rotation *= Quaternion.Euler(currentPitchSpeed*Time.fixedDeltaTime, currentYawSpeed*Time.fixedDeltaTime, currentRollSpeed*Time.fixedDeltaTime);
         m_rigid.velocity = m_rigid.rotation*Vector3.forward*currentFlyingSpeed;
+        // m_rigid.AddRelativeForce(Vector3.forward*currentFlyingSpeed, ForceMode.Acceleration);
     }
 //处理飞机坠毁的方式
     public void OnCollide(Collision collision){
