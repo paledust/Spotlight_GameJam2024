@@ -31,11 +31,11 @@ public class ConductingGameControl : MonoBehaviour
     private float yawSpeed = 0;
     private float targetYaw = 0;
     private float currentYaw = 0;
-    private float driverInputDirection = 0;
-    private float driverInput = 0;
-    private int receivedDirection = 0;
+    private float driverInputDirection = 0; //飞机自身偏移方向，1为全右，-1为全左
+    private float driverInput = 0; //飞机自身的偏移输入
+    private int receivedDirection = 0; //飞机接收到的玩家的方向指令
     private bool isMoving = false;
-    private bool isDone = false;
+    private bool isDone = false; //游戏是否已经结束
     private string float_offsetName = "Offset";
 
     void OnEnable(){

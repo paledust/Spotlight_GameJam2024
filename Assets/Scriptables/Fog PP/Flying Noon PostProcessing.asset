@@ -32,7 +32,7 @@ MonoBehaviour:
     m_Value: {r: 0.64296, g: 0.76, b: 0.7464668, a: 1}
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.196
   startDistance:
     m_OverrideState: 1
     m_Value: 200
