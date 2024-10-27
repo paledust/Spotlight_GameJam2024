@@ -26,4 +26,9 @@ public class StopZone : MonoBehaviour
             EventHandler.Call_OnInteractingStopZone(false);
         }
     }
+    void OnDrawGizmosSelected(){
+        if(!useForwardAsStopDirection){
+            DebugExtension.DrawArrow(transform.position, StopDirection, Color.blue);
+        }
+    }
 }

@@ -38,7 +38,7 @@ MonoBehaviour:
     m_Value: 500
   fadeLength:
     m_OverrideState: 1
-    m_Value: 2500
+    m_Value: 1500
   controlOffset:
     m_OverrideState: 1
     m_Value: 0.536
