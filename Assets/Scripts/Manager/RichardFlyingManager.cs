@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using Cinemachine.Utility;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.Rendering;
 
 public class RichardFlyingManager : MonoBehaviour
@@ -18,15 +16,13 @@ public class RichardFlyingManager : MonoBehaviour
     [SerializeField] private float minimumWidthDist = 20;
     [SerializeField] private float minimumHeightDist = 30;
     [SerializeField] private float minimumForwardDist = 40;
-[Header("Height Limitation")]
-    [SerializeField] private float limitedHeight = 500;
 
     private PlaneControl_Free planeOnAir;
     private SafeZoneProbe safeZoneProbe;
     private Vector3[] safePoses = new Vector3[MAX_SAFE_POINTS];
     private Quaternion[] safeRots = new Quaternion[MAX_SAFE_POINTS];
     private int safePointIndex = 0;
-    private int stopZoneCounter = 0;
+    [SerializeField] private int stopZoneCounter = 0;
     private CoroutineExcuter ppFader;
 
     private const int MAX_SAFE_POINTS = 3;
@@ -63,6 +59,7 @@ public class RichardFlyingManager : MonoBehaviour
     void OnInteractStopZoneHandler(bool isInZone){
         stopZoneCounter += isInZone?1:-1;
         ppFader.Excute(coroutineFadePP(isInStopZone?1:0, 1f));
+        planeOnAir.SwitchBumpyFly(isInStopZone);
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
         StartCoroutine(CommonCoroutine.delayAction(()=>{
@@ -151,9 +148,5 @@ public class RichardFlyingManager : MonoBehaviour
         yield return new WaitForLoop(duration, (t)=>{
             stopZonePP.weight = Mathf.Lerp(initValue, targetWeight, EasingFunc.Easing.SmoothInOut(t));
         });
-    }
-    void OnDrawGizmosSelected(){
-        Gizmos.color = new Color(1,0,0,0.2f);
-        Gizmos.DrawCube(Vector3.up * limitedHeight, new Vector3(10000, 0.05f, 10000f));
     }
 }

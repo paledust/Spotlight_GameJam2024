@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/RichardTakeOff.unity
     guid: 96e9a5c15c5533540a1c4aa2947b4cdf
   - enabled: 1
+    path: Assets/Scenes/RichardFlying_1.unity
+    guid: 3fc13846a8d419543a3d5a6b665233a0
+  - enabled: 1
     path: Assets/Scenes/RichardFlying_2.unity
     guid: d0642c40abcc94c4f8713842d1c7dd22
   - enabled: 1
