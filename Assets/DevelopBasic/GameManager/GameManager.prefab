@@ -132,7 +132,7 @@ MonoBehaviour:
   sceneSettings:
   - sceneName: RichardFlying
     overrideShadowDistance: 1500
-  InitScene: WorkingRichard
+  InitScene: Menu
   isDemo: 0
   isTesting: 0
   demoText: {fileID: 6073298263620526879}
