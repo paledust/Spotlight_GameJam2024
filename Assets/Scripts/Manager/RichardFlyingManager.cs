@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Cinemachine.Utility;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -16,13 +17,16 @@ public class RichardFlyingManager : MonoBehaviour
     [SerializeField] private float minimumWidthDist = 20;
     [SerializeField] private float minimumHeightDist = 30;
     [SerializeField] private float minimumForwardDist = 40;
+[Header("Fly Path")]
+    [SerializeField] private bool alignDirectionToPath = false;
+    [SerializeField] private CinemachinePathBase m_flightPath;
 
     private PlaneControl_Free planeOnAir;
     private SafeZoneProbe safeZoneProbe;
     private Vector3[] safePoses = new Vector3[MAX_SAFE_POINTS];
     private Quaternion[] safeRots = new Quaternion[MAX_SAFE_POINTS];
     private int safePointIndex = 0;
-    [SerializeField] private int stopZoneCounter = 0;
+    private int stopZoneCounter = 0;
     private CoroutineExcuter ppFader;
 
     private const int MAX_SAFE_POINTS = 3;
@@ -72,11 +76,21 @@ public class RichardFlyingManager : MonoBehaviour
             Destroy(planeOnAir.gameObject);
             
             planeOnAir = Instantiate(FlyingPrefab).GetComponent<PlaneControl_Free>();
-            Vector3 safeDir = lastSafeRot * Vector3.forward;
-            safeDir = Vector3.ProjectOnPlane(safeDir, Vector3.up);
+
+
+            if(alignDirectionToPath){
+                float point = m_flightPath.FindClosestPoint(crashPos, 0, -1, 10);
+                lastSafePos = m_flightPath.EvaluatePosition(Mathf.Clamp01(point-0.3f));
+                lastSafeRot = Quaternion.LookRotation(m_flightPath.EvaluateTangent(point));
+            }
+            else{
+                Vector3 safeDir = lastSafeRot * Vector3.forward;
+                safeDir = Vector3.ProjectOnPlane(safeDir, Vector3.up);
+                lastSafeRot = Quaternion.LookRotation(safeDir);
+            }
 
             planeOnAir.transform.position = lastSafePos;
-            planeOnAir.transform.rotation = Quaternion.LookRotation(safeDir);
+            planeOnAir.transform.rotation = lastSafeRot;
 
             safeZoneProbe.transform.parent = planeOnAir.transform;
             safeZoneProbe.transform.localPosition = Vector3.zero;
@@ -91,6 +105,7 @@ public class RichardFlyingManager : MonoBehaviour
 
         if(threatDirections==null || threatDirections.Length == 0) {
             AddSafePoint(position, rotation);
+            return;
         }
         else{
             bool flag = true;
@@ -119,6 +134,7 @@ public class RichardFlyingManager : MonoBehaviour
             }
             if(flag){
                 AddSafePoint(position, rotation);
+                return;
             }
         }
     }

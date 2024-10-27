@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3373080136989039154, guid: b17fb8a6ced11ac498ed5f0f3c577384,
         type: 3}
       propertyPath: m_Name
-      value: SafeZoneProbe
+      value: SafeZoneProbe Ocean Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3373080136989040076, guid: b17fb8a6ced11ac498ed5f0f3c577384,
         type: 3}
@@ -69,8 +69,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3373080136989040078, guid: b17fb8a6ced11ac498ed5f0f3c577384,
         type: 3}
+      propertyPath: reportCycle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373080136989040078, guid: b17fb8a6ced11ac498ed5f0f3c577384,
+        type: 3}
       propertyPath: detectRadius
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b17fb8a6ced11ac498ed5f0f3c577384, type: 3}
