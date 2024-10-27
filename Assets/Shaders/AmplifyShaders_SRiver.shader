@@ -9,7 +9,7 @@ Shader "AmplifyShaders/SpriteRiver"
 		_Color("Color", Color) = (1,1,1,1)
 		_GradientColor("GradientColor", Color) = (1,1,1,1)
 		_GradientSmoothness("GradientSmoothness", Float) = 0
-		_GradientThickness("GradientThickness", Float) = 0
+		_GradientOffset("GradientOffset", Float) = 0
 		_StyleTex("StyleTex", 2D) = "white" {}
 		[Toggle]_InverseStyle("InverseStyle", Float) = 0
 		_FoamStrength("FoamStrength", Range( 0 , 1)) = 1
@@ -256,6 +256,7 @@ Shader "AmplifyShaders/SpriteRiver"
 				#define ENABLE_TERRAIN_PERPIXEL_NORMAL
 			#endif
 
+			#define ASE_NEEDS_VERT_POSITION
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
 			#pragma multi_compile_instancing
 
@@ -319,8 +320,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -396,10 +397,13 @@ Shader "AmplifyShaders/SpriteRiver"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				o.ase_texcoord8.xy = v.texcoord.xy;
+				float3 customSurfaceDepth297 = v.positionOS.xyz;
+				float customEye297 = -TransformWorldToView(TransformObjectToWorld(customSurfaceDepth297)).z;
+				o.ase_texcoord8.x = customEye297;
+				
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord8.zw = 0;
+				o.ase_texcoord8.yzw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.positionOS.xyz;
@@ -593,8 +597,9 @@ Shader "AmplifyShaders/SpriteRiver"
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
 				float4 _Color_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteRiver,_Color);
-				float smoothstepResult218 = smoothstep( _GradientThickness , ( _GradientThickness + _GradientSmoothness ) , IN.ase_texcoord8.xy.y);
-				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , smoothstepResult218);
+				float customEye297 = IN.ase_texcoord8.x;
+				float cameraDepthFade297 = (( customEye297 -_ProjectionParams.y - _GradientOffset ) / _GradientSmoothness);
+				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , saturate( cameraDepthFade297 ));
 				float4 temp_output_43_0 = ( _FlowVector * _SpeedScale );
 				float2 appendResult71 = (float2(_FlowX , _FlowY));
 				float2 appendResult291 = (float2(_TexTiling.z , _TexTiling.w));
@@ -926,8 +931,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -1172,6 +1177,7 @@ Shader "AmplifyShaders/SpriteRiver"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/MetaInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
+			#define ASE_NEEDS_VERT_POSITION
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
 			#pragma multi_compile_instancing
 
@@ -1224,8 +1230,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -1301,10 +1307,13 @@ Shader "AmplifyShaders/SpriteRiver"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				o.ase_texcoord4.xy = v.texcoord0.xy;
+				float3 customSurfaceDepth297 = v.positionOS.xyz;
+				float customEye297 = -TransformWorldToView(TransformObjectToWorld(customSurfaceDepth297)).z;
+				o.ase_texcoord4.x = customEye297;
+				
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord4.zw = 0;
+				o.ase_texcoord4.yzw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.positionOS.xyz;
@@ -1456,8 +1465,9 @@ Shader "AmplifyShaders/SpriteRiver"
 				#endif
 
 				float4 _Color_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteRiver,_Color);
-				float smoothstepResult218 = smoothstep( _GradientThickness , ( _GradientThickness + _GradientSmoothness ) , IN.ase_texcoord4.xy.y);
-				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , smoothstepResult218);
+				float customEye297 = IN.ase_texcoord4.x;
+				float cameraDepthFade297 = (( customEye297 -_ProjectionParams.y - _GradientOffset ) / _GradientSmoothness);
+				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , saturate( cameraDepthFade297 ));
 				float4 temp_output_43_0 = ( _FlowVector * _SpeedScale );
 				float2 appendResult71 = (float2(_FlowX , _FlowY));
 				float2 appendResult291 = (float2(_TexTiling.z , _TexTiling.w));
@@ -1552,6 +1562,7 @@ Shader "AmplifyShaders/SpriteRiver"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
+			#define ASE_NEEDS_VERT_POSITION
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
 			#pragma multi_compile_instancing
 
@@ -1560,7 +1571,7 @@ Shader "AmplifyShaders/SpriteRiver"
 			{
 				float4 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1597,8 +1608,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -1646,10 +1657,13 @@ Shader "AmplifyShaders/SpriteRiver"
 				UNITY_TRANSFER_INSTANCE_ID( v, o );
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord2.xy = v.ase_texcoord.xy;
+				float3 customSurfaceDepth297 = v.positionOS.xyz;
+				float customEye297 = -TransformWorldToView(TransformObjectToWorld(customSurfaceDepth297)).z;
+				o.ase_texcoord2.x = customEye297;
+				
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord2.zw = 0;
+				o.ase_texcoord2.yzw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.positionOS.xyz;
@@ -1687,8 +1701,7 @@ Shader "AmplifyShaders/SpriteRiver"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1705,7 +1718,7 @@ Shader "AmplifyShaders/SpriteRiver"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.positionOS;
 				o.normalOS = v.normalOS;
-				o.ase_texcoord = v.ase_texcoord;
+				
 				return o;
 			}
 
@@ -1744,7 +1757,7 @@ Shader "AmplifyShaders/SpriteRiver"
 				VertexInput o = (VertexInput) 0;
 				o.positionOS = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1782,8 +1795,9 @@ Shader "AmplifyShaders/SpriteRiver"
 				#endif
 
 				float4 _Color_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteRiver,_Color);
-				float smoothstepResult218 = smoothstep( _GradientThickness , ( _GradientThickness + _GradientSmoothness ) , IN.ase_texcoord2.xy.y);
-				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , smoothstepResult218);
+				float customEye297 = IN.ase_texcoord2.x;
+				float cameraDepthFade297 = (( customEye297 -_ProjectionParams.y - _GradientOffset ) / _GradientSmoothness);
+				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , saturate( cameraDepthFade297 ));
 				float4 temp_output_43_0 = ( _FlowVector * _SpeedScale );
 				float2 appendResult71 = (float2(_FlowX , _FlowY));
 				float2 appendResult291 = (float2(_TexTiling.z , _TexTiling.w));
@@ -1915,8 +1929,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -2218,6 +2232,7 @@ Shader "AmplifyShaders/SpriteRiver"
 				#define ENABLE_TERRAIN_PERPIXEL_NORMAL
 			#endif
 
+			#define ASE_NEEDS_VERT_POSITION
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
 			#pragma multi_compile_instancing
 
@@ -2281,8 +2296,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -2360,10 +2375,13 @@ Shader "AmplifyShaders/SpriteRiver"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				o.ase_texcoord8.xy = v.texcoord.xy;
+				float3 customSurfaceDepth297 = v.positionOS.xyz;
+				float customEye297 = -TransformWorldToView(TransformObjectToWorld(customSurfaceDepth297)).z;
+				o.ase_texcoord8.x = customEye297;
+				
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord8.zw = 0;
+				o.ase_texcoord8.yzw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.positionOS.xyz;
 				#else
@@ -2553,8 +2571,9 @@ Shader "AmplifyShaders/SpriteRiver"
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
 				float4 _Color_Instance = UNITY_ACCESS_INSTANCED_PROP(AmplifyShadersSpriteRiver,_Color);
-				float smoothstepResult218 = smoothstep( _GradientThickness , ( _GradientThickness + _GradientSmoothness ) , IN.ase_texcoord8.xy.y);
-				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , smoothstepResult218);
+				float customEye297 = IN.ase_texcoord8.x;
+				float cameraDepthFade297 = (( customEye297 -_ProjectionParams.y - _GradientOffset ) / _GradientSmoothness);
+				float4 lerpResult194 = lerp( _Color_Instance , _GradientColor , saturate( cameraDepthFade297 ));
 				float4 temp_output_43_0 = ( _FlowVector * _SpeedScale );
 				float2 appendResult71 = (float2(_FlowX , _FlowY));
 				float2 appendResult291 = (float2(_TexTiling.z , _TexTiling.w));
@@ -2775,8 +2794,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -3040,8 +3059,8 @@ Shader "AmplifyShaders/SpriteRiver"
 			float _FlowY;
 			float _FlowX;
 			float _SpeedScale;
+			float _GradientOffset;
 			float _GradientSmoothness;
-			float _GradientThickness;
 			float _InverseStyle;
 			float _Smoothness;
 			#ifdef ASE_TRANSMISSION
@@ -3238,7 +3257,7 @@ Shader "AmplifyShaders/SpriteRiver"
 /*ASEBEGIN
 Version=19603
 Node;AmplifyShaderEditor.CommentaryNode;141;-3209.111,2624;Inherit;False;1858.255;785.3492;Comment;13;74;78;79;73;72;65;68;71;67;66;267;274;295;Distort;1,1,1,1;0;0
-Node;AmplifyShaderEditor.CommentaryNode;144;-4848,496;Inherit;False;3738.51;1536.974;Comment;33;34;37;194;39;226;13;191;218;225;82;193;222;83;81;223;221;80;33;46;28;20;40;18;90;45;44;269;89;43;275;42;49;294;WaterColor;1,1,1,1;0;0
+Node;AmplifyShaderEditor.CommentaryNode;144;-4848,496;Inherit;False;3738.51;1536.974;Comment;33;34;37;194;39;226;13;191;225;82;83;81;223;221;80;33;46;28;20;40;18;90;45;44;269;89;43;275;42;49;294;297;298;299;WaterColor;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode;143;-4427.022,-484.2781;Inherit;False;3315.729;840.1018;Comment;26;117;119;118;138;127;140;126;139;136;135;129;149;152;148;150;159;151;162;147;146;161;160;156;163;164;276;Shimmer;1,1,1,1;0;0
 Node;AmplifyShaderEditor.RangedFloatNode;66;-3040,3104;Inherit;False;Property;_FlowX;FlowX;12;0;Create;True;0;0;0;False;0;False;0;0.1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;67;-3040,3184;Inherit;False;Property;_FlowY;FlowY;13;0;Create;True;0;0;0;False;0;False;0;0.1;0;0;0;1;FLOAT;0
@@ -3295,15 +3314,10 @@ Node;AmplifyShaderEditor.SamplerNode;28;-3584,1744;Inherit;True;Property;_NoiseT
 Node;AmplifyShaderEditor.SimpleAddOpNode;46;-3184,1600;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;33;-3200,1712;Inherit;False;Property;_FoamClip;FoamClip;8;0;Create;True;0;0;0;False;0;False;1;0.5;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.StepOpNode;80;-2992,1600;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;221;-2768,1072;Inherit;False;Property;_GradientThickness;GradientThickness;3;0;Create;True;0;0;0;False;0;False;0;0.09;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;223;-2768,1152;Inherit;False;Property;_GradientSmoothness;GradientSmoothness;2;0;Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;81;-2880,1792;Inherit;False;Property;_InverseStyle;InverseStyle;5;1;[Toggle];Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode;83;-2864,1696;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;222;-2512,1136;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TexCoordVertexDataNode;193;-2768,944;Inherit;False;0;2;0;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.LerpOp;82;-2608,1600;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;225;-2608,1728;Inherit;False;Property;_FoamStrength;FoamStrength;6;0;Create;True;0;0;0;False;0;False;1;0.08;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SmoothstepOpNode;218;-2368,1056;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.ColorNode;191;-2496,848;Inherit;False;Property;_GradientColor;GradientColor;1;0;Create;True;0;0;0;False;0;False;1,1,1,1;0.0588235,0.2901961,0.4549019,1;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.ColorNode;13;-2544,656;Inherit;False;InstancedProperty;_Color;Color;0;0;Create;True;0;0;0;False;0;False;1,1,1,1;0,0.4401559,0.5660378,1;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;226;-2352,1600;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
@@ -3324,6 +3338,11 @@ Node;AmplifyShaderEditor.RegisterLocalVarNode;292;-5680,1408;Inherit;False;style
 Node;AmplifyShaderEditor.RegisterLocalVarNode;293;-5680,1504;Inherit;False;distortTiling;-1;True;1;0;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.GetLocalVarNode;294;-4576,1520;Inherit;False;292;styleTiling;1;0;OBJECT;;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.GetLocalVarNode;295;-3056,2768;Inherit;False;293;distortTiling;1;0;OBJECT;;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.CameraDepthFade;297;-2528,1072;Inherit;False;3;2;FLOAT3;0,0,0;False;0;FLOAT;1;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.PosVertexDataNode;298;-2784,944;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;221;-2784,1168;Inherit;False;Property;_GradientOffset;GradientOffset;3;0;Create;True;0;0;0;False;0;False;0;0.09;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;223;-2816,1088;Inherit;False;Property;_GradientSmoothness;GradientSmoothness;2;0;Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SaturateNode;299;-2272,1072;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;277;1193.773,-81.10641;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;279;1193.773,-81.10641;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;280;1193.773,-81.10641;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
@@ -3394,19 +3413,14 @@ WireConnection;46;1;28;1
 WireConnection;80;0;46;0
 WireConnection;80;1;33;0
 WireConnection;83;0;80;0
-WireConnection;222;0;221;0
-WireConnection;222;1;223;0
 WireConnection;82;0;80;0
 WireConnection;82;1;83;0
 WireConnection;82;2;81;0
-WireConnection;218;0;193;2
-WireConnection;218;1;221;0
-WireConnection;218;2;222;0
 WireConnection;226;0;82;0
 WireConnection;226;1;225;0
 WireConnection;194;0;13;0
 WireConnection;194;1;191;0
-WireConnection;194;2;218;0
+WireConnection;194;2;299;0
 WireConnection;37;0;194;0
 WireConnection;37;1;39;0
 WireConnection;37;2;226;0
@@ -3423,9 +3437,13 @@ WireConnection;291;0;289;3
 WireConnection;291;1;289;4
 WireConnection;292;0;290;0
 WireConnection;293;0;291;0
+WireConnection;297;2;298;0
+WireConnection;297;0;223;0
+WireConnection;297;1;221;0
+WireConnection;299;0;297;0
 WireConnection;278;0;36;0
 WireConnection;278;2;123;0
 WireConnection;278;3;288;0
 WireConnection;278;4;287;0
 ASEEND*/
-//CHKSM=21F6E03AA9090F3B218846A234A07701F6A12E69
+//CHKSM=ADC89DA8898A90A4315B769A60FD6A6E05BC38A0

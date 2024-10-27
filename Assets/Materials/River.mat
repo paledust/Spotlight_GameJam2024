@@ -110,7 +110,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GradientSmoothness: 1
+    - _GradientOffset: 100
+    - _GradientSmoothness: 500
     - _GradientThickness: 0.09
     - _InverseStyle: 1
     - _Metallic: 0
@@ -144,9 +145,9 @@ Material:
     - _DissolveFadeCenter: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveScale: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlowVector: {r: 0.04, g: 0.25, b: -0.015, a: 0.2}
+    - _FlowVector: {r: 0.04, g: -0.25, b: -0.015, a: -0.2}
     - _FoamColor: {r: 0.7584906, g: 1, b: 1, a: 1}
-    - _GradientColor: {r: 0.0890948, g: 0.4395345, b: 0.689, a: 1}
+    - _GradientColor: {r: 0.7735849, g: 0.38719097, b: 0.3605197, a: 1}
     - _ShimerColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
     - _ShimerVector: {r: 1, g: -2, b: -0.3, a: -1.2}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
