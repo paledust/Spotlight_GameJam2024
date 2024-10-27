@@ -61,6 +61,7 @@ public class RichardFlyingManager : MonoBehaviour
     void OnInteractStopZoneHandler(bool isInZone){
         stopZoneCounter += isInZone?1:-1;
         ppFader.Excute(coroutineFadePP(isInStopZone?1:0, 1f));
+        planeOnAir.SwitchBumpyFly(isInStopZone);
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
         StartCoroutine(CommonCoroutine.delayAction(()=>{
