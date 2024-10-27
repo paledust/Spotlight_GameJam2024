@@ -14,6 +14,7 @@ public class PlaneControl_Free : MonoBehaviour
     [SerializeField, Tooltip("控制输入反应速度")] private float agility = 5;
     [SerializeField] private Vector2 flyingSpeed;
     public float maxSpeed;
+    public float angularSpeedMulti = 1;
 [Header("Fin Control")]
     [SerializeField, Tooltip("左副翼")] private Transform LWingTrans;
     [SerializeField, Tooltip("右副翼")] private Transform RWingTrans;
@@ -73,16 +74,16 @@ public class PlaneControl_Free : MonoBehaviour
     //平滑改变飞行姿态
         {
             float _s = Time.deltaTime*agility;
-            currentPitchSpeed = Service.LerpValue(currentPitchSpeed, targetPitchSpeed, _s);
-            currentRollSpeed = Service.LerpValue(currentRollSpeed, targetRollSpeed, _s);
-            currentYawSpeed = Service.LerpValue(currentYawSpeed, targetYawSpeed, _s);
+            currentPitchSpeed = Service.LerpValue(currentPitchSpeed, targetPitchSpeed*angularSpeedMulti, _s);
+            currentRollSpeed = Service.LerpValue(currentRollSpeed, targetRollSpeed*angularSpeedMulti, _s);
+            currentYawSpeed = Service.LerpValue(currentYawSpeed, targetYawSpeed*angularSpeedMulti, _s);
         }
     //改变舵的角度
         {
             float _s = Time.deltaTime*5;
-            currentFinAngle = Service.LerpValue(currentFinAngle, -MaxFinAngle * targetPitchSpeed/maxPitchSpeed, _s);
-            currentTailAngle = Service.LerpValue(currentTailAngle, -MaxTailAngle * targetYawSpeed/maxYawSpeed, _s);
-            currentWingAngle = Service.LerpValue(currentWingAngle, MaxWingAngle * targetRollSpeed/maxRollSpeed, _s);
+            currentFinAngle = Service.LerpValue(currentFinAngle, -MaxFinAngle * targetPitchSpeed*angularSpeedMulti/maxPitchSpeed, _s);
+            currentTailAngle = Service.LerpValue(currentTailAngle, -MaxTailAngle * targetYawSpeed*angularSpeedMulti/maxYawSpeed, _s);
+            currentWingAngle = Service.LerpValue(currentWingAngle, MaxWingAngle * targetRollSpeed*angularSpeedMulti/maxRollSpeed, _s);
 
             FinTrans.localRotation = Quaternion.Euler(currentFinAngle*Vector3.right) * initFinRot;
             TailTrans.localRotation = Quaternion.Euler(currentTailAngle*Vector3.up) * initTailRot;
@@ -92,9 +93,8 @@ public class PlaneControl_Free : MonoBehaviour
     //改变螺旋桨转速，航速，摄像机FOV
         {
             float _s = Time.deltaTime*2;
-            targetFlyingSpeed = Mathf.Min(targetFlyingSpeed, maxSpeed);
-            currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, targetFlyingSpeed, _s);
-            rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, Mathf.Clamp01((targetFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
+            currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, Mathf.Min(targetFlyingSpeed, maxSpeed), _s);
+            rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, Mathf.Clamp01((Mathf.Min(targetFlyingSpeed, maxSpeed)-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
             m_cam.m_Lens.FieldOfView = Mathf.Lerp(fovRange.x, fovRange.y, Mathf.Clamp01((currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
         }
     }
