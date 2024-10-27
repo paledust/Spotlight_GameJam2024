@@ -24,6 +24,8 @@ public static class EventHandler
     public static void Call_OnInteractingStopZone(bool isInZone)=>E_OnInteractingStopZone?.Invoke(isInZone);
     public static event Action<Vector3, Quaternion, Vector3[]> E_OnReportPos;
     public static void Call_OnReportPos(Vector3 lastPos, Quaternion lastRotation, Vector3[] threatDirection)=>E_OnReportPos?.Invoke(lastPos, lastRotation, threatDirection);
+    public static event Action E_OnEnterIceLayer;
+    public static void Call_OnEnterIceLayer()=>E_OnEnterIceLayer?.Invoke();
 #endregion
 
 #region  Interaction Event

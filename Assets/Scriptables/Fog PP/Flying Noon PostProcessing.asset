@@ -29,19 +29,19 @@ MonoBehaviour:
   active: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.64296, g: 0.76, b: 0.7464668, a: 1}
+    m_Value: {r: 0.7264151, g: 0.51049155, b: 0.2700071, a: 1}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.196
+    m_Value: 1
   startDistance:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 100
   fadeLength:
     m_OverrideState: 1
-    m_Value: 1800
+    m_Value: 2800
   controlOffset:
     m_OverrideState: 1
     m_Value: 0.564
   controlValue:
     m_OverrideState: 1
-    m_Value: 0.216
+    m_Value: 0.427

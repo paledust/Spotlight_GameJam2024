@@ -12,9 +12,11 @@ public class Plan_A_To_B : MonoBehaviour
     }
     void OnEnable(){
         EventHandler.E_OnReachExit += OnReachExit;
+        EventHandler.E_OnEnterIceLayer += OnReachIceLayer;
     }
     void OnDisable(){
         EventHandler.E_OnReachExit -= OnReachExit;
+        EventHandler.E_OnEnterIceLayer -= OnReachIceLayer;
     }
     void OnReachExit(){
         GameManager.Instance.SwitchingScene(Service.FLYING_TWO, 1f, transitionColor);
