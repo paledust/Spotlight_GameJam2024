@@ -7,6 +7,7 @@ public class StopZone : MonoBehaviour
     [SerializeField] private bool useForwardAsStopDirection = true;
     [SerializeField] private float forceScale = 100;
     [SerializeField] private Vector3 StopDirection = Vector3.forward;
+    [SerializeField] private ParticleSystem fogParticles;
     private PlaneControl_Free plane;
     void OnTriggerEnter(Collider other){
         if(other.tag == Service.PLAYER_TAG){
@@ -26,9 +27,14 @@ public class StopZone : MonoBehaviour
             EventHandler.Call_OnInteractingStopZone(false);
         }
     }
+    [ContextMenu("Match Particle Hitbox")]
+    public void MatchParticleHitbox(){
+        var shape = fogParticles.shape;
+        shape.scale = transform.localScale;
+    }
     void OnDrawGizmosSelected(){
         if(!useForwardAsStopDirection){
-            DebugExtension.DrawArrow(transform.position, StopDirection, Color.blue);
+            DebugExtension.DrawArrow(transform.position, StopDirection*100, Color.blue);
         }
     }
 }

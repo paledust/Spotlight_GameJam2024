@@ -26,7 +26,7 @@ public class PlaneFallingControl : MonoBehaviour
             p_smoke.Play();
 
             var commandManager = GetComponent<PlatformPlaneCommandManager>();
-            var cmd = new PPC_ChangeExternalAngle(){duration = 40f, targetAngle = -20f};
+            var cmd = new PPC_ChangeExternalAngle(){duration = 20f, targetAngle = -20f};
             commandManager.AddCommand(cmd);
 
             EventHandler.Call_OnStartToFall();

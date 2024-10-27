@@ -10,6 +10,7 @@ public class PlaneControl_Platform : MonoBehaviour
 [Header("Correction Help")]
     [SerializeField] private Transform planeRenderTrans;
     [SerializeField] private float maxCorrectionAngle = 30;
+    [SerializeField] private float inputMulti = 1;
     [SerializeField] private float flyingSpeed = 5;
     [SerializeField] private float angularSpeed = 2;
     [SerializeField] private float rotateToForwardRatio = 1.5f;
@@ -41,13 +42,13 @@ public class PlaneControl_Platform : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         m_rigid = GetComponent<Rigidbody>();
         fallingVel = Vector3.zero;
-        currentLevelAngle = targetLevelAngle + externalRotateAngle;
+        currentLevelAngle = targetLevelAngle*inputMulti + externalRotateAngle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentLevelAngle = Service.LerpValue(currentLevelAngle, targetLevelAngle+externalRotateAngle, Time.deltaTime*agility, 0.1f);
+        currentLevelAngle = Service.LerpValue(currentLevelAngle, targetLevelAngle*inputMulti+externalRotateAngle, Time.deltaTime*agility, 0.1f);
         
         planeRenderTrans.localRotation = Quaternion.Euler(0,0,-Vector2.SignedAngle(transform.forward, Vector2.right));
         forwardVel = Quaternion.Euler(0, 0, currentLevelAngle)*Vector3.right;
@@ -77,6 +78,7 @@ public class PlaneControl_Platform : MonoBehaviour
     }
     IEnumerator coroutineIncreaseFallingSpeed(float targetSpeed, float duration){
         yield return new WaitForLoop(duration, (t)=>{
+            inputMulti = Mathf.Lerp(1, 0.2f, t);
             fallingVel = Vector3.down * Mathf.Lerp(0, targetSpeed, t);
         });
     }

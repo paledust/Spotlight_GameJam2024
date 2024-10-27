@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
   forceScale: 10
   StopDirection: {x: 0, y: 0, z: 1}
+  fogParticles: {fileID: 7553867627219773019}
 --- !u!1001 &7644477400027591291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1269120730060968, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
       propertyPath: m_Name
-      value: P Fog
+      value: P Fog StopZone
       objectReference: {fileID: 0}
     - target: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
       propertyPath: m_RootOrder
@@ -279,6 +279,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 924bec5e9d6781146ad576fb78c5adbf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
+--- !u!198 &7553867627219773019 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7644477400027591291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7644913438989761445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8,
