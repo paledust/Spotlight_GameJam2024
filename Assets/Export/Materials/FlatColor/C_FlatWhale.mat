@@ -116,8 +116,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0, g: 0.469, b: 0.442309, a: 1}
-    - _CloseColor: {r: 0, g: 0.30841804, b: 0.8018868, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _CloseColor: {r: 0, g: 0.41697255, b: 0.8, a: 1}
+    - _Color: {r: 0.23009966, g: 0.2589331, b: 0.2924528, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FarColor: {r: 0.93725497, g: 0.82745105, b: 0.7725491, a: 1}
     - _HighColor: {r: 0.2147041, g: 0.6132076, b: 0, a: 1}

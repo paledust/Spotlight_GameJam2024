@@ -117,7 +117,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0, g: 0.469, b: 0.442309, a: 1}
     - _CloseColor: {r: 0.44179422, g: 0.8018868, b: 0.5774455, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.4528302, g: 0.18737799, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FarColor: {r: 0.03980063, g: 0.4056604, b: 0.14176255, a: 1}
     - _HighColor: {r: 1, g: 0.29622638, b: 0.29622638, a: 1}

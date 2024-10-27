@@ -92,7 +92,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FadeHeight: 100
+    - _FadeHeight: 150
     - _FadeLength: 700
     - _FadeStartDistance: 500
     - _FadeStartHeight: 10
