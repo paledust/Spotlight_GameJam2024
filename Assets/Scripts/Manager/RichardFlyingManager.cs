@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using Cinemachine.Utility;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.Rendering;
 
 public class RichardFlyingManager : MonoBehaviour
