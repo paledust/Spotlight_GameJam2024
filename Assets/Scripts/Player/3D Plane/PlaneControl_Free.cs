@@ -53,6 +53,7 @@ public class PlaneControl_Free : MonoBehaviour
     private float currentFlyingSpeed;
 
     private const string trigger_shake = "Shake";
+    private const string bool_bumpy = "Bumpy";
 
     private bool canActivateInput{get{return !crashed;}}
     private bool crashed = false;
@@ -138,6 +139,9 @@ public class PlaneControl_Free : MonoBehaviour
 #region Animation
     public void ShakePlaneForItem(){
         planeAnimator.SetTrigger(trigger_shake);
+    }
+    public void SwitchBumpyFly(bool isBumpy){
+        planeAnimator.SetBool(bool_bumpy, isBumpy);
     }
 #endregion
 
