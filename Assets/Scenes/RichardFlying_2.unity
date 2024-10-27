@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -36,7 +36,7 @@ RenderSettings:
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
-  m_CustomReflection: {fileID: 8900000, guid: c53c32922c0d4b04ea2fec93b40cbf56, type: 3}
+  m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 299995089}
   m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &753574
 BoxCollider:
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   minimumWidthDist: 10
   minimumHeightDist: 20
   minimumForwardDist: 25
-  limitedHeight: 400
+  stopZoneCounter: 0
 --- !u!114 &132362787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &272460494
 BoxCollider:
@@ -2785,7 +2785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &308428850
 BoxCollider:
@@ -3346,7 +3346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &384414072
 BoxCollider:
@@ -4348,7 +4348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &531382257
 BoxCollider:
@@ -4461,7 +4461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &567906664
 BoxCollider:
@@ -4904,7 +4904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &610585579
 BoxCollider:
@@ -6147,7 +6147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &752056671
 BoxCollider:
@@ -11648,7 +11648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &915127536
 BoxCollider:
@@ -12126,22 +12126,22 @@ PrefabInstance:
     - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.1764706
-      objectReference: {fileID: 0}
-    - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
+        type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.9647059
+      value: 0.8039216
       objectReference: {fileID: 0}
     - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.7490196
+      value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 199183317042074402, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
@@ -12984,7 +12984,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 33221703b06146e4d8fcd5e8f7fea34b, type: 2}
+      objectReference: {fileID: 2100000, guid: 08d6fe3357696164e86e4e3cb07fa310, type: 2}
     - target: {fileID: -4774420403438952014, guid: a1bb01d18fc8d664095a42b55e444d4b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -15230,7 +15230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!1 &1410651554
 GameObject:
@@ -15311,7 +15311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &1412199803
 BoxCollider:
@@ -16181,7 +16181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &1601473026
 BoxCollider:
@@ -22513,7 +22513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &1763842288
 BoxCollider:
@@ -22716,7 +22716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &1781157379
 BoxCollider:
@@ -22979,7 +22979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &1805366701
 BoxCollider:
@@ -23876,7 +23876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &1964497803
 BoxCollider:
@@ -24229,7 +24229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &2013199621
 BoxCollider:
@@ -24432,7 +24432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &2031609119
 BoxCollider:
@@ -24545,7 +24545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &2046075192
 BoxCollider:
@@ -25010,7 +25010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &2069796875
 BoxCollider:
@@ -25213,7 +25213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &2097864822
 BoxCollider:
@@ -25523,7 +25523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &2123303845
 BoxCollider:
@@ -30695,7 +30695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useForwardAsStopDirection: 1
-  stopSmoothDistance: 100
+  forceScale: 100
   StopDirection: {x: 0, y: 0, z: 1}
 --- !u!65 &2145231883
 BoxCollider:

@@ -509,6 +509,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &86370905 stripped
@@ -689,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9f5f666e2519042ae6492bc8b6b2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionColor: {r: 0.6313726, g: 0.9490196, b: 1, a: 1}
+  transitionColor: {r: 0.5019608, g: 0.8039216, b: 0.8156863, a: 1}
   mountainAreaObj: {fileID: 8632981802850322756}
   iceAreaObj: {fileID: 1662825343}
 --- !u!1001 &167955090
@@ -763,6 +778,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StopZone (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
@@ -1007,6 +1037,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &273641793 stripped
@@ -1095,37 +1130,37 @@ PrefabInstance:
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -313.64743
+      value: -313.60098
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47.898365
+      value: 51.44627
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2920.835
+      value: 2921.0588
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.10150781
+      value: -0.10179716
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0077127963
+      value: -0.0011638495
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9919457
+      value: 0.99473953
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.07536864
+      value: -0.011371686
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
@@ -1538,6 +1573,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &394255202 stripped
@@ -1716,6 +1766,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &418639684 stripped
@@ -1734,37 +1799,37 @@ PrefabInstance:
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000019788742
+      value: -0.000029563904
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.000036
+      value: 3.9999883
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.000093
+      value: -19.999931
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99513334
+      value: -0.9951334
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.09853803
+      value: -0.09853768
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000050663954
+      value: -0.0000007376075
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000057742003
+      value: 0.0000000661239
       objectReference: {fileID: 0}
     - target: {fileID: 3369712747280930494, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -1774,17 +1839,17 @@ PrefabInstance:
     - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: flyingSpeed.x
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: flyingSpeed.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -1824,27 +1889,27 @@ PrefabInstance:
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.1002543
+      value: 0.1014157
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.017677546
+      value: -0.008872729
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.97969145
+      value: -0.99101907
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.17274623
+      value: -0.08670297
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -20
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221919, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -2347,6 +2412,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StopZone (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
@@ -2927,17 +3007,17 @@ PrefabInstance:
     - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
+      value: 0.348
       objectReference: {fileID: 0}
     - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.9843137
+      value: 0.33897188
       objectReference: {fileID: 0}
     - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.8901961
+      value: 0.269004
       objectReference: {fileID: 0}
     - target: {fileID: 198748979371217952, guid: 1a365141225c22e49a7bb976869b22a8,
         type: 3}
@@ -4175,6 +4255,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &1450376859 stripped
@@ -4560,6 +4655,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &1630306276 stripped
@@ -4871,6 +4981,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &1781187491 stripped
@@ -4950,6 +5075,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StopZone (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
@@ -5130,6 +5270,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &1827179855 stripped
@@ -5254,6 +5409,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &1952623585 stripped
@@ -5361,6 +5531,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &1983058339 stripped
@@ -5441,6 +5626,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopZone (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
 --- !u!4 &1984443433 stripped
@@ -5520,6 +5720,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StopZone (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}
@@ -8017,6 +8232,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StopZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: StopDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644477399244181931, guid: 953ba5cd2f98bca43849b8bc28f5f238,
+        type: 3}
+      propertyPath: useForwardAsStopDirection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953ba5cd2f98bca43849b8bc28f5f238, type: 3}

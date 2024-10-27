@@ -111,7 +111,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _GradientOffset: 100
-    - _GradientSmoothness: 500
+    - _GradientSmoothness: 800
     - _GradientThickness: 0.09
     - _InverseStyle: 1
     - _Metallic: 0
