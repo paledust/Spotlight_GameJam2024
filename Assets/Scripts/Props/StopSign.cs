@@ -21,7 +21,7 @@ public class StopSign : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == Service.PLAYER_TAG)
         {
             stopSign.GetComponent<Animation>().Play();
             other.GetComponent<PlaneControl_Free>().ShakePlaneForItem();

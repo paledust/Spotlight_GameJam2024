@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 418808468791157263}
   - component: {fileID: 4216949415711082687}
-  - component: {fileID: 7586589082139376567}
   m_Layer: 0
-  m_Name: Hand
+  m_Name: BirdsPic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,11 +26,11 @@ Transform:
   m_GameObject: {fileID: 4403281175625875987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.7, z: 0.2}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8312493328914949083}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4216949415711082687
 SpriteRenderer:
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 201e164eeedd1bf478c197d63dcd3ba5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86d43fc628b09d743a84ed4cf89ad48b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.88235295}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &7586589082139376567
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4403281175625875987}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 38f500904d5c7604bb899e91ab57a3af, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 38f500904d5c7604bb899e91ab57a3af, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &5453333235718201789
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,10 +109,9 @@ Transform:
   m_GameObject: {fileID: 5453333235718201789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1269233106623534739}
   - {fileID: 418808468791157263}
   m_Father: {fileID: 5317926050171044088}
   m_RootOrder: 0
@@ -145,9 +127,9 @@ GameObject:
   - component: {fileID: 5317926050171044088}
   - component: {fileID: 42212638392566465}
   - component: {fileID: 4206265852757442950}
-  - component: {fileID: 1801523314518263656}
+  - component: {fileID: 8292697472786573870}
   m_Layer: 0
-  m_Name: StopSign
+  m_Name: Birds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,8 +162,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.0091457, y: 7.1958604, z: 2}
-  m_Center: {x: 0.15981483, y: 0.008630991, z: 0}
+  m_Size: {x: 5.118704, y: 7.9192038, z: 2}
+  m_Center: {x: -0.6692829, y: -0.69158506, z: 0}
 --- !u!95 &4206265852757442950
 Animator:
   serializedVersion: 5
@@ -203,7 +185,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1801523314518263656
+--- !u!114 &8292697472786573870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,100 +194,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5764772518894836548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f1b5d8f951913140b6d947a746c1e6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 92cf43dc05dead842b6d5ab09241c217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 5017956009873208521, guid: b043b85084a14d6499e4f678b7f36591,
+  birdThingsSmall:
+  - {fileID: 21300000, guid: b25e1f3461b1f054087dd9db3cbe3dec, type: 3}
+  - {fileID: 21300000, guid: 03004259ab41e6d4280f7df26fd54a96, type: 3}
+  - {fileID: 21300000, guid: 439d8b6c667bae84388a1a1ad6162cd5, type: 3}
+  - {fileID: 21300000, guid: 603ea5a45ffece048a7acaadece16d17, type: 3}
+  birdThingsBig:
+  - {fileID: 21300000, guid: 0363f8c39d9ced846a91289997b293b2, type: 3}
+  - {fileID: 21300000, guid: 440d09033c352fa4bbf2ac0ba36182a1, type: 3}
+  - {fileID: 21300000, guid: fbf3d95b261387342973ee85d11d26a4, type: 3}
+  birdThingSmallPrefab: {fileID: 1186529452801394199, guid: dffbe8e9f8ed02041b78fd831c177fce,
     type: 3}
-  stopSign: {fileID: 1269233106623534737}
---- !u!1001 &7233834927688057986
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8312493328914949083}
-    m_Modifications:
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502380770552123923, guid: 31c566d70b5a01c4f8b806b592828175,
-        type: 3}
-      propertyPath: m_Name
-      value: S StopSign
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 31c566d70b5a01c4f8b806b592828175, type: 3}
---- !u!1 &1269233106623534737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8502380770552123923, guid: 31c566d70b5a01c4f8b806b592828175,
+  birdThingBigPrefab: {fileID: 3378554194043923996, guid: ea7fdaabe78b2be4f8048f32d7c11be5,
     type: 3}
-  m_PrefabInstance: {fileID: 7233834927688057986}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1269233106623534739 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8502380770552123921, guid: 31c566d70b5a01c4f8b806b592828175,
-    type: 3}
-  m_PrefabInstance: {fileID: 7233834927688057986}
-  m_PrefabAsset: {fileID: 0}
