@@ -8,7 +8,12 @@ public class Target : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PixelGameManager.Instance.onRestartGame += Reset;
+    }
+
+    void OnDestroy()
+    {
+        PixelGameManager.Instance.onRestartGame -= Reset;
     }
 
     // Update is called once per frame
@@ -19,9 +24,15 @@ public class Target : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == Service.PLAYER_TAG)
         {
-            Destroy(gameObject);
+            PixelGameManager.Instance.AddStar();
+            gameObject.SetActive(false);
         }
+    }
+
+    void Reset()
+    {
+        gameObject.SetActive(true);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,14 @@ public class PixelGameManager : MonoBehaviour
     public GameObject fuelBar;
     public Text milesText;
     public Text fuelText;
+    public Text starText;
     public GameObject retryPanel;
     public GameObject winPanel;
+    public GameObject coverPanel;
+    public GameObject coverText;
+    public float invincibleTime = 0.5f;
+
+    public Action onRestartGame;
 
     private PixelPlaneControl pixelPlaneControl;
     private int curHp;
@@ -26,10 +33,11 @@ public class PixelGameManager : MonoBehaviour
     private Vector3 planeStartPos;
     private int fuelUsed;
     private int fuelMax;
-    [HideInInspector]
-    public bool gameStart = true;
+    private int star;
+    public bool gameStart = false;
     private int milesTextNum;
     private int fuelTextNum;
+    private float lastHitTime;
     
     void Awake()
     {
@@ -43,6 +51,23 @@ public class PixelGameManager : MonoBehaviour
         fuelMax = fuelBar.transform.childCount;
         milesTextNum = 0;
         fuelTextNum = 10000;
+        star = 0;
+    }
+
+    void Update()
+    {
+        if (!gameStart && coverPanel.activeSelf && Input.anyKeyDown)
+        {
+            StartGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (retryPanel.activeSelf)
+                RestartGame();
+            else if (winPanel.activeSelf)
+                FinishGame();
+        }
     }
 
     void FixedUpdate()
@@ -57,30 +82,40 @@ public class PixelGameManager : MonoBehaviour
         }
         else if (gameStart)
         {
-            Debug.Log("GameEnd");
             winPanel.SetActive(true);
             gameStart = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (retryPanel.activeSelf)
-                RestartGame();
-            else if (winPanel.activeSelf)
-                FinishGame();
-        }
+        
     }
 
     public void ReduceHp()
     {
+        if (Time.time - lastHitTime < invincibleTime) return;
+        
         hearts[curHp - 1].SetActive(false);
         curHp--;
+        lastHitTime = Time.time;
         pixelPlaneControl.GetComponent<Animator>().SetTrigger("Damage");
         if (curHp == 0)
         {
             gameStart = false;
             retryPanel.SetActive(true);
         }
+    }
+
+    public void StartGame()
+    {
+        coverText.SetActive(false);
+        coverPanel.GetComponent<Animation>().Play();
+        StartCoroutine(StartGameCoroutine());
+    }
+
+    private IEnumerator StartGameCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        gameStart = true;
+        coverPanel.SetActive(false);
     }
 
     public void RestartGame()
@@ -104,6 +139,10 @@ public class PixelGameManager : MonoBehaviour
         SetMilesText();
         SetFuelText();
 
+        star = 0;
+        starText.text = "00";
+
+        onRestartGame?.Invoke();
         retryPanel.SetActive(false);
         gameStart = true;
     }
@@ -147,5 +186,11 @@ public class PixelGameManager : MonoBehaviour
     {
         string s = fuelTextNum.ToString().PadLeft(5, '0');
         fuelText.text = s.Substring(0, 3) + ":" + s.Substring(3);
+    }
+
+    public void AddStar()
+    {
+        star++;
+        starText.text = star.ToString().PadLeft(2, '0');
     }
 }
