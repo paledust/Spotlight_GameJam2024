@@ -5,7 +5,6 @@ using UnityEngine;
 public class StopZone : MonoBehaviour
 {
     [SerializeField] private bool useForwardAsStopDirection = true;
-    [SerializeField] private float stopSmoothDistance = 100f;
     [SerializeField] private float forceScale = 100;
     [SerializeField] private Vector3 StopDirection = Vector3.forward;
     private PlaneControl_Free plane;
