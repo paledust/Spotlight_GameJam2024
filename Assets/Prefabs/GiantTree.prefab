@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8726606549833351084}
   - component: {fileID: 7223464530519384024}
   - component: {fileID: 5256307716308289781}
+  - component: {fileID: 4271019893413626299}
   m_Layer: 0
   m_Name: GiantTree
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4271019893413626299
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6209230603034797691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2084568638715371327, guid: 48c79af13aa169a4688ea90bdfd7eba8, type: 3}
