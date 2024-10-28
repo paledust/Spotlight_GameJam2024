@@ -75,7 +75,7 @@ public class ConductingGameControl : MonoBehaviour
             beepTimer += Time.deltaTime*beepRate;
             if(beepTimer>=1){
                 beepTimer = 0;
-                AudioManager.Instance.PlaySoundEffect(sfx_conducting, clipBeepName, .1f);
+                AudioManager.Instance.PlaySoundEffect(sfx_conducting, clipBeepName, .25f);
             }
         }
         else{
@@ -86,6 +86,7 @@ public class ConductingGameControl : MonoBehaviour
             isDone = true;
 
             conductControl.Finish();
+            AudioManager.Instance.FadeAudio(sfx_engine, 0, 1f, true);
             planeAnime.Play();
             isMoving = false;
             isDone = true;
@@ -120,7 +121,7 @@ public class ConductingGameControl : MonoBehaviour
     }
     void ConductForwardHandler(bool isForward){
         isMoving = isForward;
-        if(isMoving) AudioManager.Instance.PlaySoundEffect(sfx_conducting, clipBeepName, 0.1f);
+        if(isMoving) AudioManager.Instance.PlaySoundEffect(sfx_conducting, clipBeepName, 0.25f);
         targetSpeed = isForward?maxMoveSpeed:0;
         driverInputDirection = Mathf.Sign(Random.Range(0, 1) - 0.5f);
         driverInput = 0;
