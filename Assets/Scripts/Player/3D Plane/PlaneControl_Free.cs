@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using SimpleAudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +34,10 @@ public class PlaneControl_Free : MonoBehaviour
     [SerializeField] private ParticleSystem p_explodePuff;
 [Header("Plane Shake")]
     [SerializeField] private Animator planeAnimator;
+[Header("Audio")]
+    [SerializeField] private AudioSource m_audioLoop;
+    [SerializeField] private string engineClip;
+    [SerializeField] private float maxVolume = 0.6f;
     
     private PlayerInput playerInput;
     private Quaternion initLWingRot;
@@ -71,6 +76,10 @@ public class PlaneControl_Free : MonoBehaviour
         initTailRot = TailTrans.localRotation;
         initLWingRot = LWingTrans.localRotation;
         initRWingRot = RWingTrans.localRotation;
+
+    }
+    void Start(){
+        AudioManager.Instance.PlaySoundEffectLoop(m_audioLoop, engineClip, 1, 0.5f);
     }
     void Update(){
     //平滑改变飞行姿态
@@ -92,12 +101,18 @@ public class PlaneControl_Free : MonoBehaviour
             LWingTrans.localRotation = Quaternion.Euler(currentWingAngle*Vector3.right) * initLWingRot;
             RWingTrans.localRotation = Quaternion.Euler(-currentWingAngle*Vector3.right) * initRWingRot;
         }
+        float speedScale = (currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x);
     //改变螺旋桨转速，航速，摄像机FOV
         {
             float _s = Time.deltaTime*2;
             currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, Mathf.Min(targetFlyingSpeed, maxSpeed), _s);
             rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, Mathf.Clamp01((Mathf.Min(targetFlyingSpeed, maxSpeed)-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
             m_cam.m_Lens.FieldOfView = Mathf.Lerp(fovRange.x, fovRange.y, Mathf.Clamp01((currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
+        }
+    //改变飞机的音效
+        {
+            m_audioLoop.pitch = Mathf.Lerp(0.8f, 1.2f, speedScale);
+            m_audioLoop.volume = Mathf.Lerp(0.6f, 1f, speedScale)*maxVolume;
         }
     }
     void FixedUpdate(){
