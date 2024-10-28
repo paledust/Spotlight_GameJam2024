@@ -13,6 +13,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Button creditButton;
     [SerializeField] private Button creditBackButton;
     [SerializeField] private SpriteRenderer creditImage;
+[Header("Sound")]
+    [SerializeField] private string musicClipName;
     private bool isCreditsOn = false;
     private bool isCreditTransition = false;
     void OnEnable(){
@@ -21,6 +23,8 @@ public class MenuManager : MonoBehaviour
     void Start(){
         Cursor.visible = true;
         Cursor.SetCursor(cursorTex, new Vector2(16, 16), CursorMode.Auto);
+
+        AudioManager.Instance.PlayMusic("muc_menu");
 
         StartCoroutine(coroutineFadeInButtonGroup());
     }

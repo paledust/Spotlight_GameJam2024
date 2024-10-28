@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: AudioInfo_SO
   m_EditorClassIdentifier: 
   bgm_info_list:
-  - audio_name: bgm_name
-    audio_clip: {fileID: 0}
+  - audio_name: bgm_menu
+    audio_clip: {fileID: 8300000, guid: 7bc054ec5bf693844bd8616112304939, type: 3}
+  - audio_name: bgm_fly_01
+    audio_clip: {fileID: 8300000, guid: 4fc325861266e334dbe5433af4ae8b20, type: 3}
+  - audio_name: bgm_fly_02
+    audio_clip: {fileID: 8300000, guid: 494df880914062b4abdbde01885aad63, type: 3}
+  - audio_name: bgm_fly_03
+    audio_clip: {fileID: 8300000, guid: 117bf51dad8783c4fa85bfff17e876ca, type: 3}
+  - audio_name: bgm_fly_04
+    audio_clip: {fileID: 8300000, guid: 57e5980d00fc9e14b9b19b8df60401f5, type: 3}
+  - audio_name: bgm_fly_05
+    audio_clip: {fileID: 8300000, guid: b05cc6ba9a95ec7419babbe82a84b0f0, type: 3}
   amb_info_list:
   - audio_name: amb_airport
     audio_clip: {fileID: 8300000, guid: 68c067c2cd771f04f82ab32b90f193a7, type: 3}
@@ -72,7 +82,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 0e88b3d4ba9c8624ab805541be2a131c, type: 3}
   - audio_group_name: group_bird
     audioClips:
+    - {fileID: 8300000, guid: 0a540ee6097a31c4e8443447e000707f, type: 3}
     - {fileID: 8300000, guid: 66a40daff0660eb4086d1883cc2ef28b, type: 3}
     - {fileID: 8300000, guid: a4dcfb318cb4ea3418d454f3fdd008b5, type: 3}
-    - {fileID: 8300000, guid: 0a540ee6097a31c4e8443447e000707f, type: 3}
     - {fileID: 8300000, guid: ee5e01c607dc4f24b86a096585cec05f, type: 3}

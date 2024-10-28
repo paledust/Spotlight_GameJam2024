@@ -16,12 +16,14 @@ namespace SimpleAudioSystem{
         [SerializeField] private AudioMixer mainMixer;
         [SerializeField] private AudioMixerSnapshot[] mixerSnapShots;
         private bool ambience_crossfading = false;
+        private bool music_crossfading = false;
 
         private string current_music_name = string.Empty;
         public string current_ambience_name{get; private set;} = string.Empty;
 
         private const string masterVolumeName = "MasterVolume";
         private CoroutineExcuter ambFader;
+        private CoroutineExcuter musFader;
 
     #region Sound Play
         public void PlayMusic(string audio_name, float volume = 1){
@@ -33,6 +35,36 @@ namespace SimpleAudioSystem{
                 music_loop.volume = volume;
                 music_loop.Play();
             }
+        }
+        public void PlayMusic(string audio_name, bool startOver, float transitionTime, float volume = 1, bool overWriteIfCrossfade = false){
+        //If no audio name, fade out the ambience
+            if(audio_name == string.Empty){
+                FadeAudio(music_loop, 0, transitionTime, true);
+                current_music_name = string.Empty;
+            }
+        //If the audio name is the same, only fade the volume to the target value
+            if(current_music_name==audio_name){
+                FadeAudio(music_loop, volume, transitionTime);
+            }
+            else{
+                if(current_music_name == string.Empty || !music_loop.isPlaying){
+                    music_loop.clip = audioInfo.GetBGMClipByName(audio_name);
+                    if(music_loop.clip==null){
+                        Debug.LogWarning("No clip found, nothing will be done for ambient");
+                        return;
+                    }
+                    music_loop.volume = volume;
+                    music_loop.Play();
+                }
+                else{
+                    if(music_loop.clip==null){
+                        Debug.LogWarning("No clip found, nothing will be done for ambient");
+                        return;
+                    }
+                    CrossFadeMusic(audio_name, volume, startOver, transitionTime, overWriteIfCrossfade);
+                }
+                current_music_name = audio_name;
+            }            
         }
         public void PlayAmbience(string audio_name, bool startOver, float transitionTime, float volume = 1, bool overWriteIfCrossfade = false){
         //If no audio name, fade out the ambience
@@ -167,6 +199,11 @@ namespace SimpleAudioSystem{
             if(ambFader==null) ambFader = new CoroutineExcuter(this);
             ambFader.Excute(coroutineCrossFadeAmbience(current_ambience_name, audio_name, targetVolume, startOver, transitionTime));
         }
+        void CrossFadeMusic(string audio_name, float targetVolume, bool startOver, float transitionTime, bool overwriteMusic = false){
+            if(!overwriteMusic && music_crossfading) return;
+            if(musFader==null) musFader = new CoroutineExcuter(this);
+            musFader.Excute(coroutineCrossFadeMusic(current_music_name, audio_name, targetVolume, startOver, transitionTime));
+        }
     #endregion
         IEnumerator coroutineFadeInAndOutSFX(AudioSource m_audio, string clip, float maxVolume, float duration, float fadeIn, float fadeOut){
             AudioSource tempAudio = Instantiate(m_audio);
@@ -224,6 +261,31 @@ namespace SimpleAudioSystem{
             Destroy(tempAudio.gameObject);
 
             ambience_crossfading = false;
+        }
+        IEnumerator coroutineCrossFadeMusic(string from_clip, string to_clip, float targetVolume, bool startOver, float transitionTime){
+            music_crossfading = true;
+            if(from_clip!=string.Empty){
+                StartCoroutine(coroutineFadeAudio(music_loop, 0, transitionTime));
+            }
+
+            AudioSource tempAudio = new GameObject("[_TempMusic]").AddComponent<AudioSource>();
+            tempAudio.volume = 0;
+            tempAudio.loop   = true;
+            tempAudio.clip   = audioInfo.GetBGMClipByName(to_clip);
+            if(!startOver) tempAudio.time   = music_loop.time;
+            tempAudio.outputAudioMixerGroup = music_loop.outputAudioMixerGroup;
+            tempAudio.Play();
+            yield return coroutineFadeAudio(tempAudio, targetVolume, transitionTime);
+
+            music_loop.clip = tempAudio.clip;
+            music_loop.time = tempAudio.time;
+            music_loop.volume = tempAudio.volume;
+            current_music_name = to_clip;
+            music_loop.Play();
+            
+            Destroy(tempAudio.gameObject);
+
+            music_crossfading = false;
         }
         IEnumerator coroutineFadeAudio(AudioSource source, float targetVolume, float transition){
             float initVolume = source.volume;
