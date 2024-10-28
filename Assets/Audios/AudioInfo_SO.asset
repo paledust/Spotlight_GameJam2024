@@ -51,8 +51,28 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: d72ad6a9e997a6448828286c98cb5ecc, type: 3}
   - audio_name: sfx_whispering
     audio_clip: {fileID: 8300000, guid: c9390f3c94ae84947abf95dea35b2bd9, type: 3}
+  - audio_name: sfx_whale_short
+    audio_clip: {fileID: 8300000, guid: cf7c0761578a74840a5d7b4fe3023f17, type: 3}
+  - audio_name: sfx_whale_long
+    audio_clip: {fileID: 8300000, guid: 7d60a4516c5334149bbf50c80c75d744, type: 3}
+  - audio_name: sfx_balloon
+    audio_clip: {fileID: 8300000, guid: 3040ef3e72b17b241adffb0a04f46738, type: 3}
+  - audio_name: sfx_cat
+    audio_clip: {fileID: 8300000, guid: 7638a964601d91349aaf554ad0229cf6, type: 3}
+  - audio_name: sfx_color
+    audio_clip: {fileID: 8300000, guid: b01bfea7f6a511644b597d7cc595b9fe, type: 3}
+  - audio_name: sfx_hand
+    audio_clip: {fileID: 8300000, guid: b294b0db76ae42942b7ee652a46beac4, type: 3}
+  - audio_name: sfx_pi
+    audio_clip: {fileID: 8300000, guid: 0258a278de55990429c6dcf978cf0864, type: 3}
   sfx_group_info_list:
   - audio_group_name: group_magic_chime
     audioClips:
     - {fileID: 8300000, guid: 98cfe48215bd8de47b40aedbde8ab21c, type: 3}
     - {fileID: 8300000, guid: 0e88b3d4ba9c8624ab805541be2a131c, type: 3}
+  - audio_group_name: group_bird
+    audioClips:
+    - {fileID: 8300000, guid: 66a40daff0660eb4086d1883cc2ef28b, type: 3}
+    - {fileID: 8300000, guid: a4dcfb318cb4ea3418d454f3fdd008b5, type: 3}
+    - {fileID: 8300000, guid: 0a540ee6097a31c4e8443447e000707f, type: 3}
+    - {fileID: 8300000, guid: ee5e01c607dc4f24b86a096585cec05f, type: 3}
