@@ -45,4 +45,12 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: e2be93b7994d5764f94763005ad15fcf, type: 3}
   - audio_name: sfx_gaming
     audio_clip: {fileID: 8300000, guid: 22133c5fa78f2a549832939ce0f96158, type: 3}
-  sfx_group_info_list: []
+  - audio_name: sfx_magic_woosh
+    audio_clip: {fileID: 8300000, guid: d72ad6a9e997a6448828286c98cb5ecc, type: 3}
+  - audio_name: sfx_whispering
+    audio_clip: {fileID: 8300000, guid: c9390f3c94ae84947abf95dea35b2bd9, type: 3}
+  sfx_group_info_list:
+  - audio_group_name: group_magic_chime
+    audioClips:
+    - {fileID: 8300000, guid: 98cfe48215bd8de47b40aedbde8ab21c, type: 3}
+    - {fileID: 8300000, guid: 0e88b3d4ba9c8624ab805541be2a131c, type: 3}

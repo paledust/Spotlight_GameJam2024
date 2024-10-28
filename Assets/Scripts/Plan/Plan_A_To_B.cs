@@ -7,6 +7,8 @@ public class Plan_A_To_B : MonoBehaviour
     [SerializeField] private Color transitionColor;
     [SerializeField] private GameObject mountainAreaObj;
     [SerializeField] private GameObject iceAreaObj;
+    [SerializeField] private RichardFlyingManager flyingManager;
+    [SerializeField] private Transform spawnPosIce;
     void Start(){
         iceAreaObj.SetActive(false);
     }
@@ -24,5 +26,8 @@ public class Plan_A_To_B : MonoBehaviour
     void OnReachIceLayer(){
         mountainAreaObj.SetActive(false);
         iceAreaObj.SetActive(true);
+
+        if(spawnPosIce!=null) flyingManager.ResetSpwanPos(spawnPosIce);
+    //TO DO actually assign spawn trans
     }
 }

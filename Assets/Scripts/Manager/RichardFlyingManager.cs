@@ -49,10 +49,7 @@ public class RichardFlyingManager : MonoBehaviour
         planeOnAir = FindObjectOfType<PlaneControl_Free>();
         planeOnAir.transform.position = spawnPoint.position;
         planeOnAir.transform.rotation = spawnPoint.rotation;
-        for(int i=0; i<safePoses.Length; i++){
-            safePoses[i] = spawnPoint.position;
-            safeRots[i] = spawnPoint.rotation;
-        }
+        ResetSpwanPos(spawnPoint);
 
         safeZoneProbe = Instantiate(SafeZoneProbePrefab).GetComponent<SafeZoneProbe>();
         safeZoneProbe.transform.parent = planeOnAir.transform;
@@ -139,6 +136,13 @@ public class RichardFlyingManager : MonoBehaviour
         }
     }
 #endregion
+    public void ResetSpwanPos(Transform spawnTrans){
+        safePointIndex = 0;
+        for(int i=0; i<safePoses.Length; i++){
+            safePoses[i] = spawnTrans.position;
+            safeRots[i] = spawnTrans.rotation;
+        }
+    }
     void AddSafePoint(Vector3 pos, Quaternion rot){
         safePointIndex ++;
         safePointIndex %= MAX_SAFE_POINTS;
