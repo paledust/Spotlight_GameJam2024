@@ -18,6 +18,8 @@ MonoBehaviour:
   amb_info_list:
   - audio_name: amb_airport
     audio_clip: {fileID: 8300000, guid: 68c067c2cd771f04f82ab32b90f193a7, type: 3}
+  - audio_name: amb_home_night
+    audio_clip: {fileID: 8300000, guid: 3385ab58d32e61a4fb0e520b9171abd3, type: 3}
   sfx_info_list:
   - audio_name: PixelStartGame
     audio_clip: {fileID: 8300000, guid: 37635b258d5b8ef40a2536517fcfbbba, type: 3}

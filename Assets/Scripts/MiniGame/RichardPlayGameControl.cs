@@ -39,7 +39,7 @@ public class RichardPlayGameControl : MonoBehaviour
     void OnMove(InputValue inputValue){
         Vector2 value = inputValue.Get<Vector2>();
 
-        targetPitch = value.y * maxPitch;
+        targetPitch = -value.y * maxPitch;
         targetRoll = -value.x * maxRoll;
     }
 
