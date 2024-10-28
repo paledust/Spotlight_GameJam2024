@@ -27,8 +27,11 @@ public class MenuManager : MonoBehaviour
     public void ButtonEvent_StartGame(){
         Cursor.visible = false;
         bCanvas.interactable = false;
+
         AudioManager.Instance.PlaySoundEffect(null, "sfx_ui_hit", 1f);
-        GameManager.Instance.SwitchingScene(Service.WORKING);
+        AudioManager.Instance.PlaySoundEffect(null, "sfx_planecomein", 1f);
+
+        GameManager.Instance.SwitchingScene(Service.WORKING, 2f);
     }
     public void ButtonEvent_EndGame(){
         Cursor.visible = false;

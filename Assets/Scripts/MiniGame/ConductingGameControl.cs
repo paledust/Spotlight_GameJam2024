@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleAudioSystem;
 using UnityEngine;
 
 public class ConductingGameControl : MonoBehaviour
@@ -39,6 +40,7 @@ public class ConductingGameControl : MonoBehaviour
     private string float_offsetName = "Offset";
 
     void OnEnable(){
+        AudioManager.Instance.PlayAmbience("amb_airport", false, 0.5f, 1f);
         EventHandler.E_OnConductDirection += ConductDirectionHandler;
         EventHandler.E_OnConductForward += ConductForwardHandler;
     }

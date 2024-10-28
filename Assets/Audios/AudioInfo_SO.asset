@@ -16,8 +16,8 @@ MonoBehaviour:
   - audio_name: bgm_name
     audio_clip: {fileID: 0}
   amb_info_list:
-  - audio_name: amb_name
-    audio_clip: {fileID: 0}
+  - audio_name: amb_airport
+    audio_clip: {fileID: 8300000, guid: 68c067c2cd771f04f82ab32b90f193a7, type: 3}
   sfx_info_list:
   - audio_name: PixelStartGame
     audio_clip: {fileID: 8300000, guid: 37635b258d5b8ef40a2536517fcfbbba, type: 3}
@@ -33,8 +33,10 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: 07cf290f9ef55ac4a81b48abd68da63c, type: 3}
   - audio_name: sfx_engine
     audio_clip: {fileID: 8300000, guid: 870d6746e2e5b9e408813edf7cb7e855, type: 3}
+  - audio_name: sfx_planecomein
+    audio_clip: {fileID: 8300000, guid: 9a6fff3bcfada7240a933c65219d9076, type: 3}
   - audio_name: sfx_ui_hit
-    audio_clip: {fileID: 8300000, guid: 974059b7ce56f52488331e9754c2589c, type: 3}
+    audio_clip: {fileID: 8300000, guid: 2f73ee4a8cc88e344befaf6e8953a91e, type: 3}
   - audio_name: sfx_ui_credit
     audio_clip: {fileID: 8300000, guid: e7f2fc3f473fa294fbdbb9a0437a59ef, type: 3}
   sfx_group_info_list: []
