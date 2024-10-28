@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleAudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
@@ -27,6 +28,12 @@ public class RichardTakeOffGameControl : MonoBehaviour
     [SerializeField] private Rotator rotator;
     [SerializeField] private Transform powerTransform;
     [SerializeField] private float pushDistance;
+[Header("Audio")]
+    [SerializeField] private AudioSource m_loopAudio;
+    [SerializeField] private AudioSource m_audio;
+    [SerializeField] private string magicWooshClip;
+    [SerializeField] private string magicChimeClip;
+    [SerializeField] private string engineClip;
 
     private bool leftIsDone = false;
     private bool rightIsDone = false;
@@ -62,19 +69,28 @@ public class RichardTakeOffGameControl : MonoBehaviour
                 GetComponent<PlayerInput>().DeactivateInput();
                 TL_TakeOff.Play();
             }
+        //控制音效
+            m_loopAudio.pitch = Mathf.Lerp(0.6f,1,powerValue);
+            m_loopAudio.volume = powerValue;
         }
     }
     void OnLeft(InputValue inputValue){
         if(leftIsDone) return;
         if(inputValue.isPressed){
+            AudioManager.Instance.PlaySoundEffect(m_audio, magicChimeClip, 1f);
             leftProgresser.Excute(coroutineDissolveText(leftAnime, 2f, 0.5f, ()=>{
                 leftIsDone=true;
                 leftProgresser.Excute(coroutineDissolveText(leftAnime, 0.2f, 1, null));
                 leftLightAnime.Play();
+
+                AudioManager.Instance.PlaySoundEffect(m_audio, magicWooshClip, 1f);
+
                 dissolveControlAnimation.Play(DissolveMapName);
                 p_leftBurst.Play(true);
 
                 if(leftIsDone && rightIsDone){
+                    AudioManager.Instance.FadeAudio(m_loopAudio, 0f, 0.1f);
+                    StartCoroutine(CommonCoroutine.delayAction(()=>AudioManager.Instance.PlaySoundEffectLoop(m_loopAudio, engineClip, 0f, 0.1f), 0.15f));
                     arrowDissolver.Excute(coroutineDissolveForward(1, 1f, 1f, ()=>canTakeOff=true));
                 }
             }));
@@ -88,14 +104,20 @@ public class RichardTakeOffGameControl : MonoBehaviour
     void OnRight(InputValue inputValue){
         if(rightIsDone) return;
         if(inputValue.isPressed){
+            AudioManager.Instance.PlaySoundEffect(m_audio, magicChimeClip, 1f);
             rightProgresser.Excute(coroutineDissolveText(rightAnime, 2f, 0.5f, ()=>{
                 rightIsDone=true;
                 rightProgresser.Excute(coroutineDissolveText(rightAnime, 0.2f, 1, null));
                 rightLightAnime.Play();
+
+                AudioManager.Instance.PlaySoundEffect(m_audio, magicWooshClip, 1f);
+
                 dissolveControlAnimation.Play(DissolveControlName);
                 p_rightBurst.Play(true);
 
                 if(leftIsDone && rightIsDone){
+                    AudioManager.Instance.FadeAudio(m_loopAudio, 0f, 0.1f);
+                    StartCoroutine(CommonCoroutine.delayAction(()=>AudioManager.Instance.PlaySoundEffectLoop(m_loopAudio, engineClip, 0f, 0.1f), 0.15f));
                     arrowDissolver.Excute(coroutineDissolveForward(1, 1f, 1f, ()=>canTakeOff=true));
                 }
             }));
@@ -117,6 +139,12 @@ public class RichardTakeOffGameControl : MonoBehaviour
     }
     public void GoToFlightScene(){
         GameManager.Instance.SwitchingScene(Service.FLYING_ONE);
+    }
+    public void TL_Event_StartGame(){
+        GetComponent<PlayerInput>().enabled = true;
+    }
+    public void TL_Event_StartWhispering(){
+        AudioManager.Instance.PlaySoundEffectLoop(m_loopAudio, "sfx_whispering", 1, 0.5f);
     }
     IEnumerator coroutineDissolveText(Animation textAnime, float duration, float target, System.Action OnComplete){
         if(!textAnime.isPlaying) textAnime.Play();
