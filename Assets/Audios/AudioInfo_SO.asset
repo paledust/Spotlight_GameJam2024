@@ -35,4 +35,6 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: 870d6746e2e5b9e408813edf7cb7e855, type: 3}
   - audio_name: sfx_ui_hit
     audio_clip: {fileID: 8300000, guid: 974059b7ce56f52488331e9754c2589c, type: 3}
+  - audio_name: sfx_ui_credit
+    audio_clip: {fileID: 8300000, guid: e7f2fc3f473fa294fbdbb9a0437a59ef, type: 3}
   sfx_group_info_list: []

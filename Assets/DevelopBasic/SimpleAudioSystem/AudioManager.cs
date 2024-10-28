@@ -96,7 +96,7 @@ namespace SimpleAudioSystem{
         }
         public AudioClip PlaySoundEffect(AudioSource targetSource, string clip_name, float volumeScale){
             AudioClip clip = GetSFXClip(clip_name);
-            targetSource = targetSource==null?default_sfx:targetSource;
+            targetSource = (targetSource==null?default_sfx:targetSource);
             if(clip!=null)
                 targetSource.PlayOneShot(clip, volumeScale);
             else

@@ -40,6 +40,7 @@ public class MenuManager : MonoBehaviour
         if(isCreditTransition) return;
 
         isCreditsOn = !isCreditsOn;
+        AudioManager.Instance.PlaySoundEffect(null, "sfx_ui_credit", 1f);
         StartCoroutine(coroutineTransistToCredit(isCreditsOn));
     }
     IEnumerator coroutineFadeInButtonGroup(){
