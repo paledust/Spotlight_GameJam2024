@@ -337,7 +337,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5921,7 +5921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264254373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13635,6 +13635,8 @@ PlayableDirector:
     value: {fileID: 831754400}
   - key: {fileID: -1081356372311765750, guid: eab83f81d8c66e046abf29777c9bd2d1, type: 2}
     value: {fileID: 55696245}
+  - key: {fileID: 6063389015182972595, guid: eab83f81d8c66e046abf29777c9bd2d1, type: 2}
+    value: {fileID: 1769018462}
   m_ExposedReferences:
     m_References:
     - 946fac227634e0f47ba5872aca82ab18: {fileID: 1832588911}
@@ -13667,12 +13669,27 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: adc2b322343b8544bbfe0998abba2d52, type: 2}
+    - {fileID: 11400000, guid: 16965f2de13fc4b44933e19d9f74d6be, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 735747247}
           m_TargetAssemblyTypeName: RichardTakeOffGameControl, Assembly-CSharp
-          m_MethodName: GoToFlightScene
+          m_MethodName: TL_Event_GoToFlightScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 735747247}
+          m_TargetAssemblyTypeName: RichardTakeOffGameControl, Assembly-CSharp
+          m_MethodName: TL_Event_ChangeEngineSound
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

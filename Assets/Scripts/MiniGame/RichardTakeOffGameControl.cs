@@ -137,8 +137,12 @@ public class RichardTakeOffGameControl : MonoBehaviour
                 arrowDissolver.Excute(coroutineDissolveForward(0, 1f, 1, null));
         }
     }
-    public void GoToFlightScene(){
-        GameManager.Instance.SwitchingScene(Service.FLYING_ONE);
+#region Timeline Event
+    public void TL_Event_GoToFlightScene(){
+        GameManager.Instance.SwitchingScene(Service.FLYING_ONE, 1);
+    }
+    public void TL_Event_ChangeEngineSound(){
+        AudioManager.Instance.FadeAudio(m_loopAudio, 0, 0.5f, true);
     }
     public void TL_Event_StartGame(){
         GetComponent<PlayerInput>().enabled = true;
@@ -146,6 +150,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
     public void TL_Event_StartWhispering(){
         AudioManager.Instance.PlaySoundEffectLoop(m_loopAudio, "sfx_whispering", 1, 0.5f);
     }
+#endregion
     IEnumerator coroutineDissolveText(Animation textAnime, float duration, float target, System.Action OnComplete){
         if(!textAnime.isPlaying) textAnime.Play();
         string clipName = textAnime.clip.name;
