@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FogCold
+  m_Name: FogIceTunnel
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_ValidKeywords:
   - _EMISSION
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b5116609fbb1572419c0bb5259f645a6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9964adf30702ee74bb0700608c96a383, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -88,8 +88,8 @@ Material:
     - _BlendOp: 0
     - _BumpScale: 1
     - _CameraFadingEnabled: 1
-    - _CameraFarFadeDistance: 0
-    - _CameraNearFadeDistance: 1200
+    - _CameraFarFadeDistance: 100
+    - _CameraNearFadeDistance: 20
     - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
@@ -112,6 +112,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 0
+    - _SampleGI: 0
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 1
@@ -125,9 +126,9 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
-    - _CameraFadeParams: {r: 1200, g: -0.00083333335, b: 0, a: 0}
+    - _CameraFadeParams: {r: 20, g: 0.0125, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0.1541647, g: 0.45458823, b: 0.504, a: 1}
+    - _EmissionColor: {r: 0.329868, g: 0.49774286, b: 0.561, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
