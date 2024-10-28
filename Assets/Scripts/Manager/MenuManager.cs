@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using SimpleAudioSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,11 +27,13 @@ public class MenuManager : MonoBehaviour
     public void ButtonEvent_StartGame(){
         Cursor.visible = false;
         bCanvas.interactable = false;
+        AudioManager.Instance.PlaySoundEffect(null, "sfx_ui_hit", 1f);
         GameManager.Instance.SwitchingScene(Service.WORKING);
     }
     public void ButtonEvent_EndGame(){
         Cursor.visible = false;
         bCanvas.interactable = false;
+        AudioManager.Instance.PlaySoundEffect(null, "sfx_ui_hit", 1f);
         GameManager.Instance.EndGame();
     }
     public void ButtonEvent_Credits(){

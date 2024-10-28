@@ -11,6 +11,7 @@ namespace SimpleAudioSystem{
     [Header("Audio source")]
         [SerializeField] private AudioSource ambience_loop;
         [SerializeField] private AudioSource music_loop;
+        [SerializeField] private AudioSource default_sfx;
     [Header("Audio mixer")]
         [SerializeField] private AudioMixer mainMixer;
         [SerializeField] private AudioMixerSnapshot[] mixerSnapShots;
@@ -95,6 +96,7 @@ namespace SimpleAudioSystem{
         }
         public AudioClip PlaySoundEffect(AudioSource targetSource, string clip_name, float volumeScale){
             AudioClip clip = GetSFXClip(clip_name);
+            targetSource = targetSource==null?default_sfx:targetSource;
             if(clip!=null)
                 targetSource.PlayOneShot(clip, volumeScale);
             else
@@ -103,6 +105,7 @@ namespace SimpleAudioSystem{
         }
         public AudioClip PlaySoundEffectLoop(AudioSource targetSource, string clip_name, float volumeScale, float transition = 1f){
             AudioClip clip = GetSFXClip(clip_name);
+            targetSource = targetSource==null?default_sfx:targetSource;
             targetSource.clip = clip;
             targetSource.loop = true;
             targetSource.Play();

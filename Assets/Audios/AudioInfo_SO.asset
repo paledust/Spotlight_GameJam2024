@@ -31,4 +31,8 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: f5c85ce9f839e6a44871a16bb874ee17, type: 3}
   - audio_name: PixelTarget
     audio_clip: {fileID: 8300000, guid: 07cf290f9ef55ac4a81b48abd68da63c, type: 3}
+  - audio_name: sfx_engine
+    audio_clip: {fileID: 8300000, guid: 870d6746e2e5b9e408813edf7cb7e855, type: 3}
+  - audio_name: sfx_ui_hit
+    audio_clip: {fileID: 8300000, guid: 974059b7ce56f52488331e9754c2589c, type: 3}
   sfx_group_info_list: []
