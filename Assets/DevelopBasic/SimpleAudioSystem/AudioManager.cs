@@ -12,6 +12,7 @@ namespace SimpleAudioSystem{
         [SerializeField] private AudioSource ambience_loop;
         [SerializeField] private AudioSource music_loop;
         [SerializeField] private AudioSource default_sfx;
+        [SerializeField] private AudioSource record_sfx;
     [Header("Audio mixer")]
         [SerializeField] private AudioMixer mainMixer;
         [SerializeField] private AudioMixerSnapshot[] mixerSnapShots;
@@ -168,6 +169,9 @@ namespace SimpleAudioSystem{
                 
                 StartCoroutine(coroutineFadeAudio(roomtoneAudio, volume, transition, true));
             }
+        }
+        public void PlayRecording(string recordClip, float volumeScale){
+            PlaySoundEffect(record_sfx, recordClip, volumeScale);
         }
         AudioClip GetSFXClip(string clipName){
             AudioClip clip;

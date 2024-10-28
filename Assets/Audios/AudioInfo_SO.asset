@@ -91,6 +91,8 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: 8088aec856a2c314cbdaae930b5af1e8, type: 3}
   - audio_name: bgm_pixelgame
     audio_clip: {fileID: 8300000, guid: 13be1db0254488e4a9e21d8759637044, type: 3}
+  - audio_name: sfx_fallintowater
+    audio_clip: {fileID: 8300000, guid: 578201c39e58d6642ac0e49509259473, type: 3}
   sfx_group_info_list:
   - audio_group_name: group_magic_chime
     audioClips:
