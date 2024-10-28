@@ -29,7 +29,11 @@ public class Birds : MonoBehaviour
         if (other.gameObject.tag == Service.PLAYER_TAG)
         {
             AudioManager.Instance.PlaySoundEffect(audioSource1, "sfx_pi", 1f);
-            StartCoroutine(CreateBirdThingSmall());
+            AudioManager.Instance.PlaySoundEffect(audioSource2, "group_bird", 1f);
+            GameObject canvas = Camera.main.transform.Find("InGameCanvas").gameObject;
+            GameObject obj = Instantiate(birdThingSmallPrefab, canvas.transform);
+            obj.GetComponent<Image>().sprite = birdThingsSmall[Random.Range(0, birdThingsSmall.Count)];
+            obj.transform.position += new Vector3(Random.Range(-600f, 600f), Random.Range(-300f, 300f), 0f);
             for (int i = 0; i < Random.Range(1, 5); i++)
             {
                 StartCoroutine(CreateBirdThingSmall());
