@@ -21,6 +21,10 @@ MonoBehaviour:
   - audio_name: amb_home_night
     audio_clip: {fileID: 8300000, guid: 3385ab58d32e61a4fb0e520b9171abd3, type: 3}
   sfx_info_list:
+  - audio_name: sfx_ui_hit
+    audio_clip: {fileID: 8300000, guid: 2f73ee4a8cc88e344befaf6e8953a91e, type: 3}
+  - audio_name: sfx_ui_credit
+    audio_clip: {fileID: 8300000, guid: e7f2fc3f473fa294fbdbb9a0437a59ef, type: 3}
   - audio_name: PixelStartGame
     audio_clip: {fileID: 8300000, guid: 37635b258d5b8ef40a2536517fcfbbba, type: 3}
   - audio_name: PixelWin
@@ -39,8 +43,6 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: 9a6fff3bcfada7240a933c65219d9076, type: 3}
   - audio_name: sfx_beep
     audio_clip: {fileID: 8300000, guid: e2be93b7994d5764f94763005ad15fcf, type: 3}
-  - audio_name: sfx_ui_hit
-    audio_clip: {fileID: 8300000, guid: 2f73ee4a8cc88e344befaf6e8953a91e, type: 3}
-  - audio_name: sfx_ui_credit
-    audio_clip: {fileID: 8300000, guid: e7f2fc3f473fa294fbdbb9a0437a59ef, type: 3}
+  - audio_name: sfx_gaming
+    audio_clip: {fileID: 8300000, guid: 22133c5fa78f2a549832939ce0f96158, type: 3}
   sfx_group_info_list: []
