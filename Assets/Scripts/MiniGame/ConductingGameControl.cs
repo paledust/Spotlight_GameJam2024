@@ -47,7 +47,7 @@ public class ConductingGameControl : MonoBehaviour
     private string float_offsetName = "Offset";
 
     private string clipBeepName = "sfx_beep";
-    private string clipEngineName = "sfx_engine";
+    private string clipEngineName = "sfx_engine_01";
 
     void OnEnable(){
         EventHandler.E_OnConductDirection += ConductDirectionHandler;

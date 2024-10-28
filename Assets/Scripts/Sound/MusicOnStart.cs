@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleAudioSystem;
 using UnityEngine;
 
 public class MusicOnStart : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private string musicName;
+    [SerializeField] private float delay = 0;
+    [SerializeField, Range(0, 1)] private float volume;
+    [SerializeField] private float transitionTime;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartCoroutine(CommonCoroutine.delayAction(()=> AudioManager.Instance.PlayMusic(musicName, true, transitionTime, volume), delay));
     }
 }

@@ -180,7 +180,9 @@ MonoBehaviour:
   music_loop: {fileID: 5275165436332487226}
   default_sfx: {fileID: 1575368267826454331}
   mainMixer: {fileID: 24100000, guid: f6c02be646bcea74fbaf33509a868ee4, type: 2}
-  mixerSnapShots: []
+  mixerSnapShots:
+  - {fileID: 24500006, guid: f6c02be646bcea74fbaf33509a868ee4, type: 2}
+  - {fileID: -536997224297596990, guid: f6c02be646bcea74fbaf33509a868ee4, type: 2}
 --- !u!1 &5275165435782480259
 GameObject:
   m_ObjectHideFlags: 0

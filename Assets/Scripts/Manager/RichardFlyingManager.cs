@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Cinemachine.Utility;
+using SimpleAudioSystem;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -55,6 +56,8 @@ public class RichardFlyingManager : MonoBehaviour
         safeZoneProbe.transform.parent = planeOnAir.transform;
         safeZoneProbe.transform.localPosition = Vector3.zero;
         safeZoneProbe.transform.localRotation = Quaternion.identity;
+
+        AudioManager.Instance.ChangeEngineHearing(true);
     }
 #region Event Handlers
     void OnInteractStopZoneHandler(bool isInZone){
@@ -63,6 +66,8 @@ public class RichardFlyingManager : MonoBehaviour
         planeOnAir.SwitchBumpyFly(isInStopZone);
     }
     void OnPlaneCrashedHandler(Vector3 crashPos){
+        AudioManager.Instance.ChangeEngineHearing(false);
+        AudioManager.Instance.PlaySoundEffect(null, "sfx_crash", 1f);
         StartCoroutine(CommonCoroutine.delayAction(()=>{
             Vector3 lastSafePos;
             Quaternion lastSafeRot;
@@ -92,6 +97,8 @@ public class RichardFlyingManager : MonoBehaviour
             safeZoneProbe.transform.parent = planeOnAir.transform;
             safeZoneProbe.transform.localPosition = Vector3.zero;
             safeZoneProbe.transform.localRotation = Quaternion.identity;
+
+            AudioManager.Instance.ChangeEngineHearing(true);
         }, 2f));
     }
     void OnReportPosHandler(Vector3 position, Quaternion rotation, Vector3[] threatDirections){

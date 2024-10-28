@@ -22,6 +22,9 @@ namespace SimpleAudioSystem{
         public string current_ambience_name{get; private set;} = string.Empty;
 
         private const string masterVolumeName = "MasterVolume";
+        private const string engineHeardSnapShot = "EngineHeard";
+        private const string engineSilenceSnapShot = "EngineSilence";
+
         private CoroutineExcuter ambFader;
         private CoroutineExcuter musFader;
 
@@ -193,6 +196,12 @@ namespace SimpleAudioSystem{
         }
         public void ChangeMasterVolume(float targetVolume){
             mainMixer.SetFloat(masterVolumeName, targetVolume);
+        }
+        public void ChangeEngineHearing(bool canHear){
+            float[] weights = new float[2];
+            weights[0] = canHear?0:1;
+            weights[1] = canHear?1:0;
+            mainMixer.TransitionToSnapshots(mixerSnapShots, weights, 2f);
         }
         void CrossFadeAmbience(string audio_name, float targetVolume, bool startOver, float transitionTime, bool overwriteAmbience = false){
             if(!overwriteAmbience && ambience_crossfading) return;

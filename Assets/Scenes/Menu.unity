@@ -783,7 +783,7 @@ MonoBehaviour:
   creditButton: {fileID: 688007944}
   creditBackButton: {fileID: 1819444696}
   creditImage: {fileID: 29322769}
-  musicClipName: 
+  menuMusic: bgm_menu
 --- !u!1 &1026942024
 GameObject:
   m_ObjectHideFlags: 0

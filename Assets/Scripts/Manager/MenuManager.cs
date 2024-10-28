@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Button creditBackButton;
     [SerializeField] private SpriteRenderer creditImage;
 [Header("Sound")]
-    [SerializeField] private string musicClipName;
+    [SerializeField] private string menuMusic;
     private bool isCreditsOn = false;
     private bool isCreditTransition = false;
     void OnEnable(){
@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.SetCursor(cursorTex, new Vector2(16, 16), CursorMode.Auto);
 
-        AudioManager.Instance.PlayMusic("muc_menu");
+        AudioManager.Instance.PlayMusic(menuMusic, true, 1, 1, true);
 
         StartCoroutine(coroutineFadeInButtonGroup());
     }
@@ -35,12 +35,14 @@ public class MenuManager : MonoBehaviour
         AudioManager.Instance.PlaySoundEffect(null, "sfx_ui_hit", 1f);
         AudioManager.Instance.PlaySoundEffect(null, "sfx_planecomein", 1f);
 
+        AudioManager.Instance.FadeMusic(0, 1.5f);
         GameManager.Instance.SwitchingScene(Service.WORKING, 2f);
     }
     public void ButtonEvent_EndGame(){
         Cursor.visible = false;
         bCanvas.interactable = false;
         AudioManager.Instance.PlaySoundEffect(null, "sfx_ui_hit", 1f);
+        AudioManager.Instance.FadeMusic(0, 0.5f);
         GameManager.Instance.EndGame();
     }
     public void ButtonEvent_Credits(){

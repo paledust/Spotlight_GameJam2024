@@ -143,6 +143,8 @@ public class PlaneControl_Free : MonoBehaviour
 
         //播放爆炸例子效果
             p_explodePuff.Play(true);
+        //消除声音
+            AudioManager.Instance.FadeAudio(m_audioLoop, 0, 0.01f, true);
         }
     }
     public void ForcePlaneRot(Quaternion rotation){
