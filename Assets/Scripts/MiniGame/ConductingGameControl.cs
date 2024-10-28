@@ -58,7 +58,6 @@ public class ConductingGameControl : MonoBehaviour
         EventHandler.E_OnConductForward -= ConductForwardHandler;
     }
     void Start(){
-        AudioManager.Instance.PlayAmbience("amb_airport", false, 0.5f, 1f);
         targetYaw = currentYaw = Random.Range(-maxYawOffset,maxYawOffset);
         AudioManager.Instance.PlaySoundEffectLoop(sfx_engine, clipEngineName, 1f, 0.1f);
     }
