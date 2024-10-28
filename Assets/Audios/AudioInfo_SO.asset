@@ -35,6 +35,8 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: 870d6746e2e5b9e408813edf7cb7e855, type: 3}
   - audio_name: sfx_planecomein
     audio_clip: {fileID: 8300000, guid: 9a6fff3bcfada7240a933c65219d9076, type: 3}
+  - audio_name: sfx_beep
+    audio_clip: {fileID: 8300000, guid: e2be93b7994d5764f94763005ad15fcf, type: 3}
   - audio_name: sfx_ui_hit
     audio_clip: {fileID: 8300000, guid: 2f73ee4a8cc88e344befaf6e8953a91e, type: 3}
   - audio_name: sfx_ui_credit

@@ -27,6 +27,13 @@ public class ConductingGameControl : MonoBehaviour
     [SerializeField] private float moveAgility=5;
     [SerializeField] private float rotAgility = 1;
 
+[Header("Audio")]
+    [SerializeField] private AudioSource sfx_engine;
+    [SerializeField] private AudioSource sfx_conducting;
+    [SerializeField] private float beepRate;
+
+    private float beepTimer=0;
+
     private float currentSpeed = 0;
     private float targetSpeed = 0;
     private float yawSpeed = 0;
@@ -39,8 +46,10 @@ public class ConductingGameControl : MonoBehaviour
     private bool isDone = false; //游戏是否已经结束
     private string float_offsetName = "Offset";
 
+    private string clipBeepName = "sfx_beep";
+    private string clipEngineName = "sfx_engine";
+
     void OnEnable(){
-        AudioManager.Instance.PlayAmbience("amb_airport", false, 0.5f, 1f);
         EventHandler.E_OnConductDirection += ConductDirectionHandler;
         EventHandler.E_OnConductForward += ConductForwardHandler;
     }
@@ -49,7 +58,9 @@ public class ConductingGameControl : MonoBehaviour
         EventHandler.E_OnConductForward -= ConductForwardHandler;
     }
     void Start(){
+        AudioManager.Instance.PlayAmbience("amb_airport", false, 0.5f, 1f);
         targetYaw = currentYaw = Random.Range(-maxYawOffset,maxYawOffset);
+        AudioManager.Instance.PlaySoundEffectLoop(sfx_engine, clipEngineName, 1f, 0.1f);
     }
     void Update(){
         currentSpeed = Service.LerpValue(currentSpeed, targetSpeed, moveAgility*Time.deltaTime);
@@ -59,7 +70,17 @@ public class ConductingGameControl : MonoBehaviour
         float offset = Mathf.Abs(airplaneObj.transform.localPosition.x - center.localPosition.x);
         lineAnimator.SetFloat(float_offsetName, offset/alertOffset);
 
-
+    //音效处理
+        if(isMoving){
+            beepTimer += Time.deltaTime*beepRate;
+            if(beepTimer>=1){
+                beepTimer = 0;
+                AudioManager.Instance.PlaySoundEffect(sfx_conducting, clipBeepName, .1f);
+            }
+        }
+        else{
+            beepTimer = 0;
+        }
     //结束条件判断
         if(airplaneObj.transform.localPosition.z>stopPos.localPosition.z && !isDone){
             isDone = true;
@@ -98,7 +119,8 @@ public class ConductingGameControl : MonoBehaviour
         driverInput = 0;
     }
     void ConductForwardHandler(bool isForward){
-        isMoving = true;
+        isMoving = isForward;
+        if(isMoving) AudioManager.Instance.PlaySoundEffect(sfx_conducting, clipBeepName, 0.1f);
         targetSpeed = isForward?maxMoveSpeed:0;
         driverInputDirection = Mathf.Sign(Random.Range(0, 1) - 0.5f);
         driverInput = 0;
