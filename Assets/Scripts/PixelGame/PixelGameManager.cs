@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SimpleAudioSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +39,7 @@ public class PixelGameManager : MonoBehaviour
     private int milesTextNum;
     private int fuelTextNum;
     private float lastHitTime;
+    private AudioSource audioSource;
     
     void Awake()
     {
@@ -52,6 +54,7 @@ public class PixelGameManager : MonoBehaviour
         milesTextNum = 0;
         fuelTextNum = 10000;
         star = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -82,11 +85,10 @@ public class PixelGameManager : MonoBehaviour
         }
         else if (gameStart)
         {
+            AudioManager.Instance.PlaySoundEffect(audioSource, "PixelWin", 1f);
             winPanel.SetActive(true);
             gameStart = false;
         }
-
-        
     }
 
     public void ReduceHp()
@@ -97,10 +99,12 @@ public class PixelGameManager : MonoBehaviour
         curHp--;
         lastHitTime = Time.time;
         pixelPlaneControl.GetComponent<Animator>().SetTrigger("Damage");
+        AudioManager.Instance.PlaySoundEffect(audioSource, "PixelReduceHp", 1f);
         if (curHp == 0)
         {
             gameStart = false;
             retryPanel.SetActive(true);
+            AudioManager.Instance.PlaySoundEffect(audioSource, "PixelLose", 1f);
         }
     }
 
@@ -108,6 +112,7 @@ public class PixelGameManager : MonoBehaviour
     {
         coverText.SetActive(false);
         coverPanel.GetComponent<Animation>().Play();
+        AudioManager.Instance.PlaySoundEffect(audioSource, "PixelStartGame", 1f);
         StartCoroutine(StartGameCoroutine());
     }
 
@@ -120,6 +125,7 @@ public class PixelGameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        AudioManager.Instance.PlaySoundEffect(audioSource, "PixelButton", 1f);
         world.transform.position = worldStartPos;
         float mapX = mapStartPos;
         float mapY = mapPointer.GetComponent<RectTransform>().anchoredPosition.y;
@@ -149,6 +155,7 @@ public class PixelGameManager : MonoBehaviour
 
     public void FinishGame()
     {
+        AudioManager.Instance.PlaySoundEffect(audioSource, "PixelButton", 1f);
         EventHandler.Call_OnPixelGameFinished();
     }
 
@@ -192,5 +199,6 @@ public class PixelGameManager : MonoBehaviour
     {
         star++;
         starText.text = star.ToString().PadLeft(2, '0');
+        AudioManager.Instance.PlaySoundEffect(audioSource, "PixelTarget", 1f);
     }
 }

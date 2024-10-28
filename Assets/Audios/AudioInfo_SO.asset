@@ -19,8 +19,16 @@ MonoBehaviour:
   - audio_name: amb_name
     audio_clip: {fileID: 0}
   sfx_info_list:
-  - audio_name: sfx_name
-    audio_clip: {fileID: 0}
-  sfx_group_info_list:
-  - audio_group_name: group_name
-    audioClips: []
+  - audio_name: PixelStartGame
+    audio_clip: {fileID: 8300000, guid: 37635b258d5b8ef40a2536517fcfbbba, type: 3}
+  - audio_name: PixelWin
+    audio_clip: {fileID: 8300000, guid: f19e0f6aae3c526478cb54fe986ab70c, type: 3}
+  - audio_name: PixelLose
+    audio_clip: {fileID: 8300000, guid: 2fc8e2f803606ec448c5515db077e27e, type: 3}
+  - audio_name: PixelButton
+    audio_clip: {fileID: 8300000, guid: a1d3181ad0bd9ed4ab4d24878f5d69c7, type: 3}
+  - audio_name: PixelReduceHp
+    audio_clip: {fileID: 8300000, guid: f5c85ce9f839e6a44871a16bb874ee17, type: 3}
+  - audio_name: PixelTarget
+    audio_clip: {fileID: 8300000, guid: 07cf290f9ef55ac4a81b48abd68da63c, type: 3}
+  sfx_group_info_list: []
