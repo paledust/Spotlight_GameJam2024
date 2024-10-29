@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18751750}
   - component: {fileID: 18751749}
+  - component: {fileID: 18751751}
   m_Layer: 0
   m_Name: Level Initiator
   m_TagString: Untagged
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2403b109176c77e4187b00ad89ebe2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambienceName: amb_airport
+  ambienceName: amb_windy
   delay: 0
   volume: 1
   transitionTime: 0.5
@@ -171,6 +172,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &18751751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18751748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293707c4f89dfd04dac3d5229ccac119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicName: bgm_fly_01
+  delay: 0
+  volume: 0.7
+  transitionTime: 2
 --- !u!1 &35141015
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2767e18aa3302b47a243340a061c05c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx_fallIntoWater: sfx_fallintowater
 --- !u!65 &701437836
 BoxCollider:
   m_ObjectHideFlags: 0
