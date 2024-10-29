@@ -198,6 +198,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3527085}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &13119972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13119973}
+  m_Layer: 1
+  m_Name: IceTunnelSpawnInside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &13119973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13119972}
+  m_LocalRotation: {x: -0.0985407, y: -0.7659315, z: 0.16512565, w: -0.6134918}
+  m_LocalPosition: {x: -304.41, y: 27.97, z: -180}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1209892079}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 21.954, y: -258.00702, z: -3.193}
 --- !u!1 &17663662
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18751750}
   - component: {fileID: 18751749}
+  - component: {fileID: 18751751}
   m_Layer: 0
   m_Name: Level Initiator
   m_TagString: Untagged
@@ -344,6 +376,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &18751751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18751748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293707c4f89dfd04dac3d5229ccac119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicName: bgm_fly_01
+  delay: 0
+  volume: 0.7
+  transitionTime: 1
 --- !u!1001 &18771024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -932,8 +980,8 @@ MonoBehaviour:
   transitionColor: {r: 0.5019608, g: 0.8039216, b: 0.8156863, a: 1}
   mountainAreaObj: {fileID: 8632981802850322756}
   iceAreaObj: {fileID: 1662825343}
-  flyingManager: {fileID: 0}
-  spawnPosIce: {fileID: 0}
+  flyingManager: {fileID: 132362786}
+  spawnPosIce: {fileID: 13119973}
 --- !u!1 &152025732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,12 +1575,12 @@ PrefabInstance:
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.101797156
+      value: -0.10179716
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0011638512
+      value: -0.0011638495
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
@@ -3134,12 +3182,12 @@ PrefabInstance:
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000007301569
+      value: -0.0000007376075
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000006891787
+      value: 0.0000000661239
       objectReference: {fileID: 0}
     - target: {fileID: 3369712747280930494, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -6592,6 +6640,7 @@ Transform:
   - {fileID: 208337570}
   - {fileID: 686875486}
   - {fileID: 795301649}
+  - {fileID: 13119973}
   m_Father: {fileID: 1461160002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

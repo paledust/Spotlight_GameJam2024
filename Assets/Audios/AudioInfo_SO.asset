@@ -13,13 +13,33 @@ MonoBehaviour:
   m_Name: AudioInfo_SO
   m_EditorClassIdentifier: 
   bgm_info_list:
-  - audio_name: bgm_name
-    audio_clip: {fileID: 0}
+  - audio_name: bgm_menu
+    audio_clip: {fileID: 8300000, guid: 7bc054ec5bf693844bd8616112304939, type: 3}
+  - audio_name: bgm_fly_01
+    audio_clip: {fileID: 8300000, guid: 4fc325861266e334dbe5433af4ae8b20, type: 3}
+  - audio_name: bgm_fly_02
+    audio_clip: {fileID: 8300000, guid: 494df880914062b4abdbde01885aad63, type: 3}
+  - audio_name: bgm_fly_03
+    audio_clip: {fileID: 8300000, guid: 117bf51dad8783c4fa85bfff17e876ca, type: 3}
+  - audio_name: bgm_fly_04
+    audio_clip: {fileID: 8300000, guid: 57e5980d00fc9e14b9b19b8df60401f5, type: 3}
+  - audio_name: bgm_fly_05
+    audio_clip: {fileID: 8300000, guid: b05cc6ba9a95ec7419babbe82a84b0f0, type: 3}
+  - audio_name: bgm_fly_05_uw
+    audio_clip: {fileID: 8300000, guid: 15afe182783bdb54ea5303fc94d8174c, type: 3}
+  - audio_name: bgm_sea
+    audio_clip: {fileID: 8300000, guid: b31d62dd7eb98c645a93c5ce423dd2cb, type: 3}
+  - audio_name: bgm_fall
+    audio_clip: {fileID: 8300000, guid: 31ac1a8278f614c42adf549acb8869c1, type: 3}
   amb_info_list:
   - audio_name: amb_airport
     audio_clip: {fileID: 8300000, guid: 68c067c2cd771f04f82ab32b90f193a7, type: 3}
   - audio_name: amb_home_night
     audio_clip: {fileID: 8300000, guid: 3385ab58d32e61a4fb0e520b9171abd3, type: 3}
+  - audio_name: amb_windy
+    audio_clip: {fileID: 8300000, guid: e3e0d34eb5858c14db7b085b951b4298, type: 3}
+  - audio_name: amb_underwater
+    audio_clip: {fileID: 8300000, guid: 33c9853e9b760ff499b2808e38c58f4c, type: 3}
   sfx_info_list:
   - audio_name: sfx_ui_hit
     audio_clip: {fileID: 8300000, guid: 2f73ee4a8cc88e344befaf6e8953a91e, type: 3}
@@ -41,6 +61,8 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: 870d6746e2e5b9e408813edf7cb7e855, type: 3}
   - audio_name: sfx_engine_02
     audio_clip: {fileID: 8300000, guid: 3f317b1b944ca7e46a238f947367b0d0, type: 3}
+  - audio_name: sfx_engine_underwater
+    audio_clip: {fileID: 8300000, guid: c3bf0092117763d4896efe606c51dca1, type: 3}
   - audio_name: sfx_planecomein
     audio_clip: {fileID: 8300000, guid: 9a6fff3bcfada7240a933c65219d9076, type: 3}
   - audio_name: sfx_beep
@@ -65,14 +87,24 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: b294b0db76ae42942b7ee652a46beac4, type: 3}
   - audio_name: sfx_pi
     audio_clip: {fileID: 8300000, guid: 0258a278de55990429c6dcf978cf0864, type: 3}
+  - audio_name: sfx_crash
+    audio_clip: {fileID: 8300000, guid: 8088aec856a2c314cbdaae930b5af1e8, type: 3}
+  - audio_name: bgm_pixelgame
+    audio_clip: {fileID: 8300000, guid: 13be1db0254488e4a9e21d8759637044, type: 3}
+  - audio_name: sfx_fallintowater
+    audio_clip: {fileID: 8300000, guid: 578201c39e58d6642ac0e49509259473, type: 3}
+  - audio_name: rec_mic
+    audio_clip: {fileID: 8300000, guid: 974059b7ce56f52488331e9754c2589c, type: 3}
+  - audio_name: rec_pullup
+    audio_clip: {fileID: 8300000, guid: b1a886c2e22a1284c854df072ef6808d, type: 3}
   sfx_group_info_list:
   - audio_group_name: group_magic_chime
     audioClips:
-    - {fileID: 8300000, guid: 98cfe48215bd8de47b40aedbde8ab21c, type: 3}
     - {fileID: 8300000, guid: 0e88b3d4ba9c8624ab805541be2a131c, type: 3}
+    - {fileID: 8300000, guid: 98cfe48215bd8de47b40aedbde8ab21c, type: 3}
   - audio_group_name: group_bird
     audioClips:
-    - {fileID: 8300000, guid: 66a40daff0660eb4086d1883cc2ef28b, type: 3}
-    - {fileID: 8300000, guid: a4dcfb318cb4ea3418d454f3fdd008b5, type: 3}
-    - {fileID: 8300000, guid: 0a540ee6097a31c4e8443447e000707f, type: 3}
     - {fileID: 8300000, guid: ee5e01c607dc4f24b86a096585cec05f, type: 3}
+    - {fileID: 8300000, guid: 0a540ee6097a31c4e8443447e000707f, type: 3}
+    - {fileID: 8300000, guid: a4dcfb318cb4ea3418d454f3fdd008b5, type: 3}
+    - {fileID: 8300000, guid: 66a40daff0660eb4086d1883cc2ef28b, type: 3}

@@ -33,6 +33,8 @@ public static class EventHandler
     public static void Call_OnReachExit()=>E_OnReachExit?.Invoke();
     public static event Action E_OnPixelGameFinished;
     public static void Call_OnPixelGameFinished()=>E_OnPixelGameFinished?.Invoke();
+    public static event Action E_OnWinningPixelGame;
+    public static void Call_OnWinningPixelGame()=>E_OnWinningPixelGame?.Invoke();
     public static event Action<int> E_OnConductDirection;
     public static void Call_OnConductDirection(int direction)=>E_OnConductDirection?.Invoke(direction);
     public static event Action<bool> E_OnConductForward;

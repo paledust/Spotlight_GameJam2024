@@ -136,10 +136,11 @@ AudioSource:
   m_GameObject: {fileID: 4023961441920201228}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8839638266777147908, guid: f6c02be646bcea74fbaf33509a868ee4,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -328,6 +329,7 @@ MonoBehaviour:
   planeAnimator: {fileID: 8770736377163429593}
   m_audioLoop: {fileID: 7533175855912906056}
   engineClip: sfx_engine_02
+  maxVolume: 0.3
 --- !u!114 &3338385546433560253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +409,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8977869910378160333}
-  m_LocalRotation: {x: -0.09853768, y: -0.00000074505806, z: 0.00000007357448, w: -0.9951334}
+  m_LocalRotation: {x: -0.09853768, y: -0.0000007376075, z: 0.0000000661239, w: -0.9951334}
   m_LocalPosition: {x: -0.000029563904, y: 3.9999883, z: -19.999931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -440,7 +442,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 2000
+    FarClipPlane: 3000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}

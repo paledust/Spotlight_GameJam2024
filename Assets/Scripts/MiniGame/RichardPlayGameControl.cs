@@ -17,7 +17,7 @@ public class RichardPlayGameControl : MonoBehaviour
     [SerializeField] private PlayableDirector endTimeline;
 [Header("Audio")]
     [SerializeField] private AudioSource m_audio;
-    
+    [SerializeField] private AudioSource m_pixelBGM;
     private float targetPitch;
     private float targetRoll;
     private float pitch = 0;
@@ -26,9 +26,11 @@ public class RichardPlayGameControl : MonoBehaviour
 
     void OnEnable(){
         EventHandler.E_OnPixelGameFinished += EndGame;
+        EventHandler.E_OnWinningPixelGame += WinGame;
     }
     void OnDisable(){
         EventHandler.E_OnPixelGameFinished -= EndGame;
+        EventHandler.E_OnWinningPixelGame -= WinGame;
     }
     void Start(){
         AudioManager.Instance.PlaySoundEffectLoop(m_audio, "sfx_gaming", 0, 0.1f);
@@ -52,6 +54,9 @@ public class RichardPlayGameControl : MonoBehaviour
             }
         }
     }
+    void WinGame(){
+        AudioManager.Instance.FadeAudio(m_pixelBGM, 0, 0.1f, true);
+    }
     void EndGame(){
         StartCoroutine(coroutineReturnPos(1.5f, 1f));
         playerInput.DeactivateInput();
@@ -70,6 +75,7 @@ public class RichardPlayGameControl : MonoBehaviour
     public void StartGame(){
         this.enabled = true;
         playerInput.ActivateInput();
+        AudioManager.Instance.PlaySoundEffectLoop(m_pixelBGM, "bgm_pixelgame", 0.65f, 1);
     }
     public void GoToNextLevel(){
         GameManager.Instance.SwitchingScene(Service.TAKE_OFF, 1f);

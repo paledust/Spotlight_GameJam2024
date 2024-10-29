@@ -3594,6 +3594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambienceName: amb_airport
+  delay: 0
   volume: 1
   transitionTime: 0.5
 --- !u!1 &1673031359

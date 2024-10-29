@@ -143,6 +143,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
     }
     public void TL_Event_ChangeEngineSound(){
         AudioManager.Instance.FadeAudio(m_loopAudio, 0, 0.5f, true);
+        AudioManager.Instance.PlayMusic("bgm_fly_01", true, 0.5f, 1f);
     }
     public void TL_Event_StartGame(){
         GetComponent<PlayerInput>().enabled = true;
