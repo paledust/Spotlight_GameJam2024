@@ -86,6 +86,7 @@ public class PixelGameManager : MonoBehaviour
         else if (gameStart)
         {
             AudioManager.Instance.PlaySoundEffect(audioSource, "PixelWin", 1f);
+            EventHandler.Call_OnWinningPixelGame();
             winPanel.SetActive(true);
             gameStart = false;
         }
