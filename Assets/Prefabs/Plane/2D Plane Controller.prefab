@@ -84,8 +84,10 @@ MonoBehaviour:
   agility: 2
   planeRenderTrans: {fileID: 4759770054359640961}
   maxCorrectionAngle: 30
+  maxAngleStep: 1.5
+  inputMulti: 1
   flyingSpeed: 30
-  angularSpeed: 1.5
+  angularSpeed: 1.75
   rotateToForwardRatio: 3
   externalRotateAngle: 0
   planeAnimator: {fileID: 5337198580804923174}
@@ -102,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeControl_Platform: {fileID: 3013435273926244112}
-  fallingTravelDistance: 300
+  fallingTravelDistance: 800
   maxFallingSpeed: 5
   totalLength: 0
   p_smoke: {fileID: 6501016703869184432}
@@ -264,6 +266,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799297680736069278, guid: 3eb01a983fb27334ba279c556f686dd0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8130388036237086039, guid: 3eb01a983fb27334ba279c556f686dd0,
         type: 3}

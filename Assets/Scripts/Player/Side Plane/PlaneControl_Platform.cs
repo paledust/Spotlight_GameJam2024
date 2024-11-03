@@ -10,6 +10,7 @@ public class PlaneControl_Platform : MonoBehaviour
 [Header("Correction Help")]
     [SerializeField] private Transform planeRenderTrans;
     [SerializeField] private float maxCorrectionAngle = 30;
+    [SerializeField] private float maxAngleStep = 5;
     [SerializeField] private float inputMulti = 1;
     [SerializeField] private float flyingSpeed = 5;
     [SerializeField] private float angularSpeed = 2;
@@ -17,8 +18,7 @@ public class PlaneControl_Platform : MonoBehaviour
     [SerializeField] private float externalRotateAngle;
 [Header("Shake Animation")]
     [SerializeField] private Animator planeAnimator;
-[Header("Falling")]
-
+    
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
     private Vector3 forwardVel;
@@ -48,7 +48,8 @@ public class PlaneControl_Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentLevelAngle = Service.LerpValue(currentLevelAngle, targetLevelAngle*inputMulti+externalRotateAngle, Time.deltaTime*agility, 0.1f);
+        float targetAngle = Service.LerpValue(currentLevelAngle, targetLevelAngle*inputMulti+externalRotateAngle, Time.deltaTime*agility, 0.1f);
+        currentLevelAngle = currentLevelAngle + Mathf.Clamp(targetAngle-currentLevelAngle, -maxAngleStep, maxAngleStep);
         
         planeRenderTrans.localRotation = Quaternion.Euler(0,0,-Vector2.SignedAngle(transform.forward, Vector2.right));
         forwardVel = Quaternion.Euler(0, 0, currentLevelAngle)*Vector3.right;
@@ -58,7 +59,8 @@ public class PlaneControl_Platform : MonoBehaviour
             targetRotateAngle = rotationTimer*currentAngularSpeed*Mathf.Rad2Deg;
         }
 
-        currentRotateAngle = Service.LerpValue(currentRotateAngle, targetRotateAngle, Time.deltaTime*agility);
+        targetAngle = Service.LerpValue(currentRotateAngle, targetRotateAngle, Time.deltaTime*agility);
+        currentRotateAngle = currentRotateAngle + Mathf.Clamp(targetAngle-currentRotateAngle, -maxAngleStep, maxAngleStep);
         currentRotateVel = Quaternion.Euler(0,0,currentLevelAngle+currentRotateAngle)*Vector3.right;
     }
     void FixedUpdate(){

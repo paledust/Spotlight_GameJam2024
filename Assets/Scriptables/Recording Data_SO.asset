@@ -25,3 +25,9 @@ MonoBehaviour:
     isCom: 1
   - clipKey: rec_olympic_chat
     isCom: 1
+  - clipKey: rec_whale
+    isCom: 1
+  - clipKey: rec_monologue
+    isCom: 1
+  - clipKey: rec_flipover
+    isCom: 1
