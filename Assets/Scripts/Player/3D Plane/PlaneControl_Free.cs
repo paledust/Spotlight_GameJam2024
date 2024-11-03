@@ -63,11 +63,13 @@ public class PlaneControl_Free : MonoBehaviour
     private float externalPoseFinAngle;
 
     private const float MAX_POSE_ANGLE = 40;
+    private const float MAX_SPEED_AFTERCONTROL = 30;
     private const string trigger_shake = "Shake";
     private const string bool_bumpy = "Bumpy";
 
     private bool canActivateInput{get{return !crashed;}}
     private bool crashed = false;
+    private bool takenControl = false;
 
     public Rigidbody m_rigid{get; private set;}
 
@@ -83,7 +85,6 @@ public class PlaneControl_Free : MonoBehaviour
         initTailRot = TailTrans.localRotation;
         initLWingRot = LWingTrans.localRotation;
         initRWingRot = RWingTrans.localRotation;
-
     }
     void Start(){
         AudioManager.Instance.PlaySoundEffectLoop(m_audioLoop, engineClip, 1, 0.5f);
@@ -184,14 +185,29 @@ public class PlaneControl_Free : MonoBehaviour
         targetPitchSpeed = input.y * maxPitchSpeed;
         targetYawSpeed = input.x * maxYawSpeed;
         targetPoseRollAngle = -MAX_POSE_ANGLE*input.x;
+        
+        if(!takenControl){
+            takenControl = true;
+            maxSpeed = MAX_SPEED_AFTERCONTROL;
+        }
     }
     void OnSide(InputValue inputValue){
         float input = inputValue.Get<float>();
         targetRollSpeed = -input * maxRollSpeed;
+
+        if(!takenControl){
+            takenControl = true;
+            maxSpeed = MAX_SPEED_AFTERCONTROL;
+        }
     }
     void OnAcc(InputValue inputValue){
         float input = inputValue.Get<float>();
         targetFlyingSpeed = Mathf.Lerp(flyingSpeed.x, flyingSpeed.y, input*0.5f+0.5f);
+
+        if(!takenControl){
+            takenControl = true;
+            maxSpeed = MAX_SPEED_AFTERCONTROL;
+        }
     }
 #endregion
 }

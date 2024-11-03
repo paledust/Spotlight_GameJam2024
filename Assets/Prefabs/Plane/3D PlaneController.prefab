@@ -312,7 +312,7 @@ MonoBehaviour:
   maxRollSpeed: 50
   agility: 2
   flyingSpeed: {x: 10, y: 30}
-  maxSpeed: 30
+  maxSpeed: 5
   angularSpeedMulti: 1
   planeRoot: {fileID: 8189930292661809790}
   LWingTrans: {fileID: 8584446136385006643}
@@ -410,8 +410,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8977869910378160333}
-  m_LocalRotation: {x: -0.09853768, y: -0.00000074505806, z: 0.00000007357448, w: -0.9951334}
-  m_LocalPosition: {x: -0.000029563904, y: 3.9999883, z: -19.999931}
+  m_LocalRotation: {x: 0.09853768, y: 0.000000074505806, z: 0.000000014901161, w: 0.9951334}
+  m_LocalPosition: {x: -0.0000035762787, y: 4, z: -20.000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
