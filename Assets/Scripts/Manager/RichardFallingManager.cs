@@ -14,17 +14,25 @@ public class RichardFallingManager : MonoBehaviour
     [SerializeField] private AudioSource m_warningAudio;
     [SerializeField] private string flipClip;
     [SerializeField] private string pullUpClip;
+    [SerializeField] private string flipCompleteClip;
+
     void Awake(){
         EventHandler.E_OnStartToFall += StartFallingHandler;
+        EventHandler.E_OnFlipComplete += FlipCompleteHandler;
     }
     void OnDestroy(){
         EventHandler.E_OnStartToFall -= StartFallingHandler;
+        EventHandler.E_OnFlipComplete -= FlipCompleteHandler;
     }
     public void TL_PlayFlipClip(){
         RecordingManager.Instance.PlayRecording(flipClip);
     }
     public void PlayPullUpWarning(){
         AudioManager.Instance.PlaySoundEffectLoop(m_warningAudio, pullUpClip, 1, 0.1f);
+    }
+    void FlipCompleteHandler(){
+        RecordingManager.Instance.StopCurrentRecording(true);
+        RecordingManager.Instance.PlayRecording(flipCompleteClip);
     }
     void StartFallingHandler(){
         BottomTrigger.SetActive(false);

@@ -31,3 +31,5 @@ MonoBehaviour:
     isCom: 1
   - clipKey: rec_flipover
     isCom: 1
+  - clipKey: rec_flipcomplete
+    isCom: 1

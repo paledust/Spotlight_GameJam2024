@@ -15,7 +15,11 @@ public class RecordingManager : Singleton<RecordingManager>
             AudioManager.Instance.PlayRecording(data.clipKey, volume);
         }
     }
-    public void StopCurrentRecording(){
+    public void StopCurrentRecording(bool stopImmediately){
+        if(stopImmediately) {
+            AudioManager.Instance.StopRecording();
+            return;
+        }
         AudioManager.Instance.PlayRecording(micClip, 1);
         StartCoroutine(CommonCoroutine.delayAction(()=>AudioManager.Instance.StopRecording(), MIC_LENGTH));
     }

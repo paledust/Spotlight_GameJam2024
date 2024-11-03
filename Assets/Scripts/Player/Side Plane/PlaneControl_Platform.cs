@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleAudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,11 @@ public class PlaneControl_Platform : MonoBehaviour
     [SerializeField] private float externalRotateAngle;
 [Header("Shake Animation")]
     [SerializeField] private Animator planeAnimator;
+[Header("Audio")]
+    [SerializeField] private AudioSource warnAudio;
+    [SerializeField] private string warnClip;
+    [SerializeField] private float warnAhead = 8;
+    [SerializeField] private float warnStep = 4;
     
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
@@ -30,7 +36,10 @@ public class PlaneControl_Platform : MonoBehaviour
     private float currentLevelAngle;
     private float currentAngularSpeed;
     private float rotationTimer = 0;
+    private float warnTimer = 0;
     private bool isRotating = false;
+    private bool flipSuccess = false;
+    private CoroutineExcuter warnStopper;
 
     private const string trigger_shake = "Shake";
 
@@ -42,10 +51,12 @@ public class PlaneControl_Platform : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         m_rigid = GetComponent<Rigidbody>();
         fallingVel = Vector3.zero;
+        warnStopper = new CoroutineExcuter(this);
         currentLevelAngle = targetLevelAngle*inputMulti + externalRotateAngle;
+
+        warnTimer = warnAhead;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float targetAngle = Service.LerpValue(currentLevelAngle, targetLevelAngle*inputMulti+externalRotateAngle, Time.deltaTime*agility, 0.1f);
@@ -56,11 +67,21 @@ public class PlaneControl_Platform : MonoBehaviour
 
         if(isRotating){
             rotationTimer += Time.deltaTime;
+            warnTimer += Time.deltaTime;
             targetRotateAngle = rotationTimer*currentAngularSpeed*Mathf.Rad2Deg;
+
+            if(warnTimer >= warnStep){
+                warnTimer = 0;
+                AudioManager.Instance.PlaySoundEffect(warnAudio, warnClip, 1);
+            }
         }
 
         targetAngle = Service.LerpValue(currentRotateAngle, targetRotateAngle, Time.deltaTime*agility);
         currentRotateAngle = currentRotateAngle + Mathf.Clamp(targetAngle-currentRotateAngle, -maxAngleStep, maxAngleStep);
+        if(!flipSuccess && Mathf.Abs(currentRotateAngle)>=360){
+            flipSuccess = true;
+            EventHandler.Call_OnFlipComplete();
+        }
         currentRotateVel = Quaternion.Euler(0,0,currentLevelAngle+currentRotateAngle)*Vector3.right;
     }
     void FixedUpdate(){
@@ -77,6 +98,7 @@ public class PlaneControl_Platform : MonoBehaviour
 #endregion
     public void StartFalling(float fallingSpeed){
         StartCoroutine(coroutineIncreaseFallingSpeed(fallingSpeed, 4f));
+        StartCoroutine(coroutineDecreaseRotateFactor(0.5f, 15f));
     }
     IEnumerator coroutineIncreaseFallingSpeed(float targetSpeed, float duration){
         yield return new WaitForLoop(duration, (t)=>{
@@ -84,10 +106,19 @@ public class PlaneControl_Platform : MonoBehaviour
             fallingVel = Vector3.down * Mathf.Lerp(0, targetSpeed, t);
         });
     }
+    IEnumerator coroutineDecreaseRotateFactor(float targetFactor, float duration){
+        float initFactor = rotateToForwardRatio;
+        yield return new WaitForLoop(duration, (t)=>{
+            rotateToForwardRatio = Mathf.Lerp(initFactor, targetFactor, t);
+        });
+    }
 #region Input
     public void SwitchInput(bool isActivated){
         if(isActivated && canActivateInput) playerInput.ActivateInput();
-        else playerInput.DeactivateInput();
+        else {
+            playerInput.DeactivateInput();
+            warnStopper.Excute(CommonCoroutine.delayAction(()=>warnAudio.Stop(),1f));
+        }
     }
     void OnRotation(InputValue inputValue){
         float input = inputValue.Get<float>();
@@ -99,9 +130,14 @@ public class PlaneControl_Platform : MonoBehaviour
             targetRotateAngle = 0;
             currentRotateAngle = currentRotateAngle-Mathf.FloorToInt(currentRotateAngle/360)*360;
             if(currentRotateAngle>180) currentRotateAngle = currentRotateAngle-360;
+
+            warnStopper.Excute(CommonCoroutine.delayAction(()=>{
+                warnAudio.Stop();
+                warnTimer = warnAhead;},1f));
         }
         else{
             isRotating = true;
+            warnStopper.Abort();
         }
     }
     void OnLevel(InputValue inputValue){

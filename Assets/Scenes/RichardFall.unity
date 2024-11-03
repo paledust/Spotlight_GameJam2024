@@ -6858,6 +6858,7 @@ MonoBehaviour:
   m_warningAudio: {fileID: 593925474}
   flipClip: rec_flipover
   pullUpClip: rec_warn
+  flipCompleteClip: rec_flipcomplete
 --- !u!4 &1637612268
 Transform:
   m_ObjectHideFlags: 0

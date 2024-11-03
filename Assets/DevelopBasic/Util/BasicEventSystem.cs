@@ -28,6 +28,8 @@ public static class EventHandler
     public static void Call_OnEnterIceLayer()=>E_OnEnterIceLayer?.Invoke();
     public static event Action<Transform> E_OnEnterSpawnTrigger;
     public static void Call_OnEnterSpawnTrigger(Transform spawnTrans)=>E_OnEnterSpawnTrigger?.Invoke(spawnTrans);
+    public static event Action E_OnFlipComplete;
+    public static void Call_OnFlipComplete()=>E_OnFlipComplete?.Invoke();
 #endregion
 
 #region  Interaction Event
