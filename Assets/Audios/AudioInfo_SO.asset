@@ -97,6 +97,30 @@ MonoBehaviour:
     audio_clip: {fileID: 8300000, guid: 974059b7ce56f52488331e9754c2589c, type: 3}
   - audio_name: rec_pullup
     audio_clip: {fileID: 8300000, guid: b1a886c2e22a1284c854df072ef6808d, type: 3}
+  - audio_name: rec_takeoff
+    audio_clip: {fileID: 8300000, guid: 880b0d25227c86a49b6f08ddc5b49562, type: 3}
+  - audio_name: rec_firstcom
+    audio_clip: {fileID: 8300000, guid: f616166d27f015040b119c501baa0f6b, type: 3}
+  - audio_name: rec_land_consult
+    audio_clip: {fileID: 8300000, guid: a9a8fa1c2d15a754e98ee03ce959b8b9, type: 3}
+  - audio_name: rec_land_chat
+    audio_clip: {fileID: 8300000, guid: bc43254a0ead0b04c942857cefdf9233, type: 3}
+  - audio_name: rec_flyguidence
+    audio_clip: {fileID: 8300000, guid: 18c8bd895b1853345b05f02c8332bdb9, type: 3}
+  - audio_name: rec_whale
+    audio_clip: {fileID: 8300000, guid: 9a79f2203fe0b124eb9e85402b60bf92, type: 3}
+  - audio_name: rec_olympic
+    audio_clip: {fileID: 8300000, guid: 17792c43c1f4b9740ace0e14a4a6f920, type: 3}
+  - audio_name: rec_monologue
+    audio_clip: {fileID: 8300000, guid: 1aaf8daf95c89814d8133f8d65c7abae, type: 3}
+  - audio_name: rec_chat_olympic
+    audio_clip: {fileID: 8300000, guid: e0aaaafad870d0245ae4003b77a15072, type: 3}
+  - audio_name: rec_flipover
+    audio_clip: {fileID: 8300000, guid: 2d74c84911910834f9053aa8146ee010, type: 3}
+  - audio_name: rec_warn
+    audio_clip: {fileID: 8300000, guid: 4527c7feb06d13f4d9072262010f031c, type: 3}
+  - audio_name: rec_crash
+    audio_clip: {fileID: 8300000, guid: dc286e97007f1aa40ad34723c32efe4b, type: 3}
   sfx_group_info_list:
   - audio_group_name: group_magic_chime
     audioClips:

@@ -34,6 +34,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
     [SerializeField] private string magicWooshClip;
     [SerializeField] private string magicChimeClip;
     [SerializeField] private string engineClip;
+    [SerializeField] private string takeOffRecordClip;
 
     private bool leftIsDone = false;
     private bool rightIsDone = false;
@@ -138,6 +139,7 @@ public class RichardTakeOffGameControl : MonoBehaviour
         }
     }
 #region Timeline Event
+    public void TL_PlayRecording()=>RecordingManager.Instance.PlayRecording(takeOffRecordClip);
     public void TL_Event_GoToFlightScene(){
         GameManager.Instance.SwitchingScene(Service.FLYING_ONE, 1);
     }

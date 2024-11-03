@@ -2849,6 +2849,7 @@ MonoBehaviour:
   magicWooshClip: sfx_magic_woosh
   magicChimeClip: group_magic_chime
   engineClip: sfx_engine_01
+  takeOffRecordClip: rec_takeoff
 --- !u!95 &735747248
 Animator:
   serializedVersion: 5
@@ -13670,6 +13671,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: adc2b322343b8544bbfe0998abba2d52, type: 2}
     - {fileID: 11400000, guid: 16965f2de13fc4b44933e19d9f74d6be, type: 2}
+    - {fileID: 11400000, guid: 4f62bc59c2cbc89418653e06eb0c9cc1, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -13690,6 +13692,20 @@ MonoBehaviour:
         - m_Target: {fileID: 735747247}
           m_TargetAssemblyTypeName: RichardTakeOffGameControl, Assembly-CSharp
           m_MethodName: TL_Event_ChangeEngineSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 735747247}
+          m_TargetAssemblyTypeName: RichardTakeOffGameControl, Assembly-CSharp
+          m_MethodName: TL_PlayRecording
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
