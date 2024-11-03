@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CausticTex:
-        m_Texture: {fileID: 2800000, guid: 2b28c07f7ab57ad4b95da33d639da045, type: 3}
+        m_Texture: {fileID: 2800000, guid: e1e94e2feca58334cbb82756e85e80c6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -107,8 +107,8 @@ Material:
     - _AlphaCutoff: 0.5
     - _Blend: 0
     - _BumpScale: 1
-    - _CausticFade: 0.2
-    - _CausticSmooth: 1
+    - _CausticFade: 0.9
+    - _CausticSmooth: 0.01
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -135,7 +135,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CausticColor: {r: 0.2662049, g: 1.0149062, b: 1.0592737, a: 1}
+    - _CausticColor: {r: 0.26620486, g: 1.0592737, b: 1.0283549, a: 1}
     - _CausticSpeed: {r: -0.4, g: -0.4, b: -0.4, a: 0}
     - _CausticTiling: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

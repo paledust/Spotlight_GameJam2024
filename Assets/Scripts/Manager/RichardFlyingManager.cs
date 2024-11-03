@@ -40,11 +40,13 @@ public class RichardFlyingManager : MonoBehaviour
         EventHandler.E_OnPlaneCrashed += OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos += OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone += OnInteractStopZoneHandler;
+        EventHandler.E_OnEnterSpawnTrigger += OnEnterSpawnTriggerHandler;
     }
     protected void OnDestroy(){
         EventHandler.E_OnPlaneCrashed -= OnPlaneCrashedHandler;
         EventHandler.E_OnReportPos -= OnReportPosHandler;
         EventHandler.E_OnInteractingStopZone -= OnInteractStopZoneHandler;
+        EventHandler.E_OnEnterSpawnTrigger -= OnEnterSpawnTriggerHandler;
     }
     void Start(){
         planeOnAir = FindObjectOfType<PlaneControl_Free>();
@@ -65,6 +67,7 @@ public class RichardFlyingManager : MonoBehaviour
         ppFader.Excute(coroutineFadePP(isInStopZone?1:0, 1f));
         planeOnAir.SwitchBumpyFly(isInStopZone);
     }
+    void OnEnterSpawnTriggerHandler(Transform triggerTrans)=>ResetSpwanPos(triggerTrans);
     void OnPlaneCrashedHandler(Vector3 crashPos){
         AudioManager.Instance.ChangeEngineHearing(false);
         AudioManager.Instance.PlaySoundEffect(null, "sfx_crash", 1f);

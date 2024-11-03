@@ -26,6 +26,8 @@ public static class EventHandler
     public static void Call_OnReportPos(Vector3 lastPos, Quaternion lastRotation, Vector3[] threatDirection)=>E_OnReportPos?.Invoke(lastPos, lastRotation, threatDirection);
     public static event Action E_OnEnterIceLayer;
     public static void Call_OnEnterIceLayer()=>E_OnEnterIceLayer?.Invoke();
+    public static event Action<Transform> E_OnEnterSpawnTrigger;
+    public static void Call_OnEnterSpawnTrigger(Transform spawnTrans)=>E_OnEnterSpawnTrigger?.Invoke(spawnTrans);
 #endregion
 
 #region  Interaction Event
