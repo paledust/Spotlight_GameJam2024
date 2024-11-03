@@ -155,23 +155,11 @@ namespace SimpleAudioSystem{
             StartCoroutine(coroutineSFX_WithFinishAction(targetSource, clip, volumScale, finishCallback));
         public void FadeInAndOutSoundEffect(AudioSource targetSource, string clip, float maxVolume, float duration, float fadeIn, float fadeOut)=>
             StartCoroutine(coroutineFadeInAndOutSFX(targetSource, clip, maxVolume, duration, fadeIn, fadeOut));
-        public void FadeRoomTone(AudioSource roomtoneAudio, string clip, float volume, float transition){
-            if(clip == string.Empty){
-                StartCoroutine(coroutineFadeAudio(roomtoneAudio, 0, transition));
-            }
-            else{
-                AudioClip roomTone = audioInfo.GetAMBClipByName(clip);
-                if(roomtoneAudio.clip!=roomTone) roomtoneAudio.clip = roomTone;
-                if(!roomtoneAudio.isPlaying){
-                    roomtoneAudio.volume = 0;
-                    if(volume>0) roomtoneAudio.Play();
-                } 
-                
-                StartCoroutine(coroutineFadeAudio(roomtoneAudio, volume, transition, true));
-            }
-        }
         public void PlayRecording(string recordClip, float volumeScale){
             PlaySoundEffect(record_sfx, recordClip, volumeScale);
+        }
+        public void StopRecording(){
+            record_sfx.Stop();
         }
         AudioClip GetSFXClip(string clipName){
             AudioClip clip;

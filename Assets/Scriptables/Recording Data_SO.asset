@@ -17,3 +17,11 @@ MonoBehaviour:
     isCom: 1
   - clipKey: rec_firstcom
     isCom: 1
+  - clipKey: rec_land_consult
+    isCom: 1
+  - clipKey: rec_land_chat
+    isCom: 1
+  - clipKey: rec_olympic
+    isCom: 1
+  - clipKey: rec_olympic_chat
+    isCom: 1

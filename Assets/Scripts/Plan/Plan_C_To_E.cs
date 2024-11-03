@@ -12,6 +12,7 @@ public class Plan_C_To_E : MonoBehaviour
     void OnDisable(){
         EventHandler.E_OnReachExit -= OnReachExit;
     }
+
     void OnReachExit(){
         TL_AboveSky.Play();
     }

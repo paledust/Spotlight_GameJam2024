@@ -11,6 +11,7 @@ public class Plan_A_To_B : MonoBehaviour
     [SerializeField] private Transform spawnPosIce;
 [Header("Recording")]
     [SerializeField] private string firstComClip;
+    [SerializeField] private string landConsultClip;
     void Start(){
         iceAreaObj.SetActive(false);
     }
