@@ -61,8 +61,8 @@ public class PlaneControl_Free : MonoBehaviour
     private float targetPoseRollAngle;
     private float currentPoseRollAngle;
     private float externalPoseFinAngle;
-    private float externalPoseWingAngle;
 
+    private const float MAX_POSE_ANGLE = 40;
     private const string trigger_shake = "Shake";
     private const string bool_bumpy = "Bumpy";
 
@@ -97,7 +97,7 @@ public class PlaneControl_Free : MonoBehaviour
             currentYawSpeed = Service.LerpValue(currentYawSpeed, targetYawSpeed*angularSpeedMulti, _s);
 
             targetPoseRollSpeed = targetPoseRollAngle - currentPoseRollAngle;
-            targetPoseRollSpeed = 2*targetPoseRollSpeed;
+            targetPoseRollSpeed = 1.5f*targetPoseRollSpeed;
             currentPoseRollSpeed = Service.LerpValue(currentPoseRollSpeed, targetPoseRollSpeed, _s*4);
 
             currentPoseRollAngle += Time.deltaTime*currentPoseRollSpeed;
@@ -105,10 +105,10 @@ public class PlaneControl_Free : MonoBehaviour
     //改变舵的角度
         {
             float _s = Time.deltaTime*5;
-            externalPoseFinAngle = Mathf.Abs(currentPoseRollAngle/40)*15;
+            externalPoseFinAngle = Mathf.Abs(currentPoseRollAngle/MAX_POSE_ANGLE)*15;
             currentFinAngle = Service.LerpValue(currentFinAngle, -MaxFinAngle * targetPitchSpeed*angularSpeedMulti/maxPitchSpeed, _s);
-            currentTailAngle = currentPoseRollAngle/40 *MaxTailAngle;
-            currentWingAngle = Service.LerpValue(currentWingAngle, MaxWingAngle * targetRollSpeed*angularSpeedMulti/maxRollSpeed, _s);
+            currentTailAngle = currentPoseRollAngle/MAX_POSE_ANGLE *MaxTailAngle;
+            currentWingAngle = Service.LerpValue(currentWingAngle, MaxWingAngle * (targetRollSpeed+targetPoseRollSpeed)*angularSpeedMulti/maxRollSpeed, _s);
 
             FinTrans.localRotation = Quaternion.Euler((currentFinAngle+externalPoseFinAngle)*Vector3.right) * initFinRot;
             TailTrans.localRotation = Quaternion.Euler(currentTailAngle*Vector3.up) * initTailRot;
@@ -183,7 +183,7 @@ public class PlaneControl_Free : MonoBehaviour
         Vector2 input = inputValue.Get<Vector2>();
         targetPitchSpeed = input.y * maxPitchSpeed;
         targetYawSpeed = input.x * maxYawSpeed;
-        targetPoseRollAngle = -40*input.x;
+        targetPoseRollAngle = -MAX_POSE_ANGLE*input.x;
     }
     void OnSide(InputValue inputValue){
         float input = inputValue.Get<float>();
