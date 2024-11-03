@@ -307,13 +307,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76497daab7eeb634eb537386d145b866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxYawSpeed: 20
+  maxYawSpeed: 60
   maxPitchSpeed: 60
-  maxRollSpeed: 60
+  maxRollSpeed: 50
   agility: 2
   flyingSpeed: {x: 10, y: 30}
   maxSpeed: 30
   angularSpeedMulti: 1
+  planeRoot: {fileID: 8189930292661809790}
   LWingTrans: {fileID: 8584446136385006643}
   RWingTrans: {fileID: 8461063289006162685}
   TailTrans: {fileID: 7608961323792513756}
@@ -409,7 +410,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8977869910378160333}
-  m_LocalRotation: {x: -0.09853768, y: -0.0000007376075, z: 0.0000000661239, w: -0.9951334}
+  m_LocalRotation: {x: -0.09853768, y: -0.00000074505806, z: 0.00000007357448, w: -0.9951334}
   m_LocalPosition: {x: -0.000029563904, y: 3.9999883, z: -19.999931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

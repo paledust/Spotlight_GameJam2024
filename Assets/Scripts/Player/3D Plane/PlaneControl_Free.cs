@@ -16,6 +16,7 @@ public class PlaneControl_Free : MonoBehaviour
     [SerializeField] private Vector2 flyingSpeed;
     public float maxSpeed;
     public float angularSpeedMulti = 1;
+    [SerializeField] private Transform planeRoot;
 [Header("Fin Control")]
     [SerializeField, Tooltip("左副翼")] private Transform LWingTrans;
     [SerializeField, Tooltip("右副翼")] private Transform RWingTrans;
@@ -55,6 +56,12 @@ public class PlaneControl_Free : MonoBehaviour
     private float currentWingAngle;
     private float targetFlyingSpeed;
     private float currentFlyingSpeed;
+    private float targetPoseRollSpeed;
+    private float currentPoseRollSpeed;
+    private float targetPoseRollAngle;
+    private float currentPoseRollAngle;
+    private float externalPoseFinAngle;
+    private float externalPoseWingAngle;
 
     private const string trigger_shake = "Shake";
     private const string bool_bumpy = "Bumpy";
@@ -88,15 +95,22 @@ public class PlaneControl_Free : MonoBehaviour
             currentPitchSpeed = Service.LerpValue(currentPitchSpeed, targetPitchSpeed*angularSpeedMulti, _s);
             currentRollSpeed = Service.LerpValue(currentRollSpeed, targetRollSpeed*angularSpeedMulti, _s);
             currentYawSpeed = Service.LerpValue(currentYawSpeed, targetYawSpeed*angularSpeedMulti, _s);
+
+            targetPoseRollSpeed = targetPoseRollAngle - currentPoseRollAngle;
+            targetPoseRollSpeed = 2*targetPoseRollSpeed;
+            currentPoseRollSpeed = Service.LerpValue(currentPoseRollSpeed, targetPoseRollSpeed, _s*4);
+
+            currentPoseRollAngle += Time.deltaTime*currentPoseRollSpeed;
         }
     //改变舵的角度
         {
             float _s = Time.deltaTime*5;
+            externalPoseFinAngle = Mathf.Abs(currentPoseRollAngle/40)*15;
             currentFinAngle = Service.LerpValue(currentFinAngle, -MaxFinAngle * targetPitchSpeed*angularSpeedMulti/maxPitchSpeed, _s);
-            currentTailAngle = Service.LerpValue(currentTailAngle, -MaxTailAngle * targetYawSpeed*angularSpeedMulti/maxYawSpeed, _s);
+            currentTailAngle = currentPoseRollAngle/40 *MaxTailAngle;
             currentWingAngle = Service.LerpValue(currentWingAngle, MaxWingAngle * targetRollSpeed*angularSpeedMulti/maxRollSpeed, _s);
 
-            FinTrans.localRotation = Quaternion.Euler(currentFinAngle*Vector3.right) * initFinRot;
+            FinTrans.localRotation = Quaternion.Euler((currentFinAngle+externalPoseFinAngle)*Vector3.right) * initFinRot;
             TailTrans.localRotation = Quaternion.Euler(currentTailAngle*Vector3.up) * initTailRot;
             LWingTrans.localRotation = Quaternion.Euler(currentWingAngle*Vector3.right) * initLWingRot;
             RWingTrans.localRotation = Quaternion.Euler(-currentWingAngle*Vector3.right) * initRWingRot;
@@ -116,9 +130,9 @@ public class PlaneControl_Free : MonoBehaviour
         }
     }
     void FixedUpdate(){
+        planeRoot.localRotation = Quaternion.Euler(0,0,currentPoseRollAngle);
         m_rigid.rotation *= Quaternion.Euler(currentPitchSpeed*Time.fixedDeltaTime, currentYawSpeed*Time.fixedDeltaTime, currentRollSpeed*Time.fixedDeltaTime);
         m_rigid.velocity = m_rigid.rotation*Vector3.forward*currentFlyingSpeed;
-        // m_rigid.AddRelativeForce(Vector3.forward*currentFlyingSpeed, ForceMode.Acceleration);
     }
 //处理飞机坠毁的方式
     public void OnCollide(Collision collision){
@@ -168,11 +182,12 @@ public class PlaneControl_Free : MonoBehaviour
     void OnMove(InputValue inputValue){
         Vector2 input = inputValue.Get<Vector2>();
         targetPitchSpeed = input.y * maxPitchSpeed;
-        targetRollSpeed = -input.x * maxRollSpeed;
+        targetYawSpeed = input.x * maxYawSpeed;
+        targetPoseRollAngle = -40*input.x;
     }
     void OnSide(InputValue inputValue){
         float input = inputValue.Get<float>();
-        targetYawSpeed = input * maxYawSpeed;
+        targetRollSpeed = -input * maxRollSpeed;
     }
     void OnAcc(InputValue inputValue){
         float input = inputValue.Get<float>();
