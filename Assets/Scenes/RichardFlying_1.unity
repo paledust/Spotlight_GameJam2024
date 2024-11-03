@@ -963,6 +963,7 @@ MonoBehaviour:
   minimumWidthDist: 10
   minimumHeightDist: 20
   minimumForwardDist: 25
+  overrideDirection: 1
   alignDirectionToPath: 0
   m_flightPath: {fileID: 0}
 --- !u!114 &132362787
@@ -982,6 +983,7 @@ MonoBehaviour:
   iceAreaObj: {fileID: 1662825343}
   flyingManager: {fileID: 132362786}
   spawnPosIce: {fileID: 13119973}
+  firstComClip: rec_firstcom
 --- !u!1 &152025732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,12 +1577,12 @@ PrefabInstance:
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.10179716
+      value: -0.101797156
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0011638495
+      value: -0.0011638512
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
@@ -3182,12 +3184,12 @@ PrefabInstance:
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000007376075
+      value: -0.0000007301569
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000661239
+      value: 0.00000006891787
       objectReference: {fileID: 0}
     - target: {fileID: 3369712747280930494, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
@@ -12300,6 +12302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048574165}
   - component: {fileID: 2048574166}
+  - component: {fileID: 2048574167}
   m_Layer: 0
   m_Name: TL_EnterFlying
   m_TagString: Untagged
@@ -12343,6 +12346,36 @@ PlayableDirector:
     value: {fileID: 48813619}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &2048574167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048574164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 4f62bc59c2cbc89418653e06eb0c9cc1, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 132362787}
+          m_TargetAssemblyTypeName: Plan_A_To_B, Assembly-CSharp
+          m_MethodName: TL_PlayRecording
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &2062488784
 PrefabInstance:
   m_ObjectHideFlags: 0
