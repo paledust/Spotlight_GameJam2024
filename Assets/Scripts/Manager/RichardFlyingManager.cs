@@ -19,6 +19,7 @@ public class RichardFlyingManager : MonoBehaviour
     [SerializeField] private float minimumHeightDist = 30;
     [SerializeField] private float minimumForwardDist = 40;
 [Header("Fly Path")]
+    [SerializeField] private bool overrideDirection = true;
     [SerializeField] private bool alignDirectionToPath = false;
     [SerializeField] private CinemachinePathBase m_flightPath;
 
@@ -88,7 +89,7 @@ public class RichardFlyingManager : MonoBehaviour
                 lastSafePos = m_flightPath.EvaluatePosition(Mathf.Clamp01(point-0.3f));
                 lastSafeRot = Quaternion.LookRotation(m_flightPath.EvaluateTangent(point));
             }
-            else{
+            else if(overrideDirection){
                 Vector3 safeDir = lastSafeRot * Vector3.forward;
                 safeDir = Vector3.ProjectOnPlane(safeDir, Vector3.up);
                 lastSafeRot = Quaternion.LookRotation(safeDir);
