@@ -31,8 +31,9 @@ public class PlaneControl_Free : MonoBehaviour
 [Header("Cam Control")]
     [SerializeField] private CinemachineVirtualCamera m_cam;
     [SerializeField] private Vector2 fovRange;
-[Header("Particles")]
+[Header("VFX")]
     [SerializeField] private ParticleSystem p_explodePuff;
+    [SerializeField] private TrailRenderer[] flightTrail;
 [Header("Plane Shake")]
     [SerializeField] private Animator planeAnimator;
 [Header("Audio")]
@@ -61,6 +62,7 @@ public class PlaneControl_Free : MonoBehaviour
     private float targetPoseRollAngle;
     private float currentPoseRollAngle;
     private float externalPoseFinAngle;
+    private CoroutineExcuter trailFader;
 
     private const float MAX_POSE_ANGLE = 40;
     private const float MAX_SPEED_AFTERCONTROL = 40;
@@ -88,6 +90,7 @@ public class PlaneControl_Free : MonoBehaviour
     }
     void Start(){
         AudioManager.Instance.PlaySoundEffectLoop(m_audioLoop, engineClip, 1, 0.5f);
+        trailFader = new CoroutineExcuter(this);
     }
     void Update(){
     //平滑改变飞行姿态
@@ -176,6 +179,29 @@ public class PlaneControl_Free : MonoBehaviour
     }
     public void SwitchBumpyFly(bool isBumpy){
         planeAnimator.SetBool(bool_bumpy, isBumpy);
+    }
+#endregion
+
+#region VFX
+    public void FadeTrailColor(Color targetColor, float duration = 1){
+        trailFader.Excute(coroutineFadeTrail(targetColor, duration));
+    }
+    public void FadeTrailColorDefault(float duration=1){
+        FadeTrailColor(Color.white, duration);
+    }
+    IEnumerator coroutineFadeTrail(Color targetColor, float duration){
+        Gradient gradient = flightTrail[0].colorGradient;
+        GradientColorKey[] colorKeys = gradient.colorKeys;
+        Color initColor = colorKeys[0].color;
+
+        yield return new WaitForLoop(duration,(t)=>{
+            colorKeys[0].color = Color.Lerp(initColor, targetColor, EasingFunc.Easing.SmoothInOut(t));
+            colorKeys[1].color = colorKeys[0].color;
+            gradient.SetKeys(colorKeys, gradient.alphaKeys);
+            foreach(var trail in flightTrail){
+                trail.colorGradient = gradient;
+            }
+        });
     }
 #endregion
 

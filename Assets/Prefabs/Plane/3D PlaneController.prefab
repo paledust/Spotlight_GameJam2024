@@ -327,6 +327,11 @@ MonoBehaviour:
   m_cam: {fileID: 3369712747280930494}
   fovRange: {x: 55, y: 65}
   p_explodePuff: {fileID: 8680973621237615167}
+  flightTrail:
+  - {fileID: 8488271824511840656}
+  - {fileID: 8048561036763140068}
+  - {fileID: 8089023469407994795}
+  - {fileID: 8363987205618575237}
   planeAnimator: {fileID: 8770736377163429593}
   m_audioLoop: {fileID: 7533175855912906056}
   engineClip: sfx_engine_02
@@ -410,7 +415,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8977869910378160333}
-  m_LocalRotation: {x: -0.09853768, y: -0.00000074505806, z: 0.00000007357448, w: -0.9951334}
+  m_LocalRotation: {x: -0.09853768, y: -0.0000007376075, z: 0.0000000661239, w: -0.9951334}
   m_LocalPosition: {x: -0.000029563904, y: 3.9999883, z: -19.999931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -590,15 +595,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
+--- !u!96 &8048561036763140068 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 8729568764734338501, guid: 3eb01a983fb27334ba279c556f686dd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627931508671314465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &8089023469407994795 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7410225582876162442, guid: 3eb01a983fb27334ba279c556f686dd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627931508671314465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8189930292661809790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7439921439401412703, guid: 3eb01a983fb27334ba279c556f686dd0,
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
+--- !u!96 &8363987205618575237 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7099160756755258788, guid: 3eb01a983fb27334ba279c556f686dd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627931508671314465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8461063289006162685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7204685384646359260, guid: 3eb01a983fb27334ba279c556f686dd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627931508671314465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &8488271824511840656 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7159585776277703601, guid: 3eb01a983fb27334ba279c556f686dd0,
     type: 3}
   m_PrefabInstance: {fileID: 1627931508671314465}
   m_PrefabAsset: {fileID: 0}
