@@ -183,9 +183,18 @@ public class PlaneControl_Free : MonoBehaviour
 #endregion
 
 #region VFX
+    /// <summary>
+    /// 将彩带变为特定颜色
+    /// </summary>
+    /// <param name="targetColor">目标颜色</param>
+    /// <param name="duration">变至目标颜色的过渡时长</param>
     public void FadeTrailColor(Color targetColor, float duration = 1){
         trailFader.Excute(coroutineFadeTrail(targetColor, duration));
     }
+    /// <summary>
+    /// 将彩带变为初始颜色
+    /// </summary>
+    /// <param name="duration">变回初始颜色的过渡时长</param>
     public void FadeTrailColorDefault(float duration=1){
         FadeTrailColor(Color.white, duration);
     }
