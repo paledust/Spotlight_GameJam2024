@@ -8,6 +8,7 @@ public class IceLayerTrigger : MonoBehaviour
         if(other.tag == Service.PLAYER_TAG){
             GetComponent<Collider>().enabled = false;
             EventHandler.Call_OnEnterIceLayer();
+            RecordingManager.Instance.StopCurrentRecording();
         }
     }
 }

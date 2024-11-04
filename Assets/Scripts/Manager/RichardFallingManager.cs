@@ -24,6 +24,9 @@ public class RichardFallingManager : MonoBehaviour
         EventHandler.E_OnStartToFall -= StartFallingHandler;
         EventHandler.E_OnFlipComplete -= FlipCompleteHandler;
     }
+    void Start(){
+        RecordingManager.Instance.StopCurrentRecording();
+    }
     public void TL_PlayFlipClip(){
         RecordingManager.Instance.PlayRecording(flipClip);
     }

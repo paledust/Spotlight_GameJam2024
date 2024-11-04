@@ -15,7 +15,7 @@ public class RecordingManager : Singleton<RecordingManager>
             AudioManager.Instance.PlayRecording(data.clipKey, volume);
         }
     }
-    public void StopCurrentRecording(bool stopImmediately){
+    public void StopCurrentRecording(bool stopImmediately = false){
         if(stopImmediately) {
             AudioManager.Instance.StopRecording();
             return;
