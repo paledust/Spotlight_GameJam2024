@@ -63,7 +63,7 @@ public class PlaneControl_Free : MonoBehaviour
     private float externalPoseFinAngle;
 
     private const float MAX_POSE_ANGLE = 40;
-    private const float MAX_SPEED_AFTERCONTROL = 30;
+    private const float MAX_SPEED_AFTERCONTROL = 40;
     private const string trigger_shake = "Shake";
     private const string bool_bumpy = "Bumpy";
 

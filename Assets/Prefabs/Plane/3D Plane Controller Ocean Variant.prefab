@@ -92,6 +92,16 @@ PrefabInstance:
       propertyPath: engineClip
       value: sfx_engine_underwater
       objectReference: {fileID: 0}
+    - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
+        type: 3}
+      propertyPath: flyingSpeed.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
+        type: 3}
+      propertyPath: flyingSpeed.y
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221918, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_Name

@@ -311,7 +311,7 @@ MonoBehaviour:
   maxPitchSpeed: 60
   maxRollSpeed: 50
   agility: 2
-  flyingSpeed: {x: 10, y: 30}
+  flyingSpeed: {x: 20, y: 40}
   maxSpeed: 10
   angularSpeedMulti: 1
   planeRoot: {fileID: 8189930292661809790}

@@ -1578,12 +1578,12 @@ PrefabInstance:
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.101797156
+      value: -0.10179716
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0011638512
+      value: -0.0011638495
       objectReference: {fileID: 0}
     - target: {fileID: 7275168899890335853, guid: bfca539145ade14428955039cd6cdf74,
         type: 3}
@@ -3218,32 +3218,17 @@ PrefabInstance:
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000007301569
+      value: -0.0000007376075
       objectReference: {fileID: 0}
     - target: {fileID: 2157074112084596804, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000006891787
+      value: 0.0000000661239
       objectReference: {fileID: 0}
     - target: {fileID: 3369712747280930494, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
       propertyPath: m_Lens.FarClipPlane
       value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
-        type: 3}
-      propertyPath: flyingSpeed.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
-        type: 3}
-      propertyPath: flyingSpeed.y
-      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6167536754744221917, guid: 750ae00713301f844a08a42eb0e1cc32,
         type: 3}
