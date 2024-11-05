@@ -24,13 +24,12 @@ public class RichardFallingManager : MonoBehaviour
         EventHandler.E_OnStartToFall -= StartFallingHandler;
         EventHandler.E_OnFlipComplete -= FlipCompleteHandler;
     }
-    void Start(){
-        RecordingManager.Instance.StopCurrentRecording();
-    }
     public void TL_PlayFlipClip(){
+        RecordingManager.Instance.StopCurrentRecording(true);
         RecordingManager.Instance.PlayRecording(flipClip);
     }
     public void PlayPullUpWarning(){
+        RecordingManager.Instance.StopCurrentRecording();
         AudioManager.Instance.PlaySoundEffectLoop(m_warningAudio, pullUpClip, 1, 0.1f);
     }
     void FlipCompleteHandler(){
