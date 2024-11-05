@@ -19,11 +19,6 @@ public class PlaneControl_Platform : MonoBehaviour
     [SerializeField] private float externalRotateAngle;
 [Header("Shake Animation")]
     [SerializeField] private Animator planeAnimator;
-[Header("Audio")]
-    [SerializeField] private AudioSource warnAudio;
-    [SerializeField] private string warnClip;
-    [SerializeField] private float warnAhead = 8;
-    [SerializeField] private float warnStep = 4;
     
     private Rigidbody m_rigid;
     private PlayerInput playerInput;
@@ -53,8 +48,6 @@ public class PlaneControl_Platform : MonoBehaviour
         fallingVel = Vector3.zero;
         warnStopper = new CoroutineExcuter(this);
         currentLevelAngle = targetLevelAngle*inputMulti + externalRotateAngle;
-
-        warnTimer = warnAhead;
     }
 
     void Update()
@@ -69,11 +62,6 @@ public class PlaneControl_Platform : MonoBehaviour
             rotationTimer += Time.deltaTime;
             warnTimer += Time.deltaTime;
             targetRotateAngle = rotationTimer*currentAngularSpeed*Mathf.Rad2Deg;
-
-            if(warnTimer >= warnStep){
-                warnTimer = 0;
-                AudioManager.Instance.PlaySoundEffect(warnAudio, warnClip, 0.25f);
-            }
         }
 
         targetAngle = Service.LerpValue(currentRotateAngle, targetRotateAngle, Time.deltaTime*agility);
@@ -117,7 +105,6 @@ public class PlaneControl_Platform : MonoBehaviour
         if(isActivated && canActivateInput) playerInput.ActivateInput();
         else {
             playerInput.DeactivateInput();
-            warnStopper.Excute(CommonCoroutine.delayAction(()=>warnAudio.Stop(),1f));
         }
     }
     void OnRotation(InputValue inputValue){
@@ -130,10 +117,6 @@ public class PlaneControl_Platform : MonoBehaviour
             targetRotateAngle = 0;
             currentRotateAngle = currentRotateAngle-Mathf.FloorToInt(currentRotateAngle/360)*360;
             if(currentRotateAngle>180) currentRotateAngle = currentRotateAngle-360;
-
-            warnStopper.Excute(CommonCoroutine.delayAction(()=>{
-                warnAudio.Stop();
-                warnTimer = warnAhead;},1f));
         }
         else{
             isRotating = true;
