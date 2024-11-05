@@ -72,7 +72,7 @@ public class PlaneControl_Platform : MonoBehaviour
 
             if(warnTimer >= warnStep){
                 warnTimer = 0;
-                AudioManager.Instance.PlaySoundEffect(warnAudio, warnClip, 1);
+                AudioManager.Instance.PlaySoundEffect(warnAudio, warnClip, 0.25f);
             }
         }
 
