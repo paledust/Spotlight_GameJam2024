@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
 public class PlaneControl_Free : MonoBehaviour
 {
-    [SerializeField] private float boostSpeed = 0;
+    [SerializeField] public float boostSpeed = 0;
 [Header("Flight Pose Control")]
     [SerializeField] private float maxYawSpeed = 10;
     [SerializeField] private float maxPitchSpeed;
