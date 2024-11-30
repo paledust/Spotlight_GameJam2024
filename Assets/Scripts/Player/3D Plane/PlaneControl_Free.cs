@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
 public class PlaneControl_Free : MonoBehaviour
 {
+    [SerializeField] private float boostSpeed = 0;
 [Header("Flight Pose Control")]
     [SerializeField] private float maxYawSpeed = 10;
     [SerializeField] private float maxPitchSpeed;
@@ -123,7 +124,7 @@ public class PlaneControl_Free : MonoBehaviour
     //改变螺旋桨转速，航速，摄像机FOV
         {
             float _s = Time.deltaTime*2;
-            currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, Mathf.Min(targetFlyingSpeed, maxSpeed), _s);
+            currentFlyingSpeed = Service.LerpValue(currentFlyingSpeed, Mathf.Min(targetFlyingSpeed, maxSpeed)+boostSpeed, _s);
             rotator.rotateSpeed = Mathf.Lerp(spinningSpeedRange.x, spinningSpeedRange.y, Mathf.Clamp01((Mathf.Min(targetFlyingSpeed, maxSpeed)-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
             m_cam.m_Lens.FieldOfView = Mathf.Lerp(fovRange.x, fovRange.y, Mathf.Clamp01((currentFlyingSpeed-flyingSpeed.x)/(flyingSpeed.y-flyingSpeed.x)));
         }
